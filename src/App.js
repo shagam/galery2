@@ -37,7 +37,7 @@ function App() {
     }, (err) => console.log(err),
     () => {
       getDownloadURL(uploadTask.snapshot.ref)
-      .then(url => console.log(url));
+      .then(url => {setFileUrl(url) && console.log(url)});
     }
     );
   }
