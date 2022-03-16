@@ -11,7 +11,6 @@ import './App.css';
 function App() {
   const [progress, setProgress] = React.useState(0)
   const [fileUrl, setFileUrl] = React.useState(null);
-  // const [users, setUsers] = React.useState ([]);
 
   const formHandler = (e) => {
     e.preventDefault();
@@ -41,29 +40,6 @@ function App() {
     }
     );
   }
-
-  // const onFileChange = async (e) => {
-  //   const file = e.target.files[0];
-  //   const storageRef = app.storage.ref()
-  //   const fileRef = storageRef.child(file.name);
-  //   await fileRef.put(file)
-  //   const fileUrl = await fileRef.getDownLOadURl();
-  //   setFileUrl (fileUrl);
-  //   console.log ("upload file", file.name);
-  // }
-
-
-
-
-  // useEffect (() => {
-  //   const fetchUsers = async () => {
-  //     const usersCollection = await db.collection('users').get();
-  //     setUsers (usersCollection.docs.map(doc => {
-  //       return doc.data()
-  //     }));
-  //   }
-  //   fetchUsers()
-  // }, [])
 
 
   return (
