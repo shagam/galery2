@@ -3,6 +3,7 @@
 // import 'firebase/storage'
 import { initializeApp } from "firebase/app"
 import { getStorage } from "firebase/storage"
+import { getFirestore } from '@firebase/firestore'
 
 
 const firebaseConfig = {
@@ -18,3 +19,5 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 // export const db = firebase.firestore()
 export const projectStorage = getStorage(app);
+
+export const db = getFirestore(app);

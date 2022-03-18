@@ -33,55 +33,52 @@ const UploadForm = () => {
     }
   }
 
-  const firebasePictureInfoAdd = async (fileName, url) => {
+  const firebasePictureInfoAdd = async (fileName, url, size) => {
+
     console.log ( 'firebasePictureInfoAdd', fileName);
     try {
       // filesUrl [file.name] = url;
 
       const picturesRef = collection(db, "pictures");
-
-      var userQuery = query (picturesRef, where('name', '==', fileName));
-      const picture = await getDocs(userQuery);
-
-      // check if already exist
-      if (picture.docs.length > 0) {
-        console.log ('duplicate' , fileName);
-        return;
-      }         
   
-      await addDoc (picturesRef, {name: fileName, url: url})
+      await addDoc (picturesRef, {name: fileName, url: url, size: size})
     } catch (e) {console.log (e)}               
   }
 
 
-  const uploadFiles = (file) => {
+  const uploadFiles = async (file) => {
     if (! file) return;
 
     try {
-    const storageRef = ref(projectStorage, `/files/${file.name}`)
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    
-    uploadTask.on(
-      "state_changed",
-       (snapshot) => {
-      const prog = Math.round ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-      setProgress (prog)
-    }, (err) => console.log(err),
-    () => {
-      getDownloadURL(uploadTask.snapshot.ref)
-      .then(url => {firebasePictureInfoAdd (file.name, url)&& setFileUrl(url)
-        
-        // app.collection("pictures").doc(file).set ({
-        //   name: file.name,
-        //   url: url
-        // });      
 
-      });
+      const picturesRef = collection(db, "pictures");
+      var userQuery = query (picturesRef, where('name', '==', file.name));
+      const picture = await getDocs(userQuery);
+
+      // check if already exist
+      if (picture.docs.length > 0) {
+        alert ('duplicate file: ' + "  " + file.name);
+        return;
+      }         
 
 
-    }
-    );
-  } catch (e) {console.log (e)}
+      const storageRef = ref(projectStorage, `/files/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+        const prog = Math.round ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgress (prog)
+      }, (err) => console.log(err),
+      () => { // upload complete
+        getDownloadURL(uploadTask.snapshot.ref)
+        .then(url => {firebasePictureInfoAdd (file.name, url, file.size)
+          && setFileUrl(url)
+        });
+      }
+      );
+    } catch (e) {console.log (e)}
   }
 
 
@@ -95,7 +92,7 @@ const UploadForm = () => {
       <input type="text" name = "technology" placeholder="technology"></input> */}
       <button type="submit"> Upload </button> 
       <hr/>
-      <h3>uploaded {progress} %</h3>
+      { progress !== 0 && progress !== 100 && <h3>uploaded {progress} %</h3>}
 
       {error && <div className='error'>{error}</div>}
       {file && <div> {file.name} </div>}
