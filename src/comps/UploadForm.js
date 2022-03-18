@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 // import ProgressBar from './ProgressBar';
-import { app, projectStorage } from '../config'
+import { db, app, projectStorage } from '../config'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
+import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 
 
 const UploadForm = () => {
@@ -30,9 +31,28 @@ const UploadForm = () => {
       setFile(null);
       setError ('Please select an image file (png or jpeg or pdf)');
     }
-
-
   }
+
+  const firebasePictureInfoAdd = async (fileName, url) => {
+    console.log ( 'firebasePictureInfoAdd', fileName);
+    try {
+      // filesUrl [file.name] = url;
+
+      const picturesRef = collection(db, "pictures");
+
+      var userQuery = query (picturesRef, where('name', '==', fileName));
+      const picture = await getDocs(userQuery);
+
+      // check if already exist
+      if (picture.docs.length > 0) {
+        console.log ('duplicate' , fileName);
+        return;
+      }         
+  
+      await addDoc (picturesRef, {name: fileName, url: url})
+    } catch (e) {console.log (e)}               
+  }
+
 
   const uploadFiles = (file) => {
     if (! file) return;
@@ -49,12 +69,13 @@ const UploadForm = () => {
     }, (err) => console.log(err),
     () => {
       getDownloadURL(uploadTask.snapshot.ref)
-      .then(url => {setFileUrl(url) && console.log(url) &&
-        app.collection("pictures").doc(file).set ({
-          name: file.name,
-          url: url
-        });      
-      filesUrl [file.name] = url;
+      .then(url => {firebasePictureInfoAdd (file.name, url)&& setFileUrl(url)
+        
+        // app.collection("pictures").doc(file).set ({
+        //   name: file.name,
+        //   url: url
+        // });      
+
       });
 
 
