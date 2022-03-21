@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import ProgressBar from './ProgressBar';
-import { db, app, projectStorage } from '../config'
+import { db, app, projectStorage } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 

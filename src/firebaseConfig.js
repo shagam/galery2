@@ -18,6 +18,6 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 // export const db = firebase.firestore()
-export const projectStorage = getStorage(app);
+export const projectStorage = getStorage(app);  //image store
 
 export const db = getFirestore(app);

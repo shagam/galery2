@@ -1,26 +1,21 @@
-import React from 'react';
-// import { app, projectStorage } from '../config.js'
-// import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
+import React, {useState} from 'react';
 
+import Title from './comps/Title';
 import UploadForm from './comps/UploadForm'
-// import Title from './comps/Title';
-// import UploadForm from './comps/UploadForm';
+import ImageGrid from './comps/ImageGrid';
+import Modal from './comps/Modal'
 
 import './App.css';
 
 
 function App() { 
-
+  const [selectedImg, setSelectedImg] = useState (null)
   return (
     <div>
+      <Title/>
       <UploadForm/>
-      <ul>
-        {/* {users.map(user => {
-          return <li key={user.name}>
-             <img with="100" hight="100" src ={user.avatar} alt={user.name} />
-          <p>user.name</p></li>
-        })} */}
-      </ul>
+      <ImageGrid setSelectedImg={setSelectedImg} />
+      {selectedImg && <Modal selectedImg = {selectedImg} setSelectedImg={setSelectedImg}/> }
     </div>
   );
 }
