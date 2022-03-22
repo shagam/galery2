@@ -10,12 +10,15 @@ import './App.css';
 
 function App() { 
   const [selectedImg, setSelectedImg] = useState (null)
+  const [docs, setDocs] = useState([]);
+  const [selectedDoc, setSelectedDoc] = useState (null)
+
   return (
     <div>
       <Title/>
       <UploadForm/>
-      <ImageGrid setSelectedImg={setSelectedImg} />
-      {selectedImg && <Modal selectedImg = {selectedImg} setSelectedImg={setSelectedImg}/> }
+      <ImageGrid  setSelectedDoc={setSelectedDoc} setDocs = {setDocs} />
+      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
     </div>
   );
 }
