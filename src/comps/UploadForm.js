@@ -22,7 +22,7 @@ const UploadForm = () => {
       setFiles (selectedFiles);
       setError('');
       try {
-        console.log (selectedFiles);
+        // console.log (selectedFiles);
         uploadOneFile(selectedFiles);
       } catch (e) {console.log (e)}
     } else {
@@ -95,7 +95,7 @@ const UploadForm = () => {
       { progress !== 0 && progress !== 100 && <h3>uploaded {progress} %</h3>}
 
       {error && <div className='error'>{error}</div>}
-      {files && <div> {files} </div>}
+      {/* {files && <div> {files} </div>} */}
     </form>
 
   )
