@@ -31,7 +31,7 @@ const ImageGrid = ({ setSelectedDoc }) => {
     } catch (e) {console.log (e)}
   }
 
-  useEffect ((firebaseCollection) => {
+  useEffect (() => {
     return getPictures ();
   }, [firebaseCollection]);
 
@@ -44,7 +44,7 @@ const ImageGrid = ({ setSelectedDoc }) => {
         <div className="img-wrap" key={doc.id}
           onClick={() => setSelectedDoc(doc)} >
 
-          {doc.type === 'application/pdf' &&   <iframe src={doc.url} width="1000" height="1000" />   }
+          {doc.type === 'application/pdf' &&   <iframe src={doc.url} width="1000" height="1000" title={doc.name}/>   }
 
           {(doc.type === 'image/jpeg' || doc.type === 'image/png') && <img src={doc.url} alt={`name: ${doc.name}  size:  ${doc.size} type: ${doc.type}`} />}
           <div> name: {doc.name}  size:  {doc.size} 'type:' {doc.type}</div>
