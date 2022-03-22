@@ -6,7 +6,7 @@ import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireba
 
 
 const UploadForm = () => {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
   // const [filesUrl, setFilesUrl] = useState({});
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
@@ -16,19 +16,22 @@ const UploadForm = () => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    const selectedFile = e.target[0].files[0];
-    if (selectedFile && types.includes(selectedFile.type)) {
-      setFile(selectedFile);
+
+    const selectedFiles = e.target[0].files;
+    
+
+    if (selectedFiles) {
+      setFiles (selectedFiles);
       setError('');
       try {
-        console.log (selectedFile);
-        uploadOneFile(selectedFile);
+        console.log (selectedFiles);
+        uploadOneFile(selectedFiles);
 
 
       } catch (e) {console.log (e)}
 
     } else {
-      setFile(null);
+      setFiles(null);
       setError ('Please select an image file (png or jpeg or pdf)');
     }
   }
@@ -47,38 +50,45 @@ const UploadForm = () => {
 
   // const uploadFiles
 
-  const uploadOneFile = async (file) => {
-    if (! file) return;
+  const uploadOneFile = async (files) => {
+    if (! files) return;
 
     try {
-
       const picturesRef = collection(db, "pictures");
-      var userQuery = query (picturesRef, where('name', '==', file.name));
-      const picture = await getDocs(userQuery);
 
-      // check if already exist
-      if (picture.docs.length > 0) {
-        alert ('duplicate file: ' + "  " + file.name);
-        return;
-      }         
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (! types.includes(file.type)) {
+          console.log ('wrong file type: ', file);
+          continue;
+        }
 
+        var userQuery = query (picturesRef, where('name', '==', file.name));
+        const picture = await getDocs(userQuery);
 
-      const storageRef = ref(projectStorage, `/files/${file.name}`)
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-        const prog = Math.round ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        setProgress (prog)
-      }, (err) => console.log(err),
-      () => { // upload complete
-        getDownloadURL(uploadTask.snapshot.ref)
-        .then(url => {firebasePictureInfoAdd (file, url)
-          && setFileUrl(url)
-        });
+        // check if already exist
+        if (picture.docs.length > 0) {
+          alert ('duplicate file:   ' + file.name);
+          continue;
+        }         
+
+        const storageRef = ref(projectStorage, `/files/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+          const prog = Math.round ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          setProgress (prog)
+        }, (err) => console.log(err),
+        () => { // upload complete
+          getDownloadURL(uploadTask.snapshot.ref)
+          .then(url => {firebasePictureInfoAdd (file, url)
+            && setFileUrl(url)
+          });
+        }
+        );
       }
-      );
     } catch (e) {console.log (e)}
   }
 
@@ -86,8 +96,8 @@ const UploadForm = () => {
 
   return (
 
-    <form onSubmit={formHandler}>
-      <input type="file" name= "file" className="input"    />
+    <form onSubmit={formHandler} >
+      <input type="file" name= "file" id="file" className="input"  multiple  />
       <input type="text" name = "name" placeholder="NAME"></input>
       {/* <input type="text" name = "size" placeholder="SIZE"></input>
       <input type="text" name = "technology" placeholder="technology"></input> */}
@@ -96,7 +106,7 @@ const UploadForm = () => {
       { progress !== 0 && progress !== 100 && <h3>uploaded {progress} %</h3>}
 
       {error && <div className='error'>{error}</div>}
-      {file && <div> {file.name} </div>}
+      {files && <div> {files} </div>}
     </form>
 
   )
