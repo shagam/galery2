@@ -6,7 +6,7 @@ import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireba
 
 const picturesRef = collection(db, "pictures");
 
-const useFirestore = async (collection_) => {
+const useFirestore = async (collection) => {
   const [docs, setDocs] = useState ([]);
 
 //   const getPictures = async () => {
@@ -41,9 +41,25 @@ const useFirestore = async (collection_) => {
       return () => unsub();
   }
 
-  useEffect ((collection_) => {
-    return getPictures ();
-  }, [collection_]);
+  useEffect (() => {
+    const unsub = projectStorage.collection(collection)
+    .orderBy('createdAt', 'desc')
+    .onSnapShot((snap) =>{
+      let documents = [];
+      snap.forEach(doc => {
+        documents.push({...doc.data(), id: doc.id})
+      })
+      setDocs (documents);
+    });
+    return () => unsub();
+    // return getPictures ();
+  }, [collection]);
+
+
+
+  // useEffect ((collection_) => {
+  //   return getPictures ();
+  // }, [collection_]);
 
   return { docs } ;
 }
