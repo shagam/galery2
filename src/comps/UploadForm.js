@@ -5,12 +5,12 @@ import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 
 
-const UploadForm = () => {
+const UploadForm = (props) => {
   const [files, setFiles] = useState([]);
-  // const [filesUrl, setFilesUrl] = useState({});
+
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
-  // const [fileUrl, setFileUrl] = React.useState(null);
+
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
@@ -35,9 +35,10 @@ const UploadForm = () => {
 
     console.log ( 'firebasePictureInfoAdd', file.name);
     try {
-      // filesUrl [file.name] = url;
+
       const picturesRef = collection(db, "pictures");
-      await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type})
+      await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type, modified: file.
+        lastModifiedDate})
     } catch (e) {console.log (e)}               
   }
 
@@ -63,7 +64,7 @@ const UploadForm = () => {
           alert ('duplicate file:   ' + file.name);
           continue;
         }         
-
+        props.setLoadedFiles (files);
         const storageRef = ref(projectStorage, `/files/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
         

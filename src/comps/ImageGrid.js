@@ -8,9 +8,8 @@ import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireba
 // import '../index.css'
 // import useFirestore from '../hooks/useFirestore'
 
-const ImageGrid = ({ setSelectedDoc }) => {
+const ImageGrid = ({ setSelectedDoc, setAllDocs, loadedFiles }) => {
   const [docs, setDocs] = useState([]);
-
 
   const firebaseCollection = 'pictures';
   const picturesRef = collection(db, "pictures");
@@ -26,20 +25,22 @@ const ImageGrid = ({ setSelectedDoc }) => {
         documents.push({...doc, id: id})
       }
       setDocs (documents);
+      setAllDocs (documents);
       console.log (documents);
       return unsub;
     } catch (e) {console.log (e)}
   }
 
   useEffect (() => {
-    return getPictures ();
-  }, [firebaseCollection]);
+    getPictures ();
+  }, [loadedFiles]);
 
 
 
 
   return (
     <div className="img-grid">
+
       { docs && docs.map(doc => (
         <div className="img-wrap" key={doc.id}
           onClick={() => setSelectedDoc(doc)} >
@@ -49,6 +50,7 @@ const ImageGrid = ({ setSelectedDoc }) => {
           {(doc.type === 'image/jpeg' || doc.type === 'image/png') && <img src={doc.url} alt={`name: ${doc.name}  size:  ${doc.size} type: ${doc.type}`} />}
           <div> name: {doc.name}  size:  {doc.size} 'type:' {doc.type}</div>
         </div>
+        
 
       ))}
 
