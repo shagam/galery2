@@ -7,12 +7,12 @@ import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireba
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
-  const [filesUrl, setFilesUrl] = useState({});
+  // const [filesUrl, setFilesUrl] = useState({});
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
   const [fileUrl, setFileUrl] = React.useState(null);
 
-  const types = ['image/png', 'image/jpeg', 'image/pdf', 'application/pdf'];
+  const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
   const formHandler = (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const UploadForm = () => {
       setError('');
       try {
         console.log (selectedFile);
-        uploadFiles(selectedFile);
+        uploadOneFile(selectedFile);
 
 
       } catch (e) {console.log (e)}
@@ -33,20 +33,21 @@ const UploadForm = () => {
     }
   }
 
-  const firebasePictureInfoAdd = async (fileName, url, size) => {
+  const firebasePictureInfoAdd = async (file, url) => {
 
-    console.log ( 'firebasePictureInfoAdd', fileName);
+    console.log ( 'firebasePictureInfoAdd', file.name);
     try {
       // filesUrl [file.name] = url;
 
       const picturesRef = collection(db, "pictures");
   
-      await addDoc (picturesRef, {name: fileName, url: url, size: size})
+      await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type})
     } catch (e) {console.log (e)}               
   }
 
+  // const uploadFiles
 
-  const uploadFiles = async (file) => {
+  const uploadOneFile = async (file) => {
     if (! file) return;
 
     try {
@@ -73,7 +74,7 @@ const UploadForm = () => {
       }, (err) => console.log(err),
       () => { // upload complete
         getDownloadURL(uploadTask.snapshot.ref)
-        .then(url => {firebasePictureInfoAdd (file.name, url, file.size)
+        .then(url => {firebasePictureInfoAdd (file, url)
           && setFileUrl(url)
         });
       }
