@@ -10,7 +10,7 @@ const UploadForm = () => {
   // const [filesUrl, setFilesUrl] = useState({});
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
-  const [fileUrl, setFileUrl] = React.useState(null);
+  // const [fileUrl, setFileUrl] = React.useState(null);
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
@@ -18,18 +18,13 @@ const UploadForm = () => {
     e.preventDefault();
 
     const selectedFiles = e.target[0].files;
-    
-
     if (selectedFiles) {
       setFiles (selectedFiles);
       setError('');
       try {
         console.log (selectedFiles);
         uploadOneFile(selectedFiles);
-
-
       } catch (e) {console.log (e)}
-
     } else {
       setFiles(null);
       setError ('Please select an image file (png or jpeg or pdf)');
@@ -41,14 +36,11 @@ const UploadForm = () => {
     console.log ( 'firebasePictureInfoAdd', file.name);
     try {
       // filesUrl [file.name] = url;
-
       const picturesRef = collection(db, "pictures");
-  
       await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type})
     } catch (e) {console.log (e)}               
   }
 
-  // const uploadFiles
 
   const uploadOneFile = async (files) => {
     if (! files) return;
@@ -84,7 +76,6 @@ const UploadForm = () => {
         () => { // upload complete
           getDownloadURL(uploadTask.snapshot.ref)
           .then(url => {firebasePictureInfoAdd (file, url)
-            && setFileUrl(url)
           });
         }
         );
@@ -93,9 +84,7 @@ const UploadForm = () => {
   }
 
 
-
   return (
-
     <form onSubmit={formHandler} >
       <input type="file" name= "file" id="file" className="input"  multiple  />
       <input type="text" name = "name" placeholder="NAME"></input>
