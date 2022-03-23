@@ -42,6 +42,7 @@ const ImageGrid = ({ setSelectedDoc, setAllDocs, admin }) => {
 
   return (
     <div >
+      <h3> images: {docs.length} </h3>
       {admin && <UploadForm getPictures = {getPictures} admin = {admin}/> }
       <div className="img-grid">
       { docs && docs.map(doc => (
