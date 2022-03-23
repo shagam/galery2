@@ -8,7 +8,7 @@ import UploadForm from './UploadForm'
 // import '../index.css'
 // import useFirestore from '../hooks/useFirestore'
 
-const ImageGrid = ({ setSelectedDoc, setAllDocs }) => {
+const ImageGrid = ({ setSelectedDoc, setAllDocs, admin }) => {
   const [docs, setDocs] = useState([]);
 
   const firebaseCollection = 'pictures';
@@ -42,7 +42,7 @@ const ImageGrid = ({ setSelectedDoc, setAllDocs }) => {
 
   return (
     <div >
-      <UploadForm getPictures = {getPictures} />
+      {admin && <UploadForm getPictures = {getPictures} admin = {admin}/> }
       <div className="img-grid">
       { docs && docs.map(doc => (
         <div className="img-wrap" key={doc.id}
