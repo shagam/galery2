@@ -4,11 +4,11 @@ import { db, app, projectStorage } from '../firebaseConfig'
 // import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 // import {Document, Page, pdgjs} from 'react-pdf';
-
+import UploadForm from './UploadForm'
 // import '../index.css'
 // import useFirestore from '../hooks/useFirestore'
 
-const ImageGrid = ({ setSelectedDoc, setAllDocs, loadedFiles }) => {
+const ImageGrid = ({ setSelectedDoc, setAllDocs }) => {
   const [docs, setDocs] = useState([]);
 
   const firebaseCollection = 'pictures';
@@ -24,23 +24,26 @@ const ImageGrid = ({ setSelectedDoc, setAllDocs, loadedFiles }) => {
         const id = unsub.docs[i].id;
         documents.push({...doc, id: id})
       }
+      console.log ('getPictuires ', documents.length)
       setDocs (documents);
       setAllDocs (documents);
       console.log (documents);
       return unsub;
     } catch (e) {console.log (e)}
+
   }
 
   useEffect (() => {
     getPictures ();
-  }, [loadedFiles]);
+  }, []);
 
 
 
 
   return (
-    <div className="img-grid">
-
+    <div >
+      <UploadForm getPictures = {getPictures} />
+      <div className="img-grid">
       { docs && docs.map(doc => (
         <div className="img-wrap" key={doc.id}
           onClick={() => setSelectedDoc(doc)} >
@@ -49,11 +52,9 @@ const ImageGrid = ({ setSelectedDoc, setAllDocs, loadedFiles }) => {
 
           {(doc.type === 'image/jpeg' || doc.type === 'image/png') && <img src={doc.url} alt={`name: ${doc.name}  size:  ${doc.size} type: ${doc.type}`} />}
           <div> name: {doc.name}  size:  {doc.size} 'type:' {doc.type}</div>
-        </div>
-        
-
+        </div>      
       ))}
-
+      </div>
     </div>
   )
 }

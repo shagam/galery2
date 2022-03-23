@@ -39,6 +39,7 @@ const UploadForm = (props) => {
       const picturesRef = collection(db, "pictures");
       await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type, modified: file.
         lastModifiedDate})
+        props.getPictures();
     } catch (e) {console.log (e)}               
   }
 
@@ -64,7 +65,6 @@ const UploadForm = (props) => {
           alert ('duplicate file:   ' + file.name);
           continue;
         }         
-        props.setLoadedFiles (files);
         const storageRef = ref(projectStorage, `/files/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
         
@@ -83,6 +83,7 @@ const UploadForm = (props) => {
       }
     } catch (e) {console.log (e)}
   }
+
 
 
   return (

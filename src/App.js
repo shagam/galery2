@@ -17,8 +17,8 @@ function App() {
     <div>
       <Title/>
       <h3> images: {allDocs.length} </h3>
-      <UploadForm setLoadedFiles = {setLoadedFiles} />
-      <ImageGrid  setSelectedDoc={setSelectedDoc} setAllDocs = {setAllDocs} loadedFiles = {loadedFiles} />
+      {/* <UploadForm setLoadedFiles = {setLoadedFiles} /> */}
+      <ImageGrid  setSelectedDoc={setSelectedDoc} setAllDocs = {setAllDocs} />
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
     </div>
   );
