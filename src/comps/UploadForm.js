@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { db, app, projectStorage } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
+import cloneDeep from 'lodash/cloneDeep'
 
+const picturesRef = collection(db, "pictures");
 
 const UploadForm = (props) => {
   const [files, setFiles] = useState([]);
@@ -14,10 +16,30 @@ const UploadForm = (props) => {
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
 
-    const selectedFiles = e.target[0].files;
+    const selectedFiles = [];
+    for (let i = 0; i < e.target[0].files.length; i++) {
+      const file = e.target[0].files[i];
+      if (! types.includes(file.type)) {
+        console.log ('wrong file type: ', file);
+        continue;
+      }
+
+      // avoid duplicate file name, check if already exist
+      var userQuery = query (picturesRef, where('name', '==', file.name));
+      const picture = await getDocs(userQuery);
+
+      if (picture.docs.length > 0) {
+        alert ('duplicate file:   ' + file.name);
+        continue;
+      }
+      selectedFiles.push (file);
+    }
+    e.target.reset(); // clear form
+
+
     if (selectedFiles) {
       setFiles (selectedFiles);
       setError('');
@@ -29,15 +51,12 @@ const UploadForm = (props) => {
       setFiles(null);
       setError ('Please select an image file (png or jpeg or pdf)');
     }
-    e.target.reset(); // clear form
+
   }
 
   const firebasePictureInfoAdd = async (file, url) => {
-
     console.log ( 'firebasePictureInfoAdd', file.name);
     try {
-
-      const picturesRef = collection(db, "pictures");
       await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type, modified: file.
         lastModifiedDate})
         props.getPictures();
@@ -49,23 +68,9 @@ const UploadForm = (props) => {
     if (! files) return;
 
     try {
-      const picturesRef = collection(db, "pictures");
-
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        if (! types.includes(file.type)) {
-          console.log ('wrong file type: ', file);
-          continue;
-        }
-
-        var userQuery = query (picturesRef, where('name', '==', file.name));
-        const picture = await getDocs(userQuery);
-
-        // check if already exist
-        if (picture.docs.length > 0) {
-          alert ('duplicate file:   ' + file.name);
-          continue;
-        }         
+      
         const storageRef = ref(projectStorage, `/files/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
         
