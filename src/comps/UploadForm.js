@@ -45,7 +45,7 @@ const UploadForm = (props) => {
       setError('');
       try {
         // console.log (selectedFiles);
-        uploadOneFile(selectedFiles);
+        uploadOneFiles(selectedFiles);
       } catch (e) {console.log (e)}
     } else {
       setFiles(null);
@@ -54,17 +54,18 @@ const UploadForm = (props) => {
 
   }
 
-  const firebasePictureInfoAdd = async (file, url) => {
+  const firebasePictureInfoAdd = async (file, url, last) => {
     console.log ( 'firebasePictureInfoAdd', file.name);
     try {
       await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type, modified: file.
         lastModifiedDate})
-        props.getPictures();
+      if (last)
+        props.getPictures();  // refresh pictures on last to avoid duplicate 
     } catch (e) {console.log (e)}               
   }
 
 
-  const uploadOneFile = async (files) => {
+  const uploadOneFiles = (files) => {
     if (! files) return;
 
     try {
@@ -73,7 +74,7 @@ const UploadForm = (props) => {
       
         const storageRef = ref(projectStorage, `/files/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
-        
+        const last = i === files.length - 1 ? true : false;
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -82,7 +83,7 @@ const UploadForm = (props) => {
         }, (err) => console.log(err),
         () => { // upload complete
           getDownloadURL(uploadTask.snapshot.ref)
-          .then(url => {firebasePictureInfoAdd (file, url)
+          .then(url => {firebasePictureInfoAdd (file, url, last)
           });
         }
         );
