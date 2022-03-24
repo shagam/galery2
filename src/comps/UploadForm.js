@@ -29,6 +29,7 @@ const UploadForm = (props) => {
       setFiles(null);
       setError ('Please select an image file (png or jpeg or pdf)');
     }
+    e.target.reset(); // clear form
   }
 
   const firebasePictureInfoAdd = async (file, url) => {
