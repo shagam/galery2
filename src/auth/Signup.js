@@ -9,20 +9,28 @@ export default function Signup ()  {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+
+  const { signup } = useAuth(); //, currentUser
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
   
+
   async function handleSubmit (e) {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError ('Passwords do not match')
     } 
+
+    if (passwordRef.current.value.length < 6) {
+      return setError ('Passwords length need at least 6 ')
+    }
+
     try {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value)
+      const a = 1;
     } catch (e) {setError ('Failed to create an account' + e) && console.log (e)}
     setLoading (false);
   }
@@ -34,6 +42,7 @@ export default function Signup ()  {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Sign up</h2>
+          {/* {currentUser && 'email: ' + currentUser.email} */}
           {error && <Alert variant="danger"> {error} </Alert>}
 
           <Form onSubmit={handleSubmit}>
