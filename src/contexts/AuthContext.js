@@ -38,10 +38,15 @@ export function AuthProvider ({ children }) {
     try {
       // return signInWithEmailAndPassword (auth, email, password)
       return auth.signInWithEmailAndPassword (email, password)
-
     } catch (e) {console.log (e)}
   }
 
+  function logout () {
+    try {
+      // return signInWithEmailAndPassword (auth, email, password)
+      return auth.signOut ()
+    } catch (e) {console.log (e)}
+  }
 
   // onAuthStateChanged(auth, (user) => {
   auth.onAuthStateChanged(user => {
@@ -69,7 +74,8 @@ export function AuthProvider ({ children }) {
   const value = {
     currentUser,
     signup,
-    login
+    login,
+    logout
   }
   return (
     <AuthContext.Provider value={value}>

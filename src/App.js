@@ -8,10 +8,14 @@ import ImageGrid from './comps/ImageGrid';
 import Modal from './comps/Modal'
 
 import './App.css';
-import Signup from './auth/Signup';
+
 import { AuthProvider } from './contexts/AuthContext';
+import PrivateRoute from './auth/PrivateRoute';
+
+import Signup from './auth/Signup';
 import Dashboard from './Dashboard'
 import Login from './auth/Login';
+
 
 function App() { 
   // const [loadedFiles, setLoadedFiles] = useState ([]);
