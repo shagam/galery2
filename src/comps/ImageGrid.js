@@ -45,7 +45,7 @@ const ImageGrid = ({ setAllDocs, admin }) => {
   return (
     <div >
       <h3> images: {docs.length} </h3>
-      {admin && <UploadForm getPictures = {getPictures} admin = {admin}/> }
+      {<UploadForm getPictures = {getPictures} admin = {admin}/> }
       <div className='w-100 text-center mt-2'>
         Need admin access? <Link to="/dashBoard" > Authorise/Login </Link>
       </div>
