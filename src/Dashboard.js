@@ -24,17 +24,22 @@ export default function Dashboard() {
 
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'> Profile </h2>
+          <h2 className='text-center mb-4'> Admin Account </h2>
           {error && <Alert variant="danger"> {error} </Alert>}
           {/* <strong>Email:</strong> {currentUser.email} */}
 
-        <div className='btn btn-primery w-100 mt-3'>  <Link to="/update-profile" variant="primeray" >   Update Profile </Link></div>
+   
         </Card.Body>
         {/* <div>Dashboard</div> */}
 
         <div className='w-100 text-center mt-2'> Already have an account?  <Link to="/login" > Log In </Link> </div>
 
         <div className='w-100 text-center mt-2'> Need an account? <Link to="/signup" > Sign Up </Link> </div>
+
+        <div className='btn btn-primery w-100 mt-3'>  <Link to="/update-profile" variant="primeray" >   Update Profile </Link></div>
+
+        <div className='w-100 text-center mt-2'>  <Link to="/" > Galery </Link> </div>
+      
       </Card>
       <div className='w-100 text-center mt-2'> 
         <Button variant="link" onClick={handleLogout}>Log Out</Button>

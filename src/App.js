@@ -20,7 +20,7 @@ import UpdateProfile from './auth/UpdateProfile';
 
 function App() { 
   // const [loadedFiles, setLoadedFiles] = useState ([]);
-  const [allDocs, setAllDocs] = useState([]);
+  // const [allDocs, setAllDocs] = useState([]);
 
   const [admin, setAdmin] = useState (true);
 
@@ -38,13 +38,13 @@ function App() {
               <AuthProvider>
                 <Routes>
 
-                    <Route exact path ="/" element={<Dashboard/>}/>
+                    <Route exact path ="/dashBoard" element={<Dashboard/>}/>
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" setAdmin={setAdmin} element={<Login/> }/>
 
                     <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                     <Route path="/update-profile" element={<UpdateProfile/>}/>
-
+                    <Route path="/" element={<ImageGrid/>} admin = {admin}/>
                 </Routes>
               </AuthProvider>
             </Router>
@@ -52,13 +52,7 @@ function App() {
           </div>
 
         </Container>
-
-
-        <div>
-          <ImageGrid setAllDocs = {setAllDocs} admin = {admin} />
-
-        </div>
-    </div>
+     </div>
   );
 }
 

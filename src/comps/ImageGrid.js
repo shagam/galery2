@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { db, app, projectStorage } from '../firebaseConfig'
 // import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
+import { Link, useNavigate } from 'react-router-dom'
 // import {Document, Page, pdgjs} from 'react-pdf';
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
@@ -45,6 +46,9 @@ const ImageGrid = ({ setAllDocs, admin }) => {
     <div >
       <h3> images: {docs.length} </h3>
       {admin && <UploadForm getPictures = {getPictures} admin = {admin}/> }
+      <div className='w-100 text-center mt-2'>
+        Need admin access? <Link to="/dashBoard" > Authorise/Login </Link>
+      </div>
       <div className="img-grid">
       { docs && docs.map(doc => (
         <div className="img-wrap" key={doc.id}
