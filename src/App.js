@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Title from './comps/Title';
 // import UploadForm from './comps/UploadForm'
@@ -11,7 +11,7 @@ import './App.css';
 import Signup from './auth/Signup';
 import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './Dashboard'
-
+import Login from './auth/Login';
 
 function App() { 
   // const [loadedFiles, setLoadedFiles] = useState ([]);
@@ -23,26 +23,28 @@ function App() {
   return (
     <div>
       <Title/>
-  
-      <AuthProvider>
+
         <Container  className='d-flex align-items-center justify-content-center'
           style={{minHeight: "100vh"}}
         >
           <div className='w-100' style={{ maxWidth: '400px' }}>
+          <AuthProvider>
             <Router>
 
-                {/* <Switch>
+                <Routes>
                   <Route exact path ="/" component={Dashboard}/>
                   <Route path="/signup" component={Signup }/>
-                </Switch> */}
+                  <Route path="/login" component={Login }/>
+                </Routes>
 
             </Router>
-
             <Signup />
+            </AuthProvider>
+
           </div>
 
         </Container>
-        </AuthProvider>
+
 
 
       {/* <h3> images: {allDocs.length} </h3> */}
