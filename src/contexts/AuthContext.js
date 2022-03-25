@@ -47,6 +47,10 @@ export function AuthProvider ({ children }) {
       return auth.signOut ()
     } catch (e) {console.log (e)}
   }
+  
+  function resetPassword (email) {
+    return auth.resetPassword(email);
+  }
 
   // onAuthStateChanged(auth, (user) => {
   auth.onAuthStateChanged(user => {
@@ -75,7 +79,8 @@ export function AuthProvider ({ children }) {
     currentUser,
     signup,
     login,
-    logout
+    logout,
+    resetPassword
   }
   return (
     <AuthContext.Provider value={value}>

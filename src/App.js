@@ -15,7 +15,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import Signup from './auth/Signup';
 import Dashboard from './Dashboard'
 import Login from './auth/Login';
-
+import ForgotPassword from './auth/ForgotPassword';
 
 function App() { 
   // const [loadedFiles, setLoadedFiles] = useState ([]);
@@ -40,6 +40,7 @@ function App() {
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" element={<Login/> }/>
                     <Route exact path ="/" element={<Dashboard/>}/>
+                    <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                     {/* <Navigate component={Signup } /> */}
                 </Routes>
               </AuthProvider>
