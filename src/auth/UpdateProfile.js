@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 
 
 export default function UpdateProfile ()  {
@@ -10,7 +10,7 @@ export default function UpdateProfile ()  {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { currentUser } = useAuth();
+  const { currentUser, updateEmail, updatePassword } = useAuth();
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
   const history = useNavigate([]);
@@ -18,27 +18,35 @@ export default function UpdateProfile ()  {
   async function handleSubmit (e) {
     e.preventDefault();
 
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   return setError ('Passwords do not match')
-    // } 
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError ('Passwords do not match')
+    } 
 
-    // if (passwordRef.current.value.length < 6) {
-    //   return setError ('Passwords length need at least 6 ')
-    // }
+    if (passwordRef.current.value.length < 6) {
+      return setError ('Passwords length need at least 6 ')
+    }
 
-    // try {
-    //   setError('');
-    //   setLoading(true);
-    //   await signup(emailRef.current.value, passwordRef.current.value)
-    //   history.push ('/')
-    //   const a = 1;
-    // } catch (e) {setError ('Failed to create an account' + e) && console.log (e)}
-    // setLoading (false);
+    setError('');
+    setLoading(true);
+    const promises = [];
+    if (emailRef.current.value !== currentUser.email) {
+      promises.push (updateEmail (emailRef.current.value))
+    }
+    if (passwordRef.current.value) {
+      promises.push (updatePassword (passwordRef.current.value))
+    }
+
+    Promise.all (promises).then(() => {
+      history.push('/')
+    }).catch (() => {
+      setError ('Failed to update account')
+    }).finally (() => {
+      setLoading(false)
+    })
   }
 
 
   return (
-
     <>
       <Card>
         <Card.Body>
@@ -49,20 +57,20 @@ export default function UpdateProfile ()  {
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref= {emailRef} required
+              <Form.Control type="email" ref= {emailRef}
                   //  defaultValue={currentUser.email}
                    />
             </Form.Group>
 
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="Password" ref = {passwordRef} required 
+              <Form.Control type="Password" ref = {passwordRef}  
                         placeHolder={"Leave blank to keep the same"} />
             </Form.Group>
 
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="Password" ref = {passwordConfirmRef} required 
+              <Form.Control type="Password" ref = {passwordConfirmRef}  
                          placeHolder={"Leave blank to keep the same"} />
             </Form.Group>
 
