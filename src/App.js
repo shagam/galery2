@@ -16,6 +16,7 @@ import Signup from './auth/Signup';
 import Dashboard from './Dashboard'
 import Login from './auth/Login';
 import ForgotPassword from './auth/ForgotPassword';
+import UpdateProfile from './auth/UpdateProfile';
 
 function App() { 
   // const [loadedFiles, setLoadedFiles] = useState ([]);
@@ -37,11 +38,13 @@ function App() {
               <AuthProvider>
                 <Routes>
 
+                    <Route exact path ="/" element={<Dashboard/>}/>
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" element={<Login/> }/>
-                    <Route exact path ="/" element={<Dashboard/>}/>
+
                     <Route path="/forgotPassword" element={<ForgotPassword/>}/>
-                    {/* <Navigate component={Signup } /> */}
+                    <Route path="/update-profile" element={<UpdateProfile/>}/>
+
                 </Routes>
               </AuthProvider>
             </Router>
