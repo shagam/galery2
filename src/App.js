@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Title from './comps/Title';
 // import UploadForm from './comps/UploadForm'
 import ImageGrid from './comps/ImageGrid';
-import Modal from './comps/Modal'
+// import Modal from './comps/Modal'
 
 import './App.css';
 
@@ -30,10 +30,9 @@ function App() {
       <Title/>
         { admin && <div> admin </div> }
         <Container  className='d-flex align-items-center justify-content-center'
-          style={{minHeight: "100vh"}}
+          style={{minHeight: "50vh"}}
         >
-          <div className='w-100' style={{ maxWidth: '400px' }}>
-
+          <div>
             <Router>
               <AuthProvider>
                 <Routes>

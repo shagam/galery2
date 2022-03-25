@@ -70,7 +70,7 @@ export default function Signup ()  {
         Already have an account?  <Link to="/login" > Log In </Link>
 
       </div>
-      <div className='w-100 text-center mt-2'>  <Link to="/" > Galery </Link> </div>
+      <div className='w-100 text-center mt-2'>  <Link to="/" > Galery Images </Link> </div>
     </>
   )
 }

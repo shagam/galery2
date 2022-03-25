@@ -38,7 +38,7 @@ export default function Dashboard() {
 
         <div className='btn btn-primery w-100 mt-3'>  <Link to="/update-profile" variant="primeray" >   Update Profile </Link></div>
 
-        <div className='w-100 text-center mt-2'>  <Link to="/" > Galery </Link> </div>
+        <div className='w-100 text-center mt-2'>  <Link to="/" > Galery Images </Link> </div>
       
       </Card>
       <div className='w-100 text-center mt-2'> 
