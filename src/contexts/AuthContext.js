@@ -34,6 +34,15 @@ export function AuthProvider ({ children }) {
     } catch (e) {console.log (e)}
   }
 
+  function login (email, password) {
+    try {
+      // return signInWithEmailAndPassword (auth, email, password)
+      return auth.signInWithEmailAndPassword (email, password)
+
+    } catch (e) {console.log (e)}
+  }
+
+
   // onAuthStateChanged(auth, (user) => {
   auth.onAuthStateChanged(user => {
     setCurrentUser(user);
@@ -59,7 +68,8 @@ export function AuthProvider ({ children }) {
 
   const value = {
     currentUser,
-    signup
+    signup,
+    login
   }
   return (
     <AuthContext.Provider value={value}>
