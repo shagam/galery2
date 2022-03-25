@@ -13,7 +13,7 @@ export default function Signup ()  {
   const { signup, currentUser } = useAuth(); //, currentUser
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
-  const history = useNavigate([]);
+  const history = useNavigate();
 
   async function handleSubmit (e) {
     e.preventDefault();

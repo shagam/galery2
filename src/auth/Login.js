@@ -5,14 +5,14 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext';
 
 
 
-export default function LOgin ()  {
+export default function Login (props)  {
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const { login, currentUser } = useAuth(); //, currentUser
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
-  const history = useNavigate([]);
+  const history = useNavigate();
   
 
   async function handleSubmit (e) {
@@ -24,6 +24,10 @@ export default function LOgin ()  {
       await login (emailRef.current.value, passwordRef.current.value)
       history.push ('/')
       const a = 1;
+      if (currentUser && currentUser.emai === 'eli.shagam.gmail.com') {
+        props.setAdmin (true)
+      }
+
     } catch (e) {setError ('Failed to sign in' + e) && console.log (e)}
     setLoading (false);
   }

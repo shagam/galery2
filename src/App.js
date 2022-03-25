@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       <Title/>
-
+        { admin && <div> admin </div> }
         <Container  className='d-flex align-items-center justify-content-center'
           style={{minHeight: "100vh"}}
         >
@@ -40,7 +40,7 @@ function App() {
 
                     <Route exact path ="/" element={<Dashboard/>}/>
                     <Route path="/signup" element={<Signup/> } />
-                    <Route path="/login" element={<Login/> }/>
+                    <Route path="/login" setAdmin={setAdmin} element={<Login/> }/>
 
                     <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                     <Route path="/update-profile" element={<UpdateProfile/>}/>
@@ -48,18 +48,16 @@ function App() {
                 </Routes>
               </AuthProvider>
             </Router>
-            {/* <Signup /> */}
+
           </div>
 
         </Container>
 
 
-
-      {/* <h3> images: {allDocs.length} </h3> */}
-      {/* <UploadForm setLoadedFiles = {setLoadedFiles} /> */}
-      <ImageGrid  setSelectedDoc={setSelectedDoc} setAllDocs = {setAllDocs} admin = {admin} />
-      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
-
+        <div>
+          <ImageGrid  setSelectedDoc={setSelectedDoc} setAllDocs = {setAllDocs} admin = {admin} />
+          {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
+        </div>
     </div>
   );
 }
