@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
 import Title from './comps/Title';
 // import UploadForm from './comps/UploadForm'
@@ -28,19 +28,19 @@ function App() {
           style={{minHeight: "100vh"}}
         >
           <div className='w-100' style={{ maxWidth: '400px' }}>
-          <AuthProvider>
+
             <Router>
-
+              <AuthProvider>
                 <Routes>
-                  <Route exact path ="/" component={Dashboard}/>
-                  <Route path="/signup" component={Signup }/>
-                  <Route path="/login" component={Login }/>
+
+                    <Route path="/signup" element={<Signup/> } />
+                    <Route path="/login" element={<Login/> }/>
+                    <Route exact path ="/" element={<Dashboard/>}/>
+                    {/* <Navigate component={Signup } /> */}
                 </Routes>
-
+              </AuthProvider>
             </Router>
-            <Signup />
-            </AuthProvider>
-
+            {/* <Signup /> */}
           </div>
 
         </Container>

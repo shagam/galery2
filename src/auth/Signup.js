@@ -42,7 +42,7 @@ export default function Signup ()  {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Sign up</h2>
-          {currentUser && 'email: ' + currentUser.email}
+          {currentUser &&  currentUser.email}
           {error && <Alert variant="danger"> {error} </Alert>}
 
           <Form onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ export default function Signup ()  {
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>
-        {/* Already have an account?  <Link to="/login" > Log In </Link> */}
+        Already have an account?  <Link to="/login" > Log In </Link>
 
       </div>
     </>
