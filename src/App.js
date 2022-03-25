@@ -21,7 +21,7 @@ import UpdateProfile from './auth/UpdateProfile';
 function App() { 
   // const [loadedFiles, setLoadedFiles] = useState ([]);
   const [allDocs, setAllDocs] = useState([]);
-  const [selectedDoc, setSelectedDoc] = useState (null)
+
   const [admin, setAdmin] = useState (true);
 
 
@@ -55,8 +55,8 @@ function App() {
 
 
         <div>
-          <ImageGrid  setSelectedDoc={setSelectedDoc} setAllDocs = {setAllDocs} admin = {admin} />
-          {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
+          <ImageGrid setAllDocs = {setAllDocs} admin = {admin} />
+
         </div>
     </div>
   );

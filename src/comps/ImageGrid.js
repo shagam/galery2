@@ -5,15 +5,16 @@ import { db, app, projectStorage } from '../firebaseConfig'
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 // import {Document, Page, pdgjs} from 'react-pdf';
 import UploadForm from './UploadForm'
+import Modal from "./Modal";
 // import '../index.css'
 // import useFirestore from '../hooks/useFirestore'
 
-const ImageGrid = ({ setSelectedDoc, setAllDocs, admin }) => {
+const ImageGrid = ({ setAllDocs, admin }) => {
   const [docs, setDocs] = useState([]);
 
   const firebaseCollection = 'pictures';
   const picturesRef = collection(db, "pictures");
-
+  const [selectedDoc, setSelectedDoc] = useState (null)
   const getPictures = async () => {
     try {
       let documents = [];
@@ -56,6 +57,7 @@ const ImageGrid = ({ setSelectedDoc, setAllDocs, admin }) => {
         </div>      
       ))}
       </div>
+      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
     </div>
   )
 }
