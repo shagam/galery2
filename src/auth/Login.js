@@ -28,7 +28,7 @@ export default function Login (props)  {
         props.setAdmin (true)
       }
 
-    } catch (e) {setError ('Failed to sign in' + e) && console.log (e)}
+    } catch (e) {setError (e.message)}
     setLoading (false);
   }
 

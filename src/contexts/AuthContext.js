@@ -16,7 +16,9 @@ export function AuthProvider ({ children }) {
 
   function signup (email, password) {
     try {
-      return createUserWithEmailAndPassword (auth, email, password)
+      const user = createUserWithEmailAndPassword (auth, email, password);
+      console.log (user.email);
+      return user;
     // .then((userCredential) => {
     //   // Signed in 
     //   const user = userCredential.user;
@@ -31,7 +33,7 @@ export function AuthProvider ({ children }) {
     //   // ..
     // });
   
-    } catch (e) {console.log (e)}
+    } catch (e) {console.log (e.message)}
   }
 
   function login (email, password) {

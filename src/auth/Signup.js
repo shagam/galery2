@@ -22,9 +22,9 @@ export default function Signup ()  {
       return setError ('Passwords do not match')
     } 
 
-    if (passwordRef.current.value.length < 6) {
-      return setError ('Passwords length need at least 6 ')
-    }
+    // if (passwordRef.current.value.length < 6) {
+    //   return setError ('Passwords length need at least 6 ')
+    // }
 
     try {
       setError('');
@@ -32,7 +32,7 @@ export default function Signup ()  {
       await signup(emailRef.current.value, passwordRef.current.value)
       history.push ('/')
       const a = 1;
-    } catch (e) {setError ('Failed to create an account' + e) && console.log (e)}
+    } catch (e) {setError (e.message)}
     setLoading (false);
   }
 

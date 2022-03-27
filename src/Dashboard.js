@@ -16,7 +16,7 @@ export default function Dashboard() {
     try {
       await logout();
       history.push('./login')
-    } catch (e) {setError('Failed to log out') && console.log (e)}
+    } catch (e) {setError(e.message) && console.log (e)}
   }
 
   return (
