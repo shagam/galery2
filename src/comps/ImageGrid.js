@@ -10,7 +10,7 @@ import Modal from "./Modal";
 // import '../index.css'
 // import useFirestore from '../hooks/useFirestore'
 
-const ImageGrid = ({ setAllDocs, admin }) => {
+const ImageGrid = ({ setAllDocs }) => {
   const [docs, setDocs] = useState([]);
 
   const firebaseCollection = 'pictures';
@@ -44,8 +44,10 @@ const ImageGrid = ({ setAllDocs, admin }) => {
 
   return (
     <div >
-      <h3> images: {docs.length} </h3>
-      {<UploadForm getPictures = {getPictures} admin = {admin}/> }
+      <h3> images: {docs.length} </h3
+      >
+      {<UploadForm getPictures = {getPictures} /> }
+
       <div className='w-100 text-center mt-2'>
         Need admin access? <Link to="/dashBoard" > Authorise/Login </Link>
       </div>

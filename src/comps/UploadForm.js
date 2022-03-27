@@ -10,15 +10,19 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext';
 
 const picturesRef = collection(db, "pictures");
 
-const UploadForm = (props) => {
+const UploadForm = (getPictures) => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
   const { currentUser } = useAuth();
   const [user, setUser] = useState();
+  const [admin, setAdmin] = useState (false)
 
+  // check for admin
   onAuthStateChanged (auth, (currentUser) => {
     setUser (currentUser);
+  if (currentUser)
+      setAdmin (true)
     // console.log (currentUser);
   })
 
@@ -70,7 +74,7 @@ const UploadForm = (props) => {
       await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type, modified: file.
         lastModifiedDate})
       if (last)
-        props.getPictures();  // refresh pictures on last to avoid duplicate 
+        getPictures();  // refresh pictures on last to avoid duplicate 
     } catch (e) {console.log (e)}               
   }
 
@@ -104,9 +108,11 @@ const UploadForm = (props) => {
 
 
   return (
-    <div>
+     admin &&
+      <div>
       <form onSubmit={formHandler} >
-        {user && <div>'Email: ' + {user.email} </div> }
+        {user && <div>Email:  {user.email} (admin) {admin} </div> }
+        {admin &&  <div> (admin)  </div> }
         <input type="file" name= "file" id="file" className="input"  multiple  />
         <input type="text" name = "name" placeholder="NAME"></input>
         {/* <input type="text" name = "size" placeholder="SIZE"></input>
@@ -118,8 +124,8 @@ const UploadForm = (props) => {
         {error && <div className='error'>{error}</div>}
         {/* {files && <div> {files} </div>} */}
       </form>
-    </div>
-    
+      </div>
+      
   )
 
 }

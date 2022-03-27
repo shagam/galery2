@@ -19,16 +19,11 @@ import ForgotPassword from './auth/ForgotPassword';
 import UpdateProfile from './auth/UpdateProfile';
 
 function App() { 
-  // const [loadedFiles, setLoadedFiles] = useState ([]);
-  // const [allDocs, setAllDocs] = useState([]);
-
-  const [admin, setAdmin] = useState (true);
-
 
   return (
     <div>
       <Title/>
-        { admin && <div> admin </div> }
+
         <Container  className='d-flex align-items-center justify-content-center'
           style={{minHeight: "50vh"}}
         >
@@ -39,11 +34,11 @@ function App() {
 
                     <Route exact path ="/dashBoard" element={<Dashboard/>}/>
                     <Route path="/signup" element={<Signup/> } />
-                    <Route path="/login" setAdmin={setAdmin} element={<Login/> }/>
+                    <Route path="/login" element={<Login/> }/>
 
                     <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                     <Route path="/update-profile" element={<UpdateProfile/>}/>
-                    <Route path="/" element={<ImageGrid/>} admin = {admin}/>
+                    <Route path="/" element={<ImageGrid/>} />
                 </Routes>
               </AuthProvider>
             </Router>
