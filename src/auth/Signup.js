@@ -13,7 +13,7 @@ export default function Signup ()  {
   const { signup, currentUser } = useAuth(); //, currentUser
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   async function handleSubmit (e) {
     e.preventDefault();
@@ -30,7 +30,7 @@ export default function Signup ()  {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push ('/')
+      navigate ('/')
       const a = 1;
     } catch (e) {setError (e.message)}
     setLoading (false);

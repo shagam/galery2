@@ -8,14 +8,14 @@ import {  useAuth, logout } from './contexts/AuthContext';
 export default function Dashboard() {
   const [error, setError] = useState ('');
   const { currentUser, logout } = useAuth();
-  const history = useNavigate();
+  const navigate = useNavigate();
 
 
   async function handleLogout () {
     setError('');
     try {
       await logout();
-      history.push('./login')
+      navigate('/login')
     } catch (e) {setError(e.message) && console.log (e)}
   }
 
@@ -26,7 +26,7 @@ export default function Dashboard() {
         <Card.Body>
           <h2 className='text-center mb-4'> Admin Account </h2>
           {error && <Alert variant="danger"> {error} </Alert>}
-          {/* <strong>Email:</strong> {currentUser.email} */}
+          {/* <strong>Email:</strong> {currentUser && currentUser.email} */}
 
    
         </Card.Body>

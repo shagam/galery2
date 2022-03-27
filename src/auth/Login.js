@@ -12,7 +12,7 @@ export default function Login (props)  {
   const { login, currentUser } = useAuth(); //, currentUser
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
   
 
   async function handleSubmit (e) {
@@ -22,7 +22,7 @@ export default function Login (props)  {
       setError('');
       setLoading(true);
       await login (emailRef.current.value, passwordRef.current.value)
-      history.push ('/')
+      navigate ('/')
       const a = 1;
       if (currentUser && currentUser.emai === 'eli.shagam.gmail.com') {
         props.setAdmin (true)
