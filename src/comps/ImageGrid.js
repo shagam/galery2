@@ -28,7 +28,7 @@ const ImageGrid = ({ setAllDocs, admin }) => {
       }
       console.log ('getPictuires ', documents.length)
       setDocs (documents);
-      setAllDocs (documents);
+      // setAllDocs (documents);
       console.log (documents);
       return unsub;
     } catch (e) {console.log (e)}

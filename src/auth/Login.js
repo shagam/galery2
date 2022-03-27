@@ -23,7 +23,7 @@ export default function Login (props)  {
       setLoading(true);
       await login (emailRef.current.value, passwordRef.current.value)
       navigate ('/')
-      const a = 1;
+
       if (currentUser && currentUser.emai === 'eli.shagam.gmail.com') {
         props.setAdmin (true)
       }

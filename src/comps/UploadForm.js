@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 // import ProgressBar from './ProgressBar';
-import { db, app, projectStorage } from '../firebaseConfig'
+import { db, app, projectStorage, auth } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
-import cloneDeep from 'lodash/cloneDeep'
+import {onAuthStateChanged} from 'firebase/auth'
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
+
+// import cloneDeep from 'lodash/cloneDeep'
 
 const picturesRef = collection(db, "pictures");
 
 const UploadForm = (props) => {
   const [files, setFiles] = useState([]);
-
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
+  const { currentUser } = useAuth();
+  const [user, setUser] = useState();
 
+  onAuthStateChanged (auth, (currentUser) => {
+    setUser (currentUser);
+    // console.log (currentUser);
+  })
+
+  if (! {user}) return null;
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
@@ -94,19 +104,22 @@ const UploadForm = (props) => {
 
 
   return (
-    <form onSubmit={formHandler} >
-      <input type="file" name= "file" id="file" className="input"  multiple  />
-      <input type="text" name = "name" placeholder="NAME"></input>
-      {/* <input type="text" name = "size" placeholder="SIZE"></input>
-      <input type="text" name = "technology" placeholder="technology"></input> */}
-      <button type="submit"> Upload </button> 
-      <hr/>
-      { progress !== 0 && progress !== 100 && <h3>uploaded {progress} %</h3>}
+    <div>
+      <form onSubmit={formHandler} >
+        {user && <div>'Email: ' + {user.email} </div> }
+        <input type="file" name= "file" id="file" className="input"  multiple  />
+        <input type="text" name = "name" placeholder="NAME"></input>
+        {/* <input type="text" name = "size" placeholder="SIZE"></input>
+        <input type="text" name = "technology" placeholder="technology"></input> */}
+        <button type="submit"> Upload </button> 
+        <hr/>
+        { progress !== 0 && progress !== 100 && <h3>uploaded {progress} %</h3>}
 
-      {error && <div className='error'>{error}</div>}
-      {/* {files && <div> {files} </div>} */}
-    </form>
-
+        {error && <div className='error'>{error}</div>}
+        {/* {files && <div> {files} </div>} */}
+      </form>
+    </div>
+    
   )
 
 }
