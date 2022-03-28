@@ -57,12 +57,12 @@ const ImageGrid = ({ setAllDocs }) => {
         <div className="img-wrap" key={doc.id}
           onClick={() => setSelectedDoc(doc)} >
 
-          {doc.type === 'application/pdf' &&
+          {doc.ffileType === 'application/pdf' &&
             <iframe src={doc.url} width="1000" height="1000" title={doc.name}/>   }
 
-          {(doc.type === 'image/jpeg' || doc.type === 'image/png') &&
+          {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
             <img src={doc.fileUrl} alt={`name: ${doc.fileName}  kb:  ${doc.file_kb} type: ${doc.fileType}`} />}
-
+            
           <div> fileName: {doc.fileName} file_kb: {doc.file_kb} fileType: {doc.fileType}</div>
         </div>      
       ))}
