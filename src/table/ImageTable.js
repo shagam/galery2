@@ -7,9 +7,12 @@ import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import './table.css'
 
 import CheckBox from './CheckBox'
+
 // import Firebase from './Firebase'
-// import {db} from './firebase-config'
-// import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
+import {db} from '../firebaseConfig'
+import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
+
+;
 import { IMAGE_COLUMNS } from './imageColumns'
 // import SPLIT_MOCK_DATA from './images.json'
 import {nanoid} from 'nanoid';
@@ -27,23 +30,30 @@ export const ImageTable = (props) => {
     // var stocksFromLocalStorage = localStorage.getItem("pictures");
 
     // data = useMemo(() => SPLIT_MOCK_DATA, []);
-
-
     // const imageRef = collection(db, "pictures")
 
     const tableFlagChange = () => {setSplitsFlag (! tableFlag)}
   
-  
-  function deleteClick(fileName) {
-    const rowIndex = rows.findIndex((row)=> row.values.fileName === fileName);
-      if (rowIndex === -1) {
-        alert ('split symbol not found ', fileName);
-        return;
-      } 
-      // rows.splice(rowIndex, 1);
 
-      // props.refreshCallBack(-1);
+  function findDocFromImageName (name) {
+    for (let i = 0; i < props.docs.length; i++) {
+      if (props.docs[i].fileName === name)
+       return props.docs[i];
+    }
   }
+  
+  async function deleteClick(fileName) {
+    const doc = findDocFromImageName(fileName)
+    const id = doc.id;
+    var imageDoc = doc(db, "pictuers", id);
+    // await deleteDoc (imageDoc);
+  }
+
+  function chooseImage (fileName) {
+    const doc = findDocFromImageName(fileName)
+    props.setSelectedDoc(doc);
+  }
+
 
   const {
 
@@ -99,13 +109,7 @@ export const ImageTable = (props) => {
     // margin: '-20px'
   };
 
-  function chooseImage (name) {
-    for (let i = 0; i < props.docs.length; i++) {
-      if (props.docs[i].fileName === name)
-        props.setSelectedDoc(props.docs[i]);
-    }
 
-  }
 
 
   const { globalFilter } = state
@@ -153,9 +157,6 @@ export const ImageTable = (props) => {
         </div>
       }
 
-
-
-
           <table style = {style_table} id="stockTable_id" {...getTableProps()}>
             <thead style={ style_header }>
               {headerGroups.map ((headerGroup) => (
@@ -194,9 +195,7 @@ export const ImageTable = (props) => {
             </tbody>
           </table>
 
-
         </div>
-
       }     
     </div>
   )
