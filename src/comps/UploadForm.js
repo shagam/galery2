@@ -115,7 +115,7 @@ const UploadForm = (props) => {
         {user && <div>Email:  {user.email} (admin) {admin} </div> }
         {admin &&  <div> (admin)  </div> }
         <input type="file" name= "file" id="file" className="input"  multiple  />
-        <input type="text" name = "name" placeholder="NAME"></input>
+        {/* <input type="text" name = "name" placeholder="NAME"></input> */}
         {/* <input type="text" name = "size" placeholder="SIZE"></input>
         <input type="text" name = "technology" placeholder="technology"></input> */}
         <button type="submit"> Upload </button> 

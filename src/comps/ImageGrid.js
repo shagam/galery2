@@ -45,11 +45,11 @@ const ImageGrid = ({ setAllDocs }) => {
 
   return (
     <div >
-      <h1>Image Gallery</h1>
-      <h3> images: {docs.length} </h3>
+      <h2>Image Gallery  ({docs.length})  </h2>
+      {/* <h3> images: {docs.length} </h3> */}
       {<UploadForm getPictures = {getPictures} /> }
 
-      <div className='w-100 text-center mt-2'>
+      <div className='w-100 text-left mt-2'>
         Need admin access? <Link to="/dashBoard" > Authorise/Login </Link>
       </div>
       <div className="img-grid">
