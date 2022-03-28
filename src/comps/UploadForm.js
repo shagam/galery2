@@ -10,7 +10,7 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext';
 
 const picturesRef = collection(db, "pictures");
 
-const UploadForm = (getPictures) => {
+const UploadForm = (props) => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
@@ -75,7 +75,7 @@ const UploadForm = (getPictures) => {
       await addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
         fileScanned: file.lastModifiedDate})
       if (last)
-        getPictures();  // refresh pictures on last to avoid duplicate 
+        props.getPictures();  // refresh pictures on last to avoid duplicate 
     } catch (e) {console.log (e)}               
   }
 
