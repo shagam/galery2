@@ -61,9 +61,9 @@ const ImageGrid = ({ setAllDocs }) => {
             <iframe src={doc.url} width="1000" height="1000" title={doc.name}/>   }
 
           {(doc.type === 'image/jpeg' || doc.type === 'image/png') &&
-            <img src={doc.url} alt={`name: ${doc.name}  size:  ${doc.size} type: ${doc.type}`} />}
+            <img src={doc.fileUrl} alt={`name: ${doc.fileName}  kb:  ${doc.file_kb} type: ${doc.fileType}`} />}
 
-          <div> name: {doc.name}  size:  {doc.size} 'type:' {doc.type}</div>
+          <div> fileName: {doc.fileName} file_kb: {doc.file_kb} fileType: {doc.fileType}</div>
         </div>      
       ))}
       </div>
