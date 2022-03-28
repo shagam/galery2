@@ -294,7 +294,9 @@ export const ImageTable = (props) => {
                       })}
                         <div>
                         <button type="button" onClick={()=>deleteClick(row.values.symbol)}>del</button>
+
                         <button type="button" onClick={()=>stocksplithistory(row.values.symbol)}>get</button>
+                        {/* props.setSelectedDoc */}
                         </div>
                     </tr>
                   )

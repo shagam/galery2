@@ -66,7 +66,7 @@ const ImageGrid = ({ setAllDocs }) => {
       </div>
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
 
-      <ImageTable docs={docs} />
+      <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} />
     </div>
   )
 }

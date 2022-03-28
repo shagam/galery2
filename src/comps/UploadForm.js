@@ -72,7 +72,7 @@ const UploadForm = (getPictures) => {
     console.log ( 'firebasePictureInfoAdd', file.name);
     const kb = Math.round(file.size / 1024);
     try {
-      await addDoc (picturesRef, {fileName: file.name, fieUrl: url, file_kb: kb, fileType: file.type,
+      await addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
         fileScanned: file.lastModifiedDate})
       if (last)
         getPictures();  // refresh pictures on last to avoid duplicate 
