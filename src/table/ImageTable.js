@@ -32,55 +32,7 @@ export const ImageTable = (props) => {
     // const imageRef = collection(db, "pictures")
 
     const tableFlagChange = () => {setSplitsFlag (! tableFlag)}
-
-  // function formChange (event) {
-  //   event.preventDefault();
-
-  //   const name = event.target.name;
-  //   const value = event.target.value;
-
-  //   setSplit (values => ({...values, [name]: value.toUpperCase()}))
-
-  //   //console.log(event.target.name + " " + event.target.value.toUpperCase());
-  //   //split (event.target.name: event.target.value.toUpperCase());
-  // }
-
   
-  const insetImage = (image) => {
-    var newImage = JSON.parse ('{"id":"0","original":{"name":""},"index":0,"values":{"name":""}}');
-    prepareRow(newImage);
-    try {
-    newImage.id = nanoid();
-    // newImage.values.key = image.name;
-    newImage.values.name = image.name;
-    newImage.original.name = image.name;
-
-    newImage.cells = null;
-    newImage.allCells = [];
-
-    // newImage.values.jump = image.name;
-    // newImage.values.year = image.year;
-
-    prepareRow(newImage);
-
-    rows.push (newImage);
-    
-    props.refreshCallBack(-1);
-
-    } catch (e) {console.log (e);}
-  }
-  
-  
-  const searchKeyInTable = (imageName) => {
-    for (let i = 0; i < rows.length; i++) {
-      if (rows[i].values.key === imageName) {
-        return true;
-      }          
-    }
-    return false;
-  }
-
-
   
   function deleteClick(symbol) {
     const rowIndex = rows.findIndex((row)=> row.values.symbol === symbol);
@@ -92,37 +44,6 @@ export const ImageTable = (props) => {
       saveTable();
       props.refreshCallBack(-1);
   }
-
-  const insertSplitInStockTable = (name) => {
-    if (props.symbol === undefined || rows === undefined) // not initialized yet
-      return;
-
-    // search stock table
-      // build array for specific stock
-      if (name === undefined)
-        return;
-
-      const row_index = props.rows.findIndex((row)=> row.values.name === name);
-      if (row_index === -1) // not found
-        return;
- 
-   }
-
- 
-  // useEffect (() => { 
-  //   insertSplitsInStockTableAll();
-  // }, [])
-
-  // scan stocktable to insert splits
-  // const insertSplitsInStockTableAll = () => {
-  //   for (let s = 0; s < props.rows.length; s++) {
-  //     const sym = props.rows[s].values.symbol;
-  //     insertSplitInStockTable (sym);  // if found
-  //     // build array for specific stock
-  //   }
-  //   props.saveTable();
-  //   props.refreshCallBack(-1);
-  // }
 
 
   const saveTable = () => {
@@ -138,30 +59,7 @@ export const ImageTable = (props) => {
   }
 
 
-  const stocksplithistory = (sym) => {
-    const API_Call = `http://www.stocksplithistory.com/?symbol=${sym}`
-    fetch(API_Call)
-    .then(
-        function(response) {
-          const respStr = JSON.stringify (response);
-          console.log(response);
-          return response.json();
-        }
-    )
-    .then(
-        (data) => {
-          const dataStr = JSON.stringify(data);
-          if (dataStr === "{}") {
-            alert (`Invalid symbol: (${sym})`)
-            return;
-          }
-          console.log(API_Call);
-          console.log (dataStr.substring(0,150));
-        
-          
-        })
-  }
-
+  
   const {
 
     getTableProps,
@@ -216,6 +114,13 @@ export const ImageTable = (props) => {
     // margin: '-20px'
   };
 
+  function chooseImage (name) {
+    for (let i = 0; i < props.docs.length; i++) {
+      if (props.docs[i].fileName === name)
+        props.setSelectedDoc(props.docs[i]);
+    }
+
+  }
 
 
   const { globalFilter } = state
@@ -293,10 +198,10 @@ export const ImageTable = (props) => {
                         return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                       })}
                         <div>
-                        <button type="button" onClick={()=>deleteClick(row.values.symbol)}>del</button>
+                        <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>
 
-                        <button type="button" onClick={()=>stocksplithistory(row.values.symbol)}>get</button>
-                        {/* props.setSelectedDoc */}
+                        <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
+
                         </div>
                     </tr>
                   )
