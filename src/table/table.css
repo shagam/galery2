@@ -42,28 +42,12 @@ table tbody {
   background: white;
 }
 
-#calc_splits_label_id {
-  height: 10px;
-  padding: 0px;
-  padding-bottom: 8px;
-  padding-right: 20px;
-  /* padding-top: 12px; */
-  border: 1px solid gray;
-  margin-right: 4px;
-  margin-bottom: -2px; 
-  margin-top: -2px;
-  margin-left: 15px;
-}
 
-#add_stock_id {
-  margin-top: -10px;
-   /* position: left; */
-   /* color: red; */
-}
+
 
 #columnToggle {
-  /* left: 10px; */
-  /* position: sticky; */
+  left: 10px;
+  position: sticky;
   /* position: left; */
   /* border: 1px solid gray; */
   /* color: red; */
@@ -76,7 +60,7 @@ table tbody {
   margin-right: 0px;
   /* color: red; */
   /* background: yellow; */
-  /* float: left; */
+  float: left;
   /* margin-left: 0px; */
 
   /* margin-top: -20px; */
