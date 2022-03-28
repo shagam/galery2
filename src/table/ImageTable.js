@@ -106,7 +106,7 @@ export const ImageTable = (props) => {
     overflowY: 'scroll',
     /* background: yellow; */
     textAlign: 'center',
-    height: '40vh',
+    height: '20vh',
     display: 'block'
     // padding: '-20px',
     // margin: '-20px'
@@ -118,7 +118,7 @@ export const ImageTable = (props) => {
   const { globalFilter } = state
 
   return (
-    <div >     
+    <div style= {style_component}>     
       <div>
             <input
               type="checkbox" checked={tableFlag}
