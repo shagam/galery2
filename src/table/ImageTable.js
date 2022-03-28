@@ -13,25 +13,16 @@ import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireba
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 
 import { IMAGE_COLUMNS } from './imageColumns'
-// import SPLIT_MOCK_DATA from './images.json'
+
 import {nanoid} from 'nanoid';
 
 export const ImageTable = (props) => {
  
-    const [tableFlag, setSplitsFlag] = useState(false);
+    const [tableFlag, setTableFlag] = useState(false);
     const [columnHideFlag, setColumnHideFlag] = useState(true);
 
-    // const [splitArray, setSplitArray] = useTable ([]);
-
     const columns = useMemo(() => IMAGE_COLUMNS, []);
-    var  data = props.docs;// = useMemo(() => SPLIT_MOCK_DATA, []);
-
-    // var stocksFromLocalStorage = localStorage.getItem("pictures");
-
-    // data = useMemo(() => SPLIT_MOCK_DATA, []);
-    // const imageRef = collection(db, "pictures")
-
-    const tableFlagChange = () => {setSplitsFlag (! tableFlag)}
+    var  data = props.docs;
   
 
   function findDocFromImageName (name) {
@@ -91,7 +82,7 @@ export const ImageTable = (props) => {
 
   )
   
-  //insertTableSplit(props.symbol);
+  const tableFlagChange = () => {setTableFlag (! tableFlag)}
   const columnHideFlagChange = () => {setColumnHideFlag (! columnHideFlag)}
 
 
@@ -127,8 +118,7 @@ export const ImageTable = (props) => {
   const { globalFilter } = state
 
   return (
-  
-    <div style= {style_component}>
+    <div >     
       <div>
             <input
               type="checkbox" checked={tableFlag}
@@ -138,12 +128,11 @@ export const ImageTable = (props) => {
 
       { tableFlag &&
 
-        <div  className = 'split'>
+        <div>
 
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {'  rows=' + rows.length + "  "}
 
-  
            
           <CheckBox {...getToggleHideAllColumnsProps()} />   Toggle All
 
