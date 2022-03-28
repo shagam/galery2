@@ -26,7 +26,7 @@ const UploadForm = (getPictures) => {
     // console.log (currentUser);
   })
 
-  if (! {user}) return null;
+  // if (! {user}) return null;
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
@@ -70,9 +70,10 @@ const UploadForm = (getPictures) => {
 
   const firebasePictureInfoAdd = async (file, url, last) => {
     console.log ( 'firebasePictureInfoAdd', file.name);
+    const kb = Math.round(file.size / 1024);
     try {
-      await addDoc (picturesRef, {name: file.name, url: url, size: file.size, type: file.type, modified: file.
-        lastModifiedDate})
+      await addDoc (picturesRef, {fileName: file.name, fieUrl: url, file_kb: kb, fileType: file.type,
+        fileScanned: file.lastModifiedDate})
       if (last)
         getPictures();  // refresh pictures on last to avoid duplicate 
     } catch (e) {console.log (e)}               

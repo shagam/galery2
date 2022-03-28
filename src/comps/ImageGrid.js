@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 // import {Document, Page, pdgjs} from 'react-pdf';
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
+import ImageTable from '../table/ImageTable'
 // import '../index.css'
 // import useFirestore from '../hooks/useFirestore'
 
@@ -44,8 +45,8 @@ const ImageGrid = ({ setAllDocs }) => {
 
   return (
     <div >
-      <h3> images: {docs.length} </h3
-      >
+      <h1>Image Gallery</h1>
+      <h3> images: {docs.length} </h3>
       {<UploadForm getPictures = {getPictures} /> }
 
       <div className='w-100 text-center mt-2'>
@@ -64,6 +65,8 @@ const ImageGrid = ({ setAllDocs }) => {
       ))}
       </div>
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
+
+      <ImageTable docs={docs} />
     </div>
   )
 }

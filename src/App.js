@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div>
-      <Title/>
+      {/* <Title/> */}
 
         <Container  className='d-flex align-items-center justify-content-center'
           style={{minHeight: "50vh"}}
