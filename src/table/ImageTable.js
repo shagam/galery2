@@ -52,6 +52,26 @@ export const ImageTable = (props) => {
     }
   }
 
+  async function editDoc (fileName) {
+    const fileDoc = findDocFromImageName(fileName)
+    const id = fileDoc.id;
+
+    try{ 
+      // delete doc
+      var imageDoc = doc(db, "pictuers", id);
+      await deleteDoc (imageDoc);
+
+      var newDoc = {}
+      newDoc["fileName"] = fileDoc.fileName; 
+      newDoc["fileUrl"] = fileDoc.fileUrl; 
+      newDoc["fileLength"] = fileDoc.fileLength; 
+
+    } catch(e) {console.log(e)
+    }
+  }
+
+
+
   function chooseImage (fileName) {
     const doc = findDocFromImageName(fileName)
     props.setSelectedDoc(doc);
@@ -106,7 +126,7 @@ export const ImageTable = (props) => {
     overflowY: 'scroll',
     /* background: yellow; */
     textAlign: 'center',
-    height: '20vh',
+    height: '30vh',
     display: 'block'
     // padding: '-20px',
     // margin: '-20px'
@@ -185,10 +205,9 @@ export const ImageTable = (props) => {
                         return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                       })}
                         <div>
-                        <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>
-
                         <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
-
+                        <button type="button" onClick={()=>editDoc (row.values.fileName)}>edit </button>
+                        <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>
                         </div>
                     </tr>
                   )
