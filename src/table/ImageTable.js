@@ -8,11 +8,10 @@ import './table.css'
 
 import CheckBox from './CheckBox'
 
-// import Firebase from './Firebase'
-import {db} from '../firebaseConfig'
+import { db, app, projectStorage, auth } from '../firebaseConfig'
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
+import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 
-;
 import { IMAGE_COLUMNS } from './imageColumns'
 // import SPLIT_MOCK_DATA from './images.json'
 import {nanoid} from 'nanoid';
@@ -43,10 +42,23 @@ export const ImageTable = (props) => {
   }
   
   async function deleteClick(fileName) {
-    const doc = findDocFromImageName(fileName)
-    const id = doc.id;
-    var imageDoc = doc(db, "pictuers", id);
-    // await deleteDoc (imageDoc);
+    const fileDoc = findDocFromImageName(fileName)
+    const id = fileDoc.id;
+
+    try{ 
+      // delete doc
+      var imageDoc = doc(db, "pictuers", id);
+      await deleteDoc (imageDoc);
+    
+      // Delete the image
+      const storage = getStorage();
+      const fullFileName = 'files/' + fileDoc.fileName
+      const imageRef = ref (storage, fullFileName);
+      await deleteObject(imageRef);
+      console.log ('delete success ', fileDoc)
+        // File deleted successfully   
+    } catch(e) {console.log(e)
+    }
   }
 
   function chooseImage (fileName) {
