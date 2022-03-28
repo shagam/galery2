@@ -34,32 +34,17 @@ export const ImageTable = (props) => {
     const tableFlagChange = () => {setSplitsFlag (! tableFlag)}
   
   
-  function deleteClick(symbol) {
-    const rowIndex = rows.findIndex((row)=> row.values.symbol === symbol);
+  function deleteClick(fileName) {
+    const rowIndex = rows.findIndex((row)=> row.values.fileName === fileName);
       if (rowIndex === -1) {
-        alert ('split symbol not found ', symbol);
+        alert ('split symbol not found ', fileName);
         return;
       } 
-      rows.splice(rowIndex, 1);
-      saveTable();
-      props.refreshCallBack(-1);
+      // rows.splice(rowIndex, 1);
+
+      // props.refreshCallBack(-1);
   }
 
-
-  const saveTable = () => {
-    const splitsTable = [];
-    for (let i = 0; i < rows.length; i++) {
-      splitsTable.push(rows[i].values);
-    }
-    const stocksStr = JSON.stringify(splitsTable);
-    if (splitsTable.length > 0)
-      localStorage.setItem ('splits', stocksStr);
-    else
-      localStorage.removeItem ('splits'); // reading empty array cause a bug
-  }
-
-
-  
   const {
 
     getTableProps,
@@ -142,7 +127,7 @@ export const ImageTable = (props) => {
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {'  rows=' + rows.length + "  "}
 
-          {/* <button type="button" onClick={()=>saveTable()}>saveTable </button>           */}
+  
            
           <CheckBox {...getToggleHideAllColumnsProps()} />   Toggle All
 
