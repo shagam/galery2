@@ -16,6 +16,8 @@ import { IMAGE_COLUMNS } from './imageColumns'
 
 import {nanoid} from 'nanoid';
 
+const picturesRef = collection(db, "pictures");
+
 export const ImageTable = (props) => {
  
     const [tableFlag, setTableFlag] = useState(false);
@@ -38,9 +40,9 @@ export const ImageTable = (props) => {
 
     try{ 
       // delete doc
-      var imageDoc = doc(db, "pictuers", id);
+      var imageDoc = doc(db, "pictures", id);
       await deleteDoc (imageDoc);
-    
+
       // Delete the image
       const storage = getStorage();
       const fullFileName = 'files/' + fileDoc.fileName
@@ -48,6 +50,8 @@ export const ImageTable = (props) => {
       await deleteObject(imageRef);
       console.log ('delete success ', fileDoc)
         // File deleted successfully   
+      props.getPictures();
+
     } catch(e) {console.log(e)
     }
   }
