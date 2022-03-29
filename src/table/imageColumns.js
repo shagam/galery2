@@ -33,6 +33,11 @@ export const IMAGE_COLUMNS = [
     accessor: 'year'
   },
   {
+    Header: 'description',
+    Footer: 'description',    
+    accessor: 'description',
+  },   
+  {
     Header: 'fileType',
     Footer: 'fileType',    
     accessor: 'fileType',
