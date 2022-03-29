@@ -6,7 +6,12 @@ export const IMAGE_COLUMNS = [
     Footer: 'fileName',    
     accessor: 'fileName',
     sticky: 'left'
-  },  
+  }, 
+  {
+    Header: 'category',
+    Footer: 'category',    
+    accessor: 'category',
+  }, 
   {
     Header: 'size',
     Footer: 'size',    

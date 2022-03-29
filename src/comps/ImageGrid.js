@@ -70,6 +70,7 @@ const ImageGrid = ({ setAllDocs }) => {
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
 
       <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} />
+      <hr/>  
     </div>
   )
 }

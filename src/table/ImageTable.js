@@ -7,7 +7,7 @@ import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import './table.css'
 
 import CheckBox from './CheckBox'
-
+import EditDoc from './EditDoc'
 import { db, app, projectStorage, auth } from '../firebaseConfig'
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
@@ -22,6 +22,7 @@ export const ImageTable = (props) => {
  
     const [tableFlag, setTableFlag] = useState(false);
     const [columnHideFlag, setColumnHideFlag] = useState(true);
+    const [editDoc, setEditDoc] = useState();
 
     const columns = useMemo(() => IMAGE_COLUMNS, []);
     var  data = props.docs;
@@ -56,19 +57,12 @@ export const ImageTable = (props) => {
     }
   }
 
-  async function editDoc (fileName) {
-    const fileDoc = findDocFromImageName(fileName)
-    const id = fileDoc.id;
-
+  function editDocument (fileName) {
+    const doc = findDocFromImageName(fileName)
+    setEditDoc (doc)
     try{ 
-      // delete doc
-      var imageDoc = doc(db, "pictuers", id);
-      await deleteDoc (imageDoc);
 
-      var newDoc = {}
-      newDoc["fileName"] = fileDoc.fileName; 
-      newDoc["fileUrl"] = fileDoc.fileUrl; 
-      newDoc["fileLength"] = fileDoc.fileLength; 
+ 
 
     } catch(e) {console.log(e)
     }
@@ -210,7 +204,7 @@ export const ImageTable = (props) => {
                       })}
                         <div>
                         <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
-                        <button type="button" onClick={()=>editDoc (row.values.fileName)}>edit </button>
+                        <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>
                         <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>
                         </div>
                     </tr>
@@ -220,7 +214,10 @@ export const ImageTable = (props) => {
           </table>
 
         </div>
-      }     
+      } 
+
+      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc}/>}
+
     </div>
   )
 }
