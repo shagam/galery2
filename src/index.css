@@ -47,14 +47,24 @@ code {
   height: 100%;
   background: rgb(0,0,0,0.5);
   z-index: 9999;
+  float: left;
+  /* position: relative; */
 }
 
 .backdrop img {
   display: black;
   opacity: 1;
-  max-width: 90%;
+  max-width: 70%;
   max-height: 80%;
-  margin: 60px auto;
+  margin: 30px auto;
   box-shadow: 3px 5px 7px rgpa(0,0,0,0.5);
   border: 3px solid white;
+}
+
+.modalFiedls {
+  opacity: 1;
+  width: 70%;
+  color: white;
+  /* z-index: 9999; */
+  /* background-color: white; */
 }
