@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import { db, app, projectStorage, auth } from '../firebaseConfig'
 import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
-import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
+// import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
+// import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 
 
 const  EditDoc = (props) => {
 
+  
   const [category, setCategory] = useState ()
   const [size, setSize] = useState();
   const [canvas, setCanvas] = useState(null);
@@ -22,55 +24,54 @@ const  EditDoc = (props) => {
 
       try {
         var category_ = category
-        if (category_ === undefined && props.editDoc.category !== '') {
+        if (category_ === undefined && props.editDoc.category !== undefined) {
           category_ = props.editDoc.category
         }
         if (category_ === undefined) {
-          setCategory('empty')
+          setCategory('?')
           category_="?"
         }
 
         var size_ = size;
-        if (size_ === undefined && props.editDoc.size !== '') {
+        if (size_ === undefined && props.editDoc.size !== undefined) {
           size_ = props.editDoc.size
         }
         if (size_ === undefined){
-          setSize('empty')
+          setSize('?')
           size_="?"
         }
 
         var canvas_ = canvas;
-        if (canvas_ === null && props.editDoc.canvas !== '') {
+        if (canvas_ === undefined && props.editDoc.canvas !== undefined) {
           canvas_ = props.editDoc.canvas
         }
-        if (canvas_ === null){
-           setCanvas('empty')
+        if (canvas_ === undefined){
+           setCanvas('?')
            canvas_ = "?"
         }
 
         var paint_ = paint
-        if (paint_ === null && props.editDoc.paint !== '') {
+        if (paint_ === undefined && props.editDoc.paint !== undefined) {
           paint_ = props.editDoc.paint
         }
-        if (paint_ === null){
-          setPaint('empty')
+        if (paint_ === undefined){
+          setPaint('?')
           paint_ = "?";
         }
 
         var year_ = year
-        if (year_ === null && props.editDoc.year !== '')
+        if (year_ === undefined && props.editDoc.year !== '')
           year_ = props.editDoc.year
-        if (year_ === null) {
-          setYear('empty')
+        if (year_ === undefined) {
+          setYear('?')
           year_="?"
         }
 
         var description_ = description;
-
-        if (description_ === undefined && props.editDoc.description !== '')
+        if (description_ === undefined && props.editDoc.description !== undefined)
           description_ = props.editDoc.description
         if (description_ === undefined) {
-          setDescription('empty')
+          setDescription('?')
           description_ = "?"
         }
 
