@@ -14,44 +14,70 @@ const  EditDoc = (props) => {
   const [description, setDescription] = useState();
 
   // const [newDoc, setNewDoc] = useState({});
-  console.log (props.editDoc)
+  // console.log (props.editDoc)
 
 
   const formHandler = async (e) => {
     e.preventDefault();
 
       try {
-        if (category === undefined && props.editDoc.category !== undefined)
-          setCategory(props.editDoc.category)
-        else
-          setCategory('')
+        var category_ = category
+        if (category_ === undefined && props.editDoc.category !== '') {
+          category_ = props.editDoc.category
+        }
+        if (category_ === undefined) {
+          setCategory('empty')
+          category_="?"
+        }
 
-        if (size === undefined && props.editDoc.size !== undefined)
-          setSize (props.editDoc.size)
-        else
-          setSize ('')
+        var size_ = size;
+        if (size_ === undefined && props.editDoc.size !== '') {
+          size_ = props.editDoc.size
+        }
+        if (size_ === undefined){
+          setSize('empty')
+          size_="?"
+        }
 
-        if (canvas === undefined && props.editDoc.canvas !== undefined)
-          setCanvas(props.editDoc.canvas)
-        else
-          setCanvas('')
+        var canvas_ = canvas;
+        if (canvas_ === null && props.editDoc.canvas !== '') {
+          canvas_ = props.editDoc.canvas
+        }
+        if (canvas_ === null){
+           setCanvas('empty')
+           canvas_ = "?"
+        }
 
-        if (paint === undefined)
-          setCanvas(props.editDoc.paint)
+        var paint_ = paint
+        if (paint_ === null && props.editDoc.paint !== '') {
+          paint_ = props.editDoc.paint
+        }
+        if (paint_ === null){
+          setPaint('empty')
+          paint_ = "?";
+        }
 
+        var year_ = year
+        if (year_ === null && props.editDoc.year !== '')
+          year_ = props.editDoc.year
+        if (year_ === null) {
+          setYear('empty')
+          year_="?"
+        }
 
-        if (year === undefined)
-          setYear(props.editDoc.year)
+        var description_ = description;
 
-        if (description === undefined && props.editDoc.description !== undefined)
-          setDescription(props.editDoc.description)
-        else
-          setDescription('')
+        if (description_ === undefined && props.editDoc.description !== '')
+          description_ = props.editDoc.description
+        if (description_ === undefined) {
+          setDescription('empty')
+          description_ = "?"
+        }
 
 
         // send doc to firebase
         const picturesRef = collection(db, "pictures");
-        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category, size: size, canvas: canvas, paint: paint, year: year, description: description})  // 
+        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, canvas: canvas_, paint: paint_, year: year_, description: description_})  // 
 
         // delete doc
         var imageDoc = doc(db, "pictures", props.editDoc.id);
@@ -66,9 +92,10 @@ const  EditDoc = (props) => {
 return (
 
   <div>
-    <div>Edit</div>
+    {/* <div>Edit</div> */}
     <form onSubmit={formHandler} >
-     <label>
+     <div>
+     <div>
         Category
         <input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
         defaultValue={props.editDoc.category} placeholder={props.editDoc.category}/>
@@ -76,7 +103,7 @@ return (
         Size
         <input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
         defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
-
+        </div>
         Canvas
         <input type="text" name = "canvas" onChange={(e) => {setCanvas(e.target.value)}}
         defaultValue={props.editDoc.canvas} placeholder={props.editDoc.canvas}></input>
@@ -84,15 +111,27 @@ return (
         Paint
         <input type="text" name = "paint" onChange={(e) => {setPaint(e.target.value)}}
         defaultValue={props.editDoc.paint}  placeholder={props.editDoc.paint}></input>
+        
 
         Year
         <input type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
          defaultValue={props.editDoc.year} placeholder={props.editDoc.year}></input>
 
-        Description
-        <input type="textArea" name = "description" onChange={(e) => {setDescription(e.target.value)}}
-         defaultValue={props.editDoc.description} placeholder={props.editDoc.description}></input>
-     </label>
+        <div>
+          Description
+          {/* <div>
+            <input type="textarea" name = "description" onChange={(e) => {setDescription(e.target.value)}}
+            defaultValue={props.editDoc.description} placeholder={props.editDoc.description}></input>
+          </div> */}
+          <div>
+          <textarea rows="5" cols="90" name = "description" 
+           defaultValue={props.editDoc.description}  placeholder={props.editDoc.year}
+           onChange={(e) => {setDescription(e.target.value)}}>
+
+          </textarea>
+          </div>
+        </div>
+     </div>
      <button type="submit"> submit </button> 
      <hr/>
 
