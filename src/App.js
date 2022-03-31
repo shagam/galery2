@@ -20,6 +20,20 @@ import UpdateProfile from './auth/UpdateProfile';
 
 function App() { 
 
+  const adminsEmail = {
+    dina: process.env.REACT_APP_FIREBASE_dina,
+    test: process.env.REACT_APP_FIREBASE_test,
+    shlomit: process.env.REACT_APP_FIREBASE_shlomit
+  }
+  // console.log (admins.dina, admins.test, admins.shlomit)
+
+  const admins = [
+    {admin: "dina", email: adminsEmail.dina},
+    {admin: "test", email: adminsEmail.test},
+    {admin: "shlomit", email: adminsEmail.shlomit}
+  ]
+  
+
   return (
     <div>
       {/* <Title/> */}
@@ -33,12 +47,17 @@ function App() {
                 <Routes>
 
                     <Route exact path ="/dashBoard" element={<Dashboard/>}/>
+                    <Route path="/" element={<Dashboard/>}   />
+                    
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" element={<Login/> }/>
+                    <Route path="/forgotPassword" element={<ForgotPassword />}/>
+                    <Route path="/update-profile" element={<UpdateProfile  />}/>
 
-                    <Route path="/forgotPassword" element={<ForgotPassword/>}/>
-                    <Route path="/update-profile" element={<UpdateProfile/>}/>
-                    <Route path="/" element={<ImageGrid/>} />
+
+                    <Route path="/dina" element={<ImageGrid admin={admins[0].admin}  adminEmail={admins[0].email}  />} />
+                    <Route path="/shlomit" element={<ImageGrid admin={admins[1].admin}  adminEmail={admins[1].email}  />} />
+                    <Route path="/test" element={<ImageGrid  admin={admins[2].admin}  adminEmail={admins[2].email} />}  />
                 </Routes>
               </AuthProvider>
             </Router>
