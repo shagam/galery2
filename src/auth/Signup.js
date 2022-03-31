@@ -47,9 +47,10 @@ export default function Signup ()  {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Sign up</h2>
-          {currentUser &&  currentUser.email}
-          {error && <Alert variant="danger"> {error} </Alert>}
+          {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
 
+          {error && <Alert variant="danger"> {error} </Alert>}
+          <hr/>   
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>

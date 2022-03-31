@@ -43,7 +43,8 @@ export default function Login (props)  {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Log In</h2>
-          {currentUser && 'email: ' + currentUser.email}
+          {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+
           {error && <Alert variant="danger"> {error} </Alert>}
           <hr/> 
           <Form onSubmit={handleSubmit}>

@@ -36,7 +36,7 @@ export default function Dashboard() {
 
         <hr/>     <hr/>
         
-        <strong>Email:</strong> {currentUser && currentUser.email}
+        {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
 
         <div className='w-100 text-center mt-2'> Already have an account?  <Link to="/login" > Log In </Link> </div>
 

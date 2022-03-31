@@ -4,7 +4,9 @@ import { db, app, projectStorage } from '../firebaseConfig'
 // import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
 // import {Document, Page, pdgjs} from 'react-pdf';
+
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
@@ -16,7 +18,7 @@ const ImageGrid = (props) => {
   const firebaseCollection = props.galery;
   const picturesRef = collection(db, props.galery);
   const [selectedDoc, setSelectedDoc] = useState (null)
-
+  const { login, currentUser } = useAuth();
 
   const getPictures = async () => {
     try {
@@ -49,12 +51,18 @@ const ImageGrid = (props) => {
   return (
     <div >
       <h2>Image Gallery  ({docs.length})  </h2>
-      {/* <h3> images: {docs.length} </h3> */}
-      {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
+
+      {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
 
       <div className='w-100 text-left mt-2'>
-        Need admin access? <Link to="/dashBoard" > Authorise/Login </Link>
+        Need admin access? <Link to="/dashBoard" > DashBoard, Authorise, Login </Link>
       </div>
+
+      <hr/>
+
+      {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
+
+
       <div className="img-grid">
       { docs && docs.map(doc => (
         <div className="img-wrap" key={doc.id}
