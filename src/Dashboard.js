@@ -24,13 +24,19 @@ export default function Dashboard() {
 
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'> Admin Account </h2>
+          <h2 className='text-center mb-4'> Dashboard </h2>
           {error && <Alert variant="danger"> {error} </Alert>}
-          {/* <strong>Email:</strong> {currentUser && currentUser.email} */}
 
-   
-        </Card.Body>
-        {/* <div>Dashboard</div> */}
+
+        <div className='w-100 text-center mt-2'>  <Link to="/dina" > Dina Gallery </Link> </div>
+        
+        <div className='w-100 text-center mt-2'>  <Link to="/shlomit" > Shlomit Gallery </Link> </div>
+
+        <div className='w-100 text-center mt-2'>  <Link to="/test" > Test Gallery </Link> </div>
+
+        <hr/>     <hr/>
+        
+        <strong>Email:</strong> {currentUser && currentUser.email}
 
         <div className='w-100 text-center mt-2'> Already have an account?  <Link to="/login" > Log In </Link> </div>
 
@@ -41,16 +47,7 @@ export default function Dashboard() {
         <div className='w-100 text-center mt-2'> 
           <Button variant="link" onClick={handleLogout}>Log Out</Button>
         </div>
-
-
-        <hr/>     <hr/>  
-        {/* <div className='w-100 text-center mt-2'>  <Link to="/" > Dashboard </Link> </div> */}
-
-        <div className='w-100 text-center mt-2'>  <Link to="/dina" > Dina Galery </Link> </div>
-        
-        <div className='w-100 text-center mt-2'>  <Link to="/shlomit" > Shlomit Galery </Link> </div>
-
-        <div className='w-100 text-center mt-2'>  <Link to="/test" > Test Galery </Link> </div>
+        </Card.Body>
 
       </Card>
 
