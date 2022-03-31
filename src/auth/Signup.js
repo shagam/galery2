@@ -13,6 +13,10 @@ export default function Signup ()  {
   const { signup, currentUser } = useAuth(); //, currentUser
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword]= useState(false);
+  
+  const toggleShowPassword = () => {setShowPassword (! showPassword)}
+
   const navigate = useNavigate();
 
   async function handleSubmit (e) {
@@ -54,14 +58,21 @@ export default function Signup ()  {
 
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="Password" ref = {passwordRef} required />
+              <Form.Control type={showPassword?"text":"Password"} ref = {passwordRef} required />
             </Form.Group>
 
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="Password" ref = {passwordConfirmRef} required />
+              <Form.Control type={showPassword?"text":"Password"} ref = {passwordConfirmRef} required />
             </Form.Group>
-
+            
+            <div>
+            <input
+            type="checkbox" checked={showPassword}  
+            onChange={toggleShowPassword}
+            /> Show password  
+           </div>
+           <hr/>   
             <Button disabled={loading} className="w-100" type="submit"> Sign Up </Button>
           </Form>
         </Card.Body>
