@@ -28,9 +28,7 @@ export default function Dashboard() {
           {error && <Alert variant="danger"> {error} </Alert>}
 
 
-        <div className='w-100 text-center mt-2'>  <Link to="/dina" > Dina Gallery </Link> </div>
-        
-        <div className='w-100 text-center mt-2'>  <Link to="/shlomit" > Shlomit Gallery </Link> </div>
+        <div className='w-100 text-center mt-2'>  <Link to="/dina" > Dina Goldstein Gallery </Link> </div>
 
         <div className='w-100 text-center mt-2'>  <Link to="/test" > Test Gallery </Link> </div>
 

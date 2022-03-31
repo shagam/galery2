@@ -28,9 +28,9 @@ function App() {
   // console.log (admins.dina, admins.test, admins.shlomit)
 
   const admins = [
-    {galery: "dina", email: adminsEmail.dina},
+    {galery: "Dina Goldstein", email: adminsEmail.dina},
     {galery: "test", email: adminsEmail.test},
-    {galery: "shlomit", email: adminsEmail.shlomit}
+    {galery: "shlomit teff", email: adminsEmail.shlomit}
   ]
   
 

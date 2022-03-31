@@ -50,9 +50,9 @@ const ImageGrid = (props) => {
 
   return (
     <div >
-      <h2>Image Gallery  ({docs.length})  </h2>
+      <h2>Image Gallery  <strong> {props.galery}</strong>   ({docs.length})  </h2>
 
-      {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+      {currentUser && <div><strong>Email:        </strong> {currentUser.email}</div> }
 
       <div className='w-100 text-left mt-2'>
         Need admin access? <Link to="/dashBoard" > DashBoard, Authorise, Login </Link>
