@@ -8,15 +8,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
-// import '../index.css'
-// import useFirestore from '../hooks/useFirestore'
 
-const ImageGrid = ({ setAllDocs }) => {
+
+const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
 
-  const firebaseCollection = 'pictures';
-  const picturesRef = collection(db, "pictures");
+  const firebaseCollection = props.galery;
+  const picturesRef = collection(db, props.galery);
   const [selectedDoc, setSelectedDoc] = useState (null)
+
+
   const getPictures = async () => {
     try {
       let documents = [];
@@ -24,6 +25,8 @@ const ImageGrid = ({ setAllDocs }) => {
 
       for (let i = 0; i < unsub.docs.length; i++) {
         const doc = unsub.docs[i].data();
+        if (doc.fileName === undefined)  // empty document?
+          continue;
         const id = unsub.docs[i].id;
         documents.push({...doc, id: id})
       }
@@ -47,7 +50,7 @@ const ImageGrid = ({ setAllDocs }) => {
     <div >
       <h2>Image Gallery  ({docs.length})  </h2>
       {/* <h3> images: {docs.length} </h3> */}
-      {<UploadForm getPictures = {getPictures} /> }
+      {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
 
       <div className='w-100 text-left mt-2'>
         Need admin access? <Link to="/dashBoard" > Authorise/Login </Link>
@@ -69,7 +72,7 @@ const ImageGrid = ({ setAllDocs }) => {
       </div>
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
 
-      <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} />
+      <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} />
       <hr/>  
     </div>
   )

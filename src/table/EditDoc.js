@@ -77,11 +77,11 @@ const  EditDoc = (props) => {
 
 
         // send doc to firebase
-        const picturesRef = collection(db, "pictures");
+        const picturesRef = collection(db, props.galery);
         await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, canvas: canvas_, paint: paint_, year: year_, description: description_})  // 
 
         // delete doc
-        var imageDoc = doc(db, "pictures", props.editDoc.id);
+        var imageDoc = doc(db, props.galery, props.editDoc.id);
         await deleteDoc (imageDoc);
 
         props.getPictures(); 

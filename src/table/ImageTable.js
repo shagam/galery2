@@ -16,7 +16,7 @@ import { IMAGE_COLUMNS } from './imageColumns'
 
 import {nanoid} from 'nanoid';
 
-const picturesRef = collection(db, "pictures");
+
 
 export const ImageTable = (props) => {
  
@@ -25,6 +25,8 @@ export const ImageTable = (props) => {
     const [editDoc, setEditDoc] = useState();
 
     const columns = useMemo(() => IMAGE_COLUMNS, []);
+
+    const picturesRef = collection(db, props.galery);
     var  data = props.docs;
   
 
@@ -41,7 +43,7 @@ export const ImageTable = (props) => {
 
     try{ 
       // delete doc
-      var imageDoc = doc(db, "pictures", id);
+      var imageDoc = doc(db, props.galery, id);
       await deleteDoc (imageDoc);
 
       // Delete the image
@@ -60,14 +62,7 @@ export const ImageTable = (props) => {
   function editDocument (fileName) {
     const doc = findDocFromImageName(fileName)
     setEditDoc (doc)
-    try{ 
-
- 
-
-    } catch(e) {console.log(e)
-    }
   }
-
 
 
   function chooseImage (fileName) {
@@ -216,7 +211,7 @@ export const ImageTable = (props) => {
         </div>
       } 
 
-      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc}/>}
+      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} galery = {props.galery}/>}
 
     </div>
   )

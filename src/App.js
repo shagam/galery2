@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container } from 'react-bootstrap'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
-import Title from './comps/Title';
+// import Title from './comps/Title';
 // import UploadForm from './comps/UploadForm'
 import ImageGrid from './comps/ImageGrid';
 // import Modal from './comps/Modal'
@@ -28,9 +28,9 @@ function App() {
   // console.log (admins.dina, admins.test, admins.shlomit)
 
   const admins = [
-    {admin: "dina", email: adminsEmail.dina},
-    {admin: "test", email: adminsEmail.test},
-    {admin: "shlomit", email: adminsEmail.shlomit}
+    {galery: "dina", email: adminsEmail.dina},
+    {galery: "test", email: adminsEmail.test},
+    {galery: "shlomit", email: adminsEmail.shlomit}
   ]
   
 
@@ -48,16 +48,16 @@ function App() {
 
                     <Route exact path ="/dashBoard" element={<Dashboard/>}/>
                     <Route path="/" element={<Dashboard/>}   />
-                    
+
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" element={<Login/> }/>
                     <Route path="/forgotPassword" element={<ForgotPassword />}/>
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
 
-                    <Route path="/dina" element={<ImageGrid admin={admins[0].admin}  adminEmail={admins[0].email}  />} />
-                    <Route path="/shlomit" element={<ImageGrid admin={admins[1].admin}  adminEmail={admins[1].email}  />} />
-                    <Route path="/test" element={<ImageGrid  admin={admins[2].admin}  adminEmail={admins[2].email} />}  />
+                    <Route path="/dina" element={<ImageGrid galery={admins[0].galery}  adminEmail={admins[0].email}  />} />
+                    <Route path="/shlomit" element={<ImageGrid galery={admins[1].galery}  adminEmail={admins[1].email}  />} />
+                    <Route path="/test" element={<ImageGrid  galery={admins[2].galery}  adminEmail={admins[2].email} />}  />
                 </Routes>
               </AuthProvider>
             </Router>

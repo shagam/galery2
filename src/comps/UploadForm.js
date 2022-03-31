@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import ProgressBar from './ProgressBar';
+
 import { db, app, projectStorage, auth } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
@@ -8,7 +8,7 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext';
 
 // import cloneDeep from 'lodash/cloneDeep'
 
-const picturesRef = collection(db, "pictures");
+
 
 const UploadForm = (props) => {
   const [files, setFiles] = useState([]);
@@ -16,8 +16,9 @@ const UploadForm = (props) => {
   const [progress, setProgress] = React.useState(0)
   const { currentUser } = useAuth();
   const [user, setUser] = useState();
-  const [admin, setAdmin] = useState (false)
-
+  const [admin, setAdmin] = useState (true)
+  
+  const picturesRef = collection(db, props.galery);
   // check for admin
   onAuthStateChanged (auth, (currentUser) => {
     setUser (currentUser);
@@ -60,7 +61,7 @@ const UploadForm = (props) => {
       try {
         // console.log (selectedFiles);
         uploadOneFiles(selectedFiles);
-      } catch (e) {console.log (e)}
+      } catch (e) {setError(e.message) && console.log (e)}
     } else {
       setFiles(null);
       setError ('Please select an image file (png or jpeg or pdf)');
@@ -103,7 +104,7 @@ const UploadForm = (props) => {
         }
         );
       }
-    } catch (e) {console.log (e)}
+    } catch (e) { console.log (e)}
   }
 
 
@@ -115,7 +116,7 @@ const UploadForm = (props) => {
         {user && <div>Email:  {user.email} (admin) {admin} </div> }
         {admin &&  <div> (admin)  </div> }
         <input type="file" name= "file" id="file" className="input"  multiple  />
-        <input type="text" name = "name" placeholder="NAME"></input>
+        {/* <input type="text" name = "name" placeholder="NAME"></input> */}
         {/* <input type="text" name = "size" placeholder="SIZE"></input>
         <input type="text" name = "technology" placeholder="technology"></input> */}
         <button type="submit"> Upload </button> 
