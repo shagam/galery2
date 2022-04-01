@@ -15,8 +15,8 @@ const Modal = ({ selectedDoc, setSelectedDoc }) => {
       <img src={selectedDoc.fileUrl} alt="enlarged pic" />
 
       <div className="modalFiedls">
-      <h4 className='text-center mb-1'>  fileName: {selectedDoc.fileName} </h4>
-      <h4 className='text-center mb-1'>  category: {selectedDoc.category} </h4>
+      <h4 className='text-center mb-1'> name: {selectedDoc.fileName},  category: {selectedDoc.category}  </h4>
+      <h4 className='text-center mb-1'> <strong > size </strong> {selectedDoc.size}  paint:  {selectedDoc.paint}   </h4>
 
       <textarea rows="10" cols="70" name = "description"  readOnly
           //  defaultValue={selectedDoc.description}
