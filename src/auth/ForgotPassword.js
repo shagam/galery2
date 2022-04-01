@@ -60,6 +60,7 @@ import React, { useState, useRef } from 'react'
           Need an account? <Link to="/signup" > Sign Up </Link>
   
         </div>
+        <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
       </>
     )
   }

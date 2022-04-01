@@ -28,7 +28,7 @@ function App() {
   // console.log (admins.dina, admins.test, admins.shlomit)
 
   const admins = [
-    {galery: "Dina Goldstein", email: adminsEmail.dina},
+    {galery: "dina Goldstein", email: adminsEmail.dina},
     {galery: "test", email: adminsEmail.test},
     {galery: "shlomit teff", email: adminsEmail.shlomit}
   ]
@@ -47,7 +47,7 @@ function App() {
                 <Routes>
 
                     <Route exact path ="/dashBoard" element={<Dashboard/>}/>
-                    <Route path="/" element={<Dashboard/>}   />
+                    {/* <Route path="/" element={<Dashboard/>}   /> */}
 
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" element={<Login/> }/>
@@ -55,7 +55,9 @@ function App() {
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
 
+                    <Route path="/" element={<ImageGrid galery={admins[0].galery}  adminEmail={admins[0].email}  />} />
                     <Route path="/dina" element={<ImageGrid galery={admins[0].galery}  adminEmail={admins[0].email}  />} />
+
                     <Route path="/shlomit" element={<ImageGrid galery={admins[1].galery}  adminEmail={admins[1].email}  />} />
                     <Route path="/test" element={<ImageGrid  galery={admins[2].galery}  adminEmail={admins[2].email} />}  />
                 </Routes>

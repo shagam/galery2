@@ -79,7 +79,7 @@ export default function UpdateProfile ()  {
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>
-        Already have an account?  <Link to="/" > Cancel </Link>
+        Already have an account?  <Link to="/dashboard" > Cancel </Link>
 
       </div>
     </>

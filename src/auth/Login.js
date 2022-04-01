@@ -78,7 +78,7 @@ export default function Login (props)  {
         Forgot Password? <Link to="/ForgotPassword" > Reset Password </Link>
       </div>
       
-      <div className='w-100 text-center mt-2'>  <Link to="/" > Dashboard </Link> </div>
+      <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
 
     </>
   )
