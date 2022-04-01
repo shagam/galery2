@@ -29,15 +29,16 @@ function App() {
  
   const facebookButton = async  () => {
     const provider = new FacebookAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     signInWithPopup(auth, provider)
     .then((result => {
-     // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
+      console.log(result)
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = provider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      console.log(result)
+
     }))
     .catch((error) => {
       console.log(error.message)
@@ -47,18 +48,18 @@ function App() {
        // The email of the user's account used.
        const email = error.email;
        // The AuthCredential type that was used.
-       const credential = GoogleAuthProvider.credentialFromError(error);
+      //  const credential = provider.credentialFromError(error);
     })
   }
 
   const googleButton = async  () => {
     const provider = new GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result)
          // This gives you a Google Access Token. You can use it to access the Google API.
-         const credential = GoogleAuthProvider.credentialFromResult(result);
+         const credential = provider.credentialFromResult(result);
          const token = credential.accessToken;
          // The signed-in user info.
          const user = result.user;
@@ -72,7 +73,7 @@ function App() {
           // The email of the user's account used.
           const email = error.email;
           // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error); 
+          // const credential = provider.credentialFromError(error); 
     })
   }
 
@@ -96,6 +97,8 @@ function App() {
       {/* fb app id 339984971431912     507755754172582  */}
       {/* edf5257d68c415d14740754eaee029e1  8e9c701f67e523ab4e950709a41a777a */}
       {/* https://galery-58c6a.firebaseapp.com/__/auth/handler */}
+      {/*  google auth project project-830819266596 */}
+
 
       <header className='App-header_'>
         <button onClick={() => facebookButton ()}>facebook sign in</button>
