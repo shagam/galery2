@@ -55,7 +55,7 @@ const ImageGrid = (props) => {
       {currentUser && <div><strong>Email:        </strong> {currentUser.email}</div> }
 
       <div className='w-100 text-left mt-2'>
-        Need admin access? <Link to="/dashBoard" > DashBoard (Login) </Link>
+        Need admin access? <Link to="/dashboard" > DashBoard (Login) </Link>
       </div>
 
       <hr/>
