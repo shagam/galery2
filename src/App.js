@@ -80,15 +80,15 @@ function App() {
 
   const adminsEmail = {
     dina: process.env.REACT_APP_FIREBASE_dina,
-    test: process.env.REACT_APP_FIREBASE_test,
-    shlomit: process.env.REACT_APP_FIREBASE_shlomit
+    eli: process.env.REACT_APP_FIREBASE_eli,
+    // shlomit: process.env.REACT_APP_FIREBASE_shlomit
   }
   // console.log (admins.dina, admins.test, admins.shlomit)
 
   const admins = [
-    {galery: "dina Goldstein", email: adminsEmail.dina},
-    {galery: "test", email: adminsEmail.test},
-    {galery: "shlomit teff", email: adminsEmail.shlomit}
+    {galery: "dina", name: "Dina Goldstein", email: adminsEmail.dina},
+    {galery: "test",  name: "test", email: adminsEmail.eli},
+    // {galery: "shlomit teff", email: adminsEmail.shlomit}
   ]
   
 
@@ -113,7 +113,7 @@ function App() {
               <AuthProvider>
                 <Routes>
 
-                    <Route exact path ="/dashBoard" element={<Dashboard/>}/>
+                    <Route exact path ="/dashBoard"  element={<Dashboard admins= {admins}/>}/>
                     {/* <Route path="/" element={<Dashboard/>}   /> */}
 
                     <Route path="/signup" element={<Signup/> } />
@@ -122,11 +122,11 @@ function App() {
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
 
-                    <Route path="/" element={<ImageGrid galery={admins[0].galery}  adminEmail={admins[0].email}  />} />
-                    <Route path="/dina" element={<ImageGrid galery={admins[0].galery}  adminEmail={admins[0].email}  />} />
+                    <Route path="/" element={<ImageGrid galery={admins[0].galery} name={admins[0].name} adminEmail={admins[0].email}  />} />
+                    <Route path="/dina" element={<ImageGrid galery={admins[0].galery} name={admins[0].name} adminEmail={admins[0].email} />} />
+                    <Route path="/test" element={<ImageGrid  galery={admins[1].galery} name={admins[1].name} adminEmail={admins[1].email} />}/>                    
+                    {/* <Route path="/shlomit" element={<ImageGrid galery={admins[2].galery}  adminEmail={admins[2].email}  />} /> */}
 
-                    <Route path="/shlomit" element={<ImageGrid galery={admins[1].galery}  adminEmail={admins[1].email}  />} />
-                    <Route path="/test" element={<ImageGrid  galery={admins[2].galery}  adminEmail={admins[2].email} />}  />
                 </Routes>
               </AuthProvider>
             </Router>

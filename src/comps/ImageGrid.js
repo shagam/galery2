@@ -50,7 +50,7 @@ const ImageGrid = (props) => {
 
   return (
     <div >
-      <h2>Image Gallery  <strong> {props.galery}</strong>   ({docs.length})  </h2>
+      <h2>Image Gallery  <strong> {props.name}</strong>   ({docs.length})  </h2>
 
       {currentUser && <div><strong>Email:        </strong> {currentUser.email}</div> }
 

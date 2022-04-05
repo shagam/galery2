@@ -5,7 +5,7 @@ import { updateCurrentUser } from 'firebase/auth';
 
 import {  useAuth, logout } from './contexts/AuthContext';
 
-export default function Dashboard() {
+export default function Dashboard (props) {
   const [error, setError] = useState ('');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -27,10 +27,10 @@ export default function Dashboard() {
           <h2 className='text-center mb-4'> Dashboard </h2>
           {error && <Alert variant="danger"> {error} </Alert>}
 
+        {/* {props.admins[0].name}  */}
+        <div className='w-100 text-center mt-2'>  <Link to="/dina" > {props.admins[0].name} Gallery </Link> </div>
 
-        <div className='w-100 text-center mt-2'>  <Link to="/dina" > Dina Goldstein Gallery </Link> </div>
-
-        <div className='w-100 text-center mt-2'>  <Link to="/test" > Test Gallery </Link> </div>
+        <div className='w-100 text-center mt-2'>  <Link to="/test" > {props.admins[1].name} Gallery  </Link> </div>
 
         <hr/>     <hr/>
         
