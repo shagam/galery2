@@ -13,7 +13,7 @@ import { AuthProvider } from './contexts/AuthContext';
 // import PrivateRoute from './auth/PrivateRoute';
 
 import Signup from './auth/Signup';
-import Dashboard from './Dashboard'
+import Dashboard from './auth/Dashboard'
 import Login from './auth/Login';
 import ForgotPassword from './auth/ForgotPassword';
 import UpdateProfile from './auth/UpdateProfile';

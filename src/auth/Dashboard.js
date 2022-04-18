@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Card, Button, Alert } from 'react-bootstrap'
 
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, updateCurrentUser } from 'firebase/auth'
-import { auth } from './firebaseConfig'
-import {  useAuth, logout } from './contexts/AuthContext';
+import { auth } from '../firebaseConfig'
+import {  useAuth, logout } from '../contexts/AuthContext';
 
 export default function Dashboard (props) {
   const [error, setError] = useState ('');
