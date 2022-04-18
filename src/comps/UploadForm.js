@@ -14,7 +14,7 @@ const UploadForm = (props) => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
-  const { currentUser } = useAuth();
+  const { currentUser, admin } = useAuth();
   const [user, setUser] = useState();
   // const [admin, setAdmin] = useState (true)
   

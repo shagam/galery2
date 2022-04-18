@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Card, Button, Alert } from 'react-bootstrap'
-import { updateCurrentUser } from 'firebase/auth';
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from 'firebase/auth'
+
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, updateCurrentUser } from 'firebase/auth'
 import { auth } from './firebaseConfig'
 import {  useAuth, logout } from './contexts/AuthContext';
 
 export default function Dashboard (props) {
   const [error, setError] = useState ('');
-  const { currentUser, logout } = useAuth();
+  const { currentUser, admin, logout } = useAuth();
   const navigate = useNavigate();
 
 
@@ -69,7 +69,7 @@ export default function Dashboard (props) {
     setError('');
     try {
       await logout();
-      navigate('/login')
+      navigate('/dashBoard')
     } catch (e) {setError(e.message) && console.log (e)}
   }
 
@@ -91,6 +91,7 @@ export default function Dashboard (props) {
         <hr/>  <hr/>
         
         {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+        {admin && <div><strong>admin </strong> </div>}
 
         <button onClick={signInWithGoogle}> Google Sign In</button> 
         {/* <div> &nbsp; &nbsp;  </div>      */}

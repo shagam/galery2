@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {auth} from '../firebaseConfig'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { getDefaultNormalizer } from '@testing-library/react';
 
 
 const AuthContext = React.createContext();
@@ -12,7 +13,7 @@ export function useAuth() {
 export function AuthProvider ({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true)
-
+  const [admin, setAdmin] = useState(false);
 
   function signup (email, password) {
     try {
@@ -79,6 +80,15 @@ export function AuthProvider ({ children }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
+      if (user && (user.email === 'shagam@gmail.com' 
+      || user.email === 'j321111@gmail.com' 
+      || user.email === 'dina146@bezeqint.net')) {
+        setAdmin(true)
+        console.log ('setAdmin') 
+      }
+      // else
+      //   setAdmin(false)
+
       setLoading(false)
     })
     return unsubscribe;
@@ -87,6 +97,7 @@ export function AuthProvider ({ children }) {
 
   const value = {
     currentUser,
+    admin,
     signup,
     login,
     logout,

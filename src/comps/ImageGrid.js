@@ -18,7 +18,7 @@ const ImageGrid = (props) => {
   const firebaseCollection = props.galery;
   const picturesRef = collection(db, props.galery);
   const [selectedDoc, setSelectedDoc] = useState (null)
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, admin } = useAuth();
 
   const getPictures = async () => {
     try {
@@ -52,7 +52,8 @@ const ImageGrid = (props) => {
     <div >
       <h2>Image Gallery  <strong> {props.name}</strong>   ({docs.length})  </h2>
 
-      {currentUser && <div><strong>Email:        </strong> {currentUser.email}</div> }
+      {currentUser && <div><strong>Email: </strong> &nbsp; &nbsp; {currentUser.email}</div> }
+      {admin && <div><strong>admin </strong> </div>}
 
       <div className='w-100 text-left mt-2'>
         Need admin access? <Link to="/dashboard" > DashBoard (Login) </Link>

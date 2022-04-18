@@ -27,57 +27,7 @@ import {auth} from './firebaseConfig'
 
 function App() { 
  
-  const facebookButton = async  () => {
-    const provider = new FacebookAuthProvider();
-    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    signInWithPopup(auth, provider)
-    .then((result => {
-      console.log(result)
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = provider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-
-    }))
-    .catch((error) => {
-      console.log(error.message)
-       // Handle Errors here.
-       const errorCode = error.code;
-       const errorMessage = error.message;
-       // The email of the user's account used.
-       const email = error.email;
-       // The AuthCredential type that was used.
-      //  const credential = provider.credentialFromError(error);
-    })
-  }
-
-  const googleButton = async  () => {
-    const provider = new GoogleAuthProvider();
-    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log(result)
-         // This gives you a Google Access Token. You can use it to access the Google API.
-         const credential = provider.credentialFromResult(result);
-         const token = credential.accessToken;
-         // The signed-in user info.
-         const user = result.user;
-         console.log(result)
-    })
-    .catch((error) => { 
-      console.log(error.message)
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.email;
-          // The AuthCredential type that was used.
-          // const credential = provider.credentialFromError(error); 
-    })
-  }
-
-
+  
   const adminsEmail = {
     dina: process.env.REACT_APP_FIREBASE_dina,
     eli: process.env.REACT_APP_FIREBASE_eli,
@@ -99,14 +49,7 @@ function App() {
       {/* https://galery-58c6a.firebaseapp.com/__/auth/handler */}
       {/*  google auth project project-830819266596 */}
 
-
-      <header className='App-header_'>
-        <button onClick={() => facebookButton ()}>facebook sign in</button>
-        <button onClick={() => facebookButton ()}>google sign in</button>
-      </header>
-
-        <Container  className='d-flex align-items-center justify-content-center'
-          style={{minHeight: "50vh"}}
+      <Container  className='d-flex align-items-center justify-content-center' style={{minHeight: "50vh"}}
         >
           <div>
             <Router>
