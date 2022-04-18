@@ -16,14 +16,14 @@ const UploadForm = (props) => {
   const [progress, setProgress] = React.useState(0)
   const { currentUser } = useAuth();
   const [user, setUser] = useState();
-  const [admin, setAdmin] = useState (true)
+  // const [admin, setAdmin] = useState (true)
   
   const picturesRef = collection(db, props.galery);
   // check for admin
   onAuthStateChanged (auth, (currentUser) => {
     setUser (currentUser);
-  if (currentUser)
-      setAdmin (true)
+  // if (currentUser)
+  //     setAdmin (true)
     // console.log (currentUser);
   })
 
