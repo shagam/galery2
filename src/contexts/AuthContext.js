@@ -47,7 +47,10 @@ export function AuthProvider ({ children }) {
   function logout () {
     try {
       // return signInWithEmailAndPassword (auth, email, password)
-      return auth.signOut ()
+      const stat = auth.signOut ();
+      setAdmin (false);
+      return stat;
+
     } catch (e) {console.log (e)}
   }
   
@@ -80,11 +83,12 @@ export function AuthProvider ({ children }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
-      if (user && (user.email === 'shagam@gmail.com' 
+    if (user) console.log(user.email);
+      if (user && (user.email === 'eli.shagam@gmail.com' 
       || user.email === 'j321111@gmail.com' 
       || user.email === 'dina146@bezeqint.net')) {
         setAdmin(true)
-        console.log ('setAdmin') 
+        console.log ('setAdmin', ) 
       }
       // else
       //   setAdmin(false)
@@ -92,7 +96,7 @@ export function AuthProvider ({ children }) {
       setLoading(false)
     })
     return unsubscribe;
-  }, []);
+  }, [currentUser]);
 
 
   const value = {

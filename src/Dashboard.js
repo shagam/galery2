@@ -90,8 +90,10 @@ export default function Dashboard (props) {
 
         <hr/>  <hr/>
         
-        {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
-        {admin && <div><strong>admin </strong> </div>}
+        <div style={{display:'flex'}}>
+          {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+          {admin && <div> &nbsp; <strong>(admin)</strong> </div>}
+        </div>
 
         <button onClick={signInWithGoogle}> Google Sign In</button> 
         {/* <div> &nbsp; &nbsp;  </div>      */}
