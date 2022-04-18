@@ -111,7 +111,10 @@ export const ImageTable = (props) => {
     top: 0
   }
     
-  
+  const column_Label_id = {
+    // 'margin-right': '0px',
+    // 'line-height': '0.7em'
+  }
   const style_table = {
     // background: 'blue',
     // color: 'red',
@@ -163,7 +166,7 @@ export const ImageTable = (props) => {
             <div id="columnToggle_id" key={column.id}>
               <label id="column_Label_id">
                 <input type='checkbox' {...column.getToggleHiddenProps()} />
-                {column.Header}
+                &nbsp;{column.Header}
               </label>
             </div>
           ))
