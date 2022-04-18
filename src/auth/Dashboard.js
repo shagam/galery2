@@ -26,6 +26,7 @@ export default function Dashboard (props) {
 
     }))
     .catch((error) => {
+      setError (error.message);
       console.log(error.message)
        // Handle Errors here.
        const errorCode = error.code;
@@ -51,7 +52,9 @@ export default function Dashboard (props) {
          console.log(result)
     })
     .catch((error) => { 
+      setError (error.message);
       console.log(error.message)
+
           // Handle Errors here.
           const errorCode = error.code;
           const errorMessage = error.message;
