@@ -43,7 +43,7 @@ const UploadForm = (props) => {
       }
 
       // avoid duplicate file name, check if already exist
-      var userQuery = query (picturesRef, where('name', '==', file.name));
+      var userQuery = query (picturesRef, where('fileName', '==', file.name));
       const picture = await getDocs(userQuery);
 
       if (picture.docs.length > 0) {
@@ -64,24 +64,14 @@ const UploadForm = (props) => {
       } catch (e) {setError(e.message) && console.log (e)}
     } else {
       setFiles(null);
-      setError ('Please select an image file (png or jpeg or pdf)');
+      setError ('Please select an new image file (png or jpeg or pdf)');
     }
 
   }
 
-  const firebasePictureInfoAdd = async (file, url, last) => {
-    console.log ( 'firebasePictureInfoAdd', file.name);
-    const kb = Math.round(file.size / 1024);
-    try {
-      await addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
-        fileScanned: file.lastModifiedDate})
-      if (last)
-        props.getPictures();  // refresh pictures on last to avoid duplicate 
-    } catch (e) {console.log (e)}               
-  }
 
 
-  const uploadFiles = (files) => {
+  const uploadFiles = async (files) => {
     if (! files) return;
 
     try {
@@ -99,7 +89,15 @@ const UploadForm = (props) => {
         }, (err) => console.log(err),
         () => { // upload complete
           getDownloadURL(uploadTask.snapshot.ref)
-          .then(url => {firebasePictureInfoAdd (file, url, last)
+          .then(url => {
+            // firebasePictureInfoAdd (file, url, last) 
+            console.log ( 'firebasePictureInfoAdd', file.name);
+            const kb = Math.round(file.size / 1024);
+            // async
+             addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
+              fileScanned: file.lastModifiedDate})
+            if (last)
+              props.getPictures();  // refresh pictures on last to avoid duplicate            
           });
         }
         );
@@ -110,7 +108,7 @@ const UploadForm = (props) => {
 
 
   return (
-     admin &&
+    //  admin &&
       <div>
       <form onSubmit={formHandler} >
         <input type="file" name= "file" id="file" className="input"  multiple  />
