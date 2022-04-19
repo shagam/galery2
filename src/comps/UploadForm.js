@@ -60,7 +60,7 @@ const UploadForm = (props) => {
       setError('');
       try {
         // console.log (selectedFiles);
-        uploadOneFiles(selectedFiles);
+        uploadFiles(selectedFiles);
       } catch (e) {setError(e.message) && console.log (e)}
     } else {
       setFiles(null);
@@ -81,7 +81,7 @@ const UploadForm = (props) => {
   }
 
 
-  const uploadOneFiles = (files) => {
+  const uploadFiles = (files) => {
     if (! files) return;
 
     try {
