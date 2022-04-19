@@ -63,10 +63,12 @@ const ImageGrid = (props) => {
       <hr/>
 
       {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
-
+      { docs && <h3> &nbsp; <strong> Choose an image to focus </strong> </h3>}
 
       <div className="img-grid">
+
       { docs && docs.map(doc => (
+
         <div className="img-wrap" key={doc.id}
           onClick={() => setSelectedDoc(doc)} >
 
