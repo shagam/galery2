@@ -23,6 +23,7 @@ export const ImageTable = (props) => {
     const [tableFlag, setTableFlag] = useState(false);
     const [columnHideFlag, setColumnHideFlag] = useState(true);
     const [editDoc, setEditDoc] = useState();
+    const [error, setError] = useState();
 
     const columns = useMemo(() => IMAGE_COLUMNS, []);
 
@@ -48,26 +49,28 @@ export const ImageTable = (props) => {
 
       // Delete the image
       const storage = getStorage();
-      const fullFileName = 'files/' + fileDoc.fileName
+      const fullFileName = 'files/' + props.galery + '_' + fileDoc.fileName
       const imageRef = ref (storage, fullFileName);
       await deleteObject(imageRef);
       console.log ('delete success ', fileDoc)
         // File deleted successfully   
       props.getPictures();
-
-    } catch(e) {console.log(e)
+      setError();
+    } catch(e) {setError(e.message) && console.log(e)
     }
   }
 
   function editDocument (fileName) {
     const doc = findDocFromImageName(fileName)
-    setEditDoc (doc)
+    setEditDoc (doc);
+    setError();
   }
 
 
   function chooseImage (fileName) {
     const doc = findDocFromImageName(fileName)
     props.setSelectedDoc(doc);
+    setError();
   }
 
 
@@ -145,7 +148,7 @@ export const ImageTable = (props) => {
       { tableFlag &&
 
         <div>
-
+          {error && <div className='error'>{error}</div>}
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {'  rows=' + rows.length + "  "}
 
