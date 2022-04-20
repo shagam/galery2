@@ -102,7 +102,7 @@ const UploadForm = (props) => {
         }
         );
       }
-    } catch (e) { console.log (e)}
+    } catch (e) {setError(e.message) && console.log (e)}
   }
 
 
