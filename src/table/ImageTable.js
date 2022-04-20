@@ -205,8 +205,8 @@ export const ImageTable = (props) => {
                       })}
                         <div>
                         <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
-                        <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>
-                        <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>
+                        {props.admin && <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>}
+                        {props.admin && <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>}
                         </div>
                     </tr>
                   )
