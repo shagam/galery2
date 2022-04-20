@@ -78,7 +78,7 @@ const UploadForm = (props) => {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
       
-        const storageRef = ref(projectStorage, `/files/${file.name}`)
+        const storageRef = ref(projectStorage, `/files/${props.galery}_${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
         const last = i === files.length - 1 ? true : false;
         uploadTask.on(
