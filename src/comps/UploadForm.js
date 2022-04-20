@@ -16,18 +16,8 @@ const UploadForm = (props) => {
   const [progress, setProgress] = React.useState(0)
   const { currentUser, admin } = useAuth();
   const [user, setUser] = useState();
-  // const [admin, setAdmin] = useState (true)
-  
-  const picturesRef = collection(db, props.galery);
-  // check for admin
-  onAuthStateChanged (auth, (currentUser) => {
-    setUser (currentUser);
-  // if (currentUser)
-  //     setAdmin (true)
-    // console.log (currentUser);
-  })
 
-  // if (! {user}) return null;
+  const picturesRef = collection(db, props.galery);
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
@@ -66,7 +56,6 @@ const UploadForm = (props) => {
       setFiles(null);
       setError ('Please select an new image file (png or jpeg or pdf)');
     }
-
   }
 
 
@@ -80,7 +69,7 @@ const UploadForm = (props) => {
       
         const storageRef = ref(projectStorage, `/files/${props.galery}_${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
-        const last = i === files.length - 1 ? true : false;
+
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -93,15 +82,21 @@ const UploadForm = (props) => {
             // firebasePictureInfoAdd (file, url, last) 
             console.log ( 'firebasePictureInfoAdd', file.name);
             const kb = Math.round(file.size / 1024);
-            // async
-             addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
-              fileScanned: file.lastModifiedDate})
-            if (last)
-              props.getPictures();  // refresh pictures on last to avoid duplicate            
+    
+            addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
+              fileScanned: file.lastModifiedDate})          
           });
         }
         );
       }
+      const timer = setTimeout(() => {
+        console.log('This will run after 5 second!')
+        props.getPictures();  // refresh pictures on last to avoid duplicate 
+      }, 5000);
+      return () => clearTimeout(timer);
+    
+      // const unsub =  await getDocs (picturesRef);
+
     } catch (e) {setError(e.message) && console.log (e)}
   }
 
@@ -110,6 +105,7 @@ const UploadForm = (props) => {
   return (
     //  admin &&
       <div>
+        {error && <div className='error'>{error}</div>}
       <form onSubmit={formHandler} >
         <input type="file" name= "file" id="file" className="input"  multiple  />
         {/* <input type="text" name = "name" placeholder="NAME"></input> */}
@@ -118,12 +114,8 @@ const UploadForm = (props) => {
         <button type="submit"> Upload </button> 
         <hr/>
         { progress !== 0 && progress !== 100 && <h3>uploaded {progress} %</h3>}
-
-        {error && <div className='error'>{error}</div>}
-        {/* {files && <div> {files} </div>} */}
       </form>
-      </div>
-      
+      </div>      
   )
 
 }
