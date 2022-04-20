@@ -19,7 +19,7 @@ const ImageGrid = (props) => {
   const picturesRef = collection(db, props.galery);
   const [selectedDoc, setSelectedDoc] = useState (null)
   const { login, currentUser, admin } = useAuth();
-
+  const [error, setError] = useState();
   const getPictures = async () => {
     try {
       let documents = [];
@@ -37,7 +37,7 @@ const ImageGrid = (props) => {
       // setAllDocs (documents);
       console.log (documents);
       return unsub;
-    } catch (e) {console.log (e)}
+    } catch (e) {setError(e.message) && console.log (e)}
 
   }
 
@@ -63,6 +63,7 @@ const ImageGrid = (props) => {
       <hr/>
 
       {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
+      {error && <div className='error'>{error}</div>}
       { docs && <h3> &nbsp; <strong> Choose an image to focus </strong> </h3>}
 
       <div className="img-grid">
