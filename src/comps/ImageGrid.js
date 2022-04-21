@@ -74,7 +74,7 @@ const ImageGrid = (props) => {
           onClick={() => setSelectedDoc(doc)} >
 
           {doc.fileType === 'application/pdf' &&
-            <iframe src={doc.fileUrl} width="1000" height="1000" title={doc.name}/>   }
+            <iframe src={doc.fileUrl} width="1000" height="1000" title={doc.fileName}/>   }
 
           {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
             <img src={doc.fileUrl} alt={doc.fileName} />}
