@@ -69,17 +69,16 @@ const ImageGrid = (props) => {
       <div className="img-grid">
 
       { docs && docs.map(doc => (
+        <div>
+          <div className="img-wrap" key={doc.id}
+            onClick={() => setSelectedDoc(doc)} >
+            {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
+              <img src={doc.fileUrl} alt={doc.fileName} />}
+            {doc.fileType === 'application/pdf' &&
+              <iframe src={doc.fileUrl} title={doc.fileName} />   }
 
-        <div className="img-wrap" key={doc.id}
-          onClick={() => setSelectedDoc(doc)} >
-
-          {doc.fileType === 'application/pdf' &&
-            <iframe src={doc.fileUrl} width="1000" height="1000" title={doc.fileName}/>   }
-
-          {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
-            <img src={doc.fileUrl} alt={doc.fileName} />}
-            
-          <div> fileName: {doc.fileName} file_kb: {doc.file_kb} fileType: {doc.fileType}</div>
+          </div>
+          <div> {doc.fileName}  </div>
         </div>      
       ))}
       </div>
