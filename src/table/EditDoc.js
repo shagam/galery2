@@ -25,55 +25,55 @@ const  EditDoc = (props) => {
       try {
         var category_ = category
         if (category_ === undefined && props.editDoc.category !== undefined) {
-          category_ = props.editDoc.category
+          category_ = props.editDoc.category  // copy old value
         }
-        if (category_ === undefined) {
-          setCategory('?')
-          category_="?"
-        }
+        // if (category_ === undefined) {
+        //   setCategory('?')
+        //   category_="?"
+        // }
 
         var size_ = size;
         if (size_ === undefined && props.editDoc.size !== undefined) {
-          size_ = props.editDoc.size
+          size_ = props.editDoc.size   // copy old value
         }
-        if (size_ === undefined){
-          setSize('?')
-          size_="?"
-        }
+        // if (size_ === undefined){
+        //   setSize('?')
+        //   size_="?"
+        // }
 
         var technique_ = technique;
         if (technique_ === undefined && props.editDoc.technique !== undefined) {
-          technique_ = props.editDoc.technique
+          technique_ = props.editDoc.technique   // copy old value
         }
-        if (technique_ === undefined){
-           setTechnique('?')
-           technique_ = "?"
-        }
+        // if (technique_ === undefined){
+        //    setTechnique('?')
+        //    technique_ = "?"
+        // }
 
         var price_ = price
         if (price_ === undefined && props.editDoc.price !== undefined) {
-          price_ = props.editDoc.price
+          price_ = props.editDoc.price   // copy old value
         }
-        if (price_ === undefined){
-          setPrice('?')
-          price_ = "?";
-        }
+        // if (price_ === undefined){
+        //   setPrice('?')
+        //   price_ = "?";
+        // }
 
         var year_ = year
         if (year_ === undefined && props.editDoc.year !== '')
-          year_ = props.editDoc.year
-        if (year_ === undefined) {
-          setYear('?')
-          year_="?"
-        }
+          year_ = props.editDoc.year   // copy old value
+        // if (year_ === undefined) {
+        //   setYear('?')
+        //   year_="?"
+        // }
 
         var description_ = description;
         if (description_ === undefined && props.editDoc.description !== undefined)
-          description_ = props.editDoc.description
-        if (description_ === undefined) {
-          setDescription('?')
-          description_ = "?"
-        }
+          description_ = props.editDoc.description   // copy old value
+        // if (description_ === undefined) {
+        //   setDescription('?')
+        //   description_ = "?"
+        // }
 
 
         // send doc to firebase
@@ -97,6 +97,9 @@ return (
     <form onSubmit={formHandler} >
      <div>
        <div>
+          <hr/>    <hr/>
+          <h5> {props.editDoc.fileName} </h5>
+
           Category
           <input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
           defaultValue={props.editDoc.category} placeholder={props.editDoc.category}/>
