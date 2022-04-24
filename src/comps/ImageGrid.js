@@ -121,7 +121,7 @@ const ImageGrid = (props) => {
             {doc.fileType === 'application/pdf' &&
               <iframe src={doc.fileUrl} title={doc.fileName} />   }
           </div>
-          <div> {doc.fileName}  &nbsp; category: {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </div>
+          <h5> {doc.fileName}  &nbsp;  {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
         </div> 
       ))}
       </div>
