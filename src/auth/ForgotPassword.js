@@ -1,11 +1,13 @@
 
+  import React, { useState, useRef } from 'react'
   import { sendPasswordResetEmail } from 'firebase/auth';
-import React, { useState, useRef } from 'react'
+
   import { Form, Button, Card, Alert } from 'react-bootstrap'
   import { Link, useNavigate } from 'react-router-dom'
   import { AuthProvider, useAuth } from '../contexts/AuthContext';
   import { db, app, projectStorage, auth } from '../firebaseConfig'    
-  
+  import { Container } from 'react-bootstrap'
+
   export default function ForgotPassword  ()  {
     const emailRef = useRef();
   
@@ -34,6 +36,7 @@ import React, { useState, useRef } from 'react'
     return (
   
       <>
+        <Container  className='d-flex align-items-center justify-content-center' style={{minHeight: "50vh", width: "100%"}} > 
         <Card>
           <Card.Body>
             <h2 className='text-center mb-4'> Password Reset</h2>
@@ -55,7 +58,7 @@ import React, { useState, useRef } from 'react'
             </div>
           </Card.Body>
         </Card>
-  
+        </Container>
         <div className='w-100 text-center mt-2'>
           Need an account? <Link to="/signup" > Sign Up </Link>
   

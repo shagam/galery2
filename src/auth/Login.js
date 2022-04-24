@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from '../contexts/AuthContext';
-
+import { Container } from 'react-bootstrap'
 
 
 export default function Login (props)  {
@@ -40,6 +40,7 @@ export default function Login (props)  {
   return (
 
     <>
+      <Container  className='d-flex align-items-center justify-content-center' style={{minHeight: "50vh", width: "100%"}} >  
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Log In</h2>
@@ -72,7 +73,7 @@ export default function Login (props)  {
           </Form>
         </Card.Body>
       </Card>
-
+      </Container>
       <div className='w-100 text-center mt-2'>
         Need an account? <Link to="/signup" > Sign Up </Link>
       </div>

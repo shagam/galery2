@@ -49,8 +49,7 @@ function App() {
       {/* https://galery-58c6a.firebaseapp.com/__/auth/handler */}
       {/*  google auth project project-830819266596 */}
 
-      <Container  className='d-flex align-items-left justify-content-left' style={{minHeight: "50vh", minWidth: "100%"}}
-        >
+      <Container  className='d-flex_ align-items-left justify-content-left' style={{minHeight: "50vh", width: "100%"}} >
           <div>
             <Router>
               <AuthProvider>

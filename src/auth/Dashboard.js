@@ -5,6 +5,7 @@ import { Card, Button, Alert } from 'react-bootstrap'
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, updateCurrentUser } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 import {  useAuth, logout } from '../contexts/AuthContext';
+import { Container } from 'react-bootstrap'
 
 export default function Dashboard (props) {
   const [error, setError] = useState ('');
@@ -79,7 +80,7 @@ export default function Dashboard (props) {
   return (
     <>
 
-  
+    <Container  className='d-flex align-items-center justify-content-center' style={{minHeight: "50vh", width: "100%"}} >    
       <Card>
         <Card.Body>
           <h2 className='text-left mb-4'> Dashboard </h2>
@@ -114,7 +115,7 @@ export default function Dashboard (props) {
         </Card.Body>
 
       </Card>
-
+      </Container>
     </>
    )
 }
