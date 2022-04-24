@@ -20,7 +20,6 @@ import {nanoid} from 'nanoid';
 
 export const ImageTable = (props) => {
  
-    const [tableFlag, setTableFlag] = useState(false);
     const [columnHideFlag, setColumnHideFlag] = useState(true);
     const [editDoc, setEditDoc] = useState();
     const [error, setError] = useState();
@@ -98,7 +97,6 @@ export const ImageTable = (props) => {
 
   )
   
-  const tableFlagChange = () => {setTableFlag (! tableFlag)}
   const columnHideFlagChange = () => {setColumnHideFlag (! columnHideFlag)}
 
 
@@ -138,14 +136,6 @@ export const ImageTable = (props) => {
 
   return (
     <div style= {style_component}>     
-      <div>
-            <input
-              type="checkbox" checked={tableFlag}
-              onChange={tableFlagChange}
-            /> table
-      </div>
-
-      { tableFlag &&
 
         <div>
           {error && <div className='error'>{error}</div>}
@@ -215,7 +205,7 @@ export const ImageTable = (props) => {
           </table>
 
         </div>
-      } 
+
 
       {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} galery = {props.galery}/>}
 

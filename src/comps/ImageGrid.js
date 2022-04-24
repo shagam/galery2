@@ -23,7 +23,7 @@ const ImageGrid = (props) => {
   const { login, currentUser, admin } = useAuth();
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
-
+  const [tableFlag, setTableFlag] = useState(false);
 
   const getPictures = async () => {
     try {
@@ -81,6 +81,8 @@ const ImageGrid = (props) => {
     return false;
   }
 
+  const tableFlagChange = () => {setTableFlag (! tableFlag)}
+
   return (
     <div >
       <h2>Image Gallery  <strong> {props.name}</strong>   ({docs.length})  </h2>
@@ -97,14 +99,21 @@ const ImageGrid = (props) => {
 
       {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
       {error && <div className='error'>{error}</div>}
+
+      <div>  <input
+              type="checkbox" checked={tableFlag}
+              onChange={tableFlagChange}/> table
+      </div>
+    
+    {! tableFlag && <div>
       { docs && <h3> &nbsp; <strong> Choose an image to focus </strong> </h3>}
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
 
+ 
       <div className="img-grid">
 
       { docsFiltered && docsFiltered.map(doc => (
         <div>        
-        <div>
           <div className="img-wrap" key={doc.id}
             onClick={() => setSelectedDoc(doc)} >
             {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
@@ -112,14 +121,13 @@ const ImageGrid = (props) => {
             {doc.fileType === 'application/pdf' &&
               <iframe src={doc.fileUrl} title={doc.fileName} />   }
           </div>
-          <div> {doc.fileName}  </div>
-        </div>
+          <div> {doc.fileName}  &nbsp; category: {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </div>
         </div> 
       ))}
       </div>
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
-
-      <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} admin = {admin} />
+      </div>}
+      {tableFlag && <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} admin = {admin} />}
       <hr/>  
     </div>
   )
