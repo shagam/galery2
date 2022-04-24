@@ -60,8 +60,8 @@ code {
   display: black;
   opacity: 1;
   max-width: 95%;
-  max-height: 70%;
-  margin: 30px auto;
+  max-height: 85%;
+  margin: 20px auto;
   box-shadow: 3px 5px 7px rgpa(0,0,0,0.5);
   border: 3px solid white;
 }
