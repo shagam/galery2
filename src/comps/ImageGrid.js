@@ -15,6 +15,7 @@ import GlobalFilter from '../table/GlobalFilter'
 
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
+  const [docsFiltered, setDocsFiltered] = useState([]);
 
   const firebaseCollection = props.galery;
   const picturesRef = collection(db, props.galery);
@@ -49,17 +50,33 @@ const ImageGrid = (props) => {
     getPictures ();
   }, []);
 
+  useEffect (() => {
+    var list = [];
+    for (let i = 0; i < docs.length; i++) {
+      if (filter(docs[i]))
+        list.push(docs[i]);
+    }
+    setDocsFiltered(list);
+
+  }, [docs, globalFilter]);
+
+  function filterCase (str) {
+    if (str === undefined)
+      return true;
+    return str.toUpperCase().includes(globalFilter.toUpperCase());
+  }
+
 
   const filter = (doc) => {
     if (! doc)
       return true;
     if (globalFilter === undefined || globalFilter === '')
       return true;
-    if (doc.fileName !== undefined && doc.fileName.includes(globalFilter))
+    if (doc.fileName !== undefined && filterCase(doc.fileName))
       return true;
-    if (doc.category !== undefined && doc.category.includes(globalFilter))
-      return true;      
-    if (doc.descrition !== undefined && doc.descrition.includes(globalFilter))
+    if (doc.category !== undefined && filterCase(doc.category))
+      return true;
+    if (doc.descrition !== undefined &&filterCase(doc.descrition))
       return true;
     return false;
   }
@@ -85,9 +102,9 @@ const ImageGrid = (props) => {
 
       <div className="img-grid">
 
-      { docs && docs.map(doc => (
+      { docsFiltered && docsFiltered.map(doc => (
         <div>        
-        {filter(doc) && <div>
+        <div>
           <div className="img-wrap" key={doc.id}
             onClick={() => setSelectedDoc(doc)} >
             {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
@@ -96,7 +113,7 @@ const ImageGrid = (props) => {
               <iframe src={doc.fileUrl} title={doc.fileName} />   }
           </div>
           <div> {doc.fileName}  </div>
-        </div>}
+        </div>
         </div> 
       ))}
       </div>
