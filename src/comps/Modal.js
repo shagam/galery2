@@ -18,18 +18,15 @@ const Modal = ({ selectedDoc, setSelectedDoc }) => {
 
       <div className="modalFiedls" style={{display:'flex'}}>
         <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-        <h4 className='text-center mb-1'> &nbsp; name: {selectedDoc.fileName},  category: {selectedDoc.category}  </h4>
-        <h4 className='text-center mb-1'> <strong > size </strong> {selectedDoc.size}  paint:  {selectedDoc.paint}   </h4>
-        </div>
+        <h4 className='text-center mb-1'>  &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp; {selectedDoc.category}  &nbsp;  </h4>
+        <h4 className='text-center mb-1'>  &nbsp; {selectedDoc.size}  &nbsp; {selectedDoc.technique} </h4>
+      </div>
 
-        <textarea rows="10" cols="70" name = "description"  readOnly
+        {/* <textarea rows="5" cols="100" name = "description"  readOnly
             //  defaultValue={selectedDoc.description}
             placeholder={selectedDoc.description} 
             >
-        </textarea> 
-         
-
-
+        </textarea>  */}
     </div>
   )
 }
