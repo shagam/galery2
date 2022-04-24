@@ -61,23 +61,25 @@ const ImageGrid = (props) => {
   }, [docs, globalFilter]);
 
   function filterCase (str) {
-    if (str === undefined)
+    if (str === undefined || str === null)
+      return true;
+    if (globalFilter === undefined || globalFilter === null)
       return true;
     return str.toUpperCase().includes(globalFilter.toUpperCase());
   }
 
 
   const filter = (doc) => {
-    if (! doc)
-      return true;
     if (globalFilter === undefined || globalFilter === '')
       return true;
     if (doc.fileName !== undefined && filterCase(doc.fileName))
       return true;
-    if (doc.category !== undefined && filterCase(doc.category))
+    if (doc.category !== undefined && doc.category !== null &&  filterCase(doc.category))
       return true;
-    if (doc.descrition !== undefined &&filterCase(doc.descrition))
+    if (doc.descrition !== undefined && doc.descrition !== null && filterCase(doc.descrition))
       return true;
+    if (doc.technique !== undefined && doc.technique !== null && filterCase(doc.technique))
+      return true;      
     return false;
   }
 
