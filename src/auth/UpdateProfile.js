@@ -10,7 +10,7 @@ export default function UpdateProfile ()  {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { currentUser, updateEmail, updatePassword } = useAuth();
+  const { currentUser, admin, updateEmail, updatePassword } = useAuth();
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
   const nvigate = useNavigate();
@@ -52,9 +52,13 @@ export default function UpdateProfile ()  {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Update Profile</h2>
-          {currentUser &&  currentUser.email}
-          {error && <Alert variant="danger"> {error} </Alert>}
 
+          <div style={{display:'flex'}}>
+            {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+            {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
+          </div>
+          {error && <Alert variant="danger"> {error} </Alert>}
+          <hr/>
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
