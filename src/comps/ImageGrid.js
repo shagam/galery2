@@ -108,8 +108,9 @@ const ImageGrid = (props) => {
       </div>
     
     {! tableFlag && <div>
-      { docs && <h3> &nbsp; <strong> Choose an image to focus </strong> </h3>}
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
+      { docs && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
+
 
  
       <div className="img-grid">
@@ -127,8 +128,10 @@ const ImageGrid = (props) => {
         </div> 
       ))}
       </div>
-      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
       </div>}
+
+      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
+
       {tableFlag && <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} admin = {admin} />}
       <hr/>  
     </div>
