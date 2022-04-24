@@ -10,8 +10,8 @@ const  EditDoc = (props) => {
   
   const [category, setCategory] = useState ()
   const [size, setSize] = useState();
-  const [canvas, setCanvas] = useState(null);
-  const [paint, setPaint] = useState(null);
+  const [technique, setTechnique] = useState(null);
+  const [price, setPrice] = useState(null);
   const [year, setYear] = useState(null);
   const [description, setDescription] = useState();
 
@@ -41,22 +41,22 @@ const  EditDoc = (props) => {
           size_="?"
         }
 
-        var canvas_ = canvas;
-        if (canvas_ === undefined && props.editDoc.canvas !== undefined) {
-          canvas_ = props.editDoc.canvas
+        var technique_ = technique;
+        if (technique_ === undefined && props.editDoc.technique !== undefined) {
+          technique_ = props.editDoc.technique
         }
-        if (canvas_ === undefined){
-           setCanvas('?')
-           canvas_ = "?"
+        if (technique_ === undefined){
+           setTechnique('?')
+           technique_ = "?"
         }
 
-        var paint_ = paint
-        if (paint_ === undefined && props.editDoc.paint !== undefined) {
-          paint_ = props.editDoc.paint
+        var price_ = price
+        if (price_ === undefined && props.editDoc.price !== undefined) {
+          price_ = props.editDoc.price
         }
-        if (paint_ === undefined){
-          setPaint('?')
-          paint_ = "?";
+        if (price_ === undefined){
+          setPrice('?')
+          price_ = "?";
         }
 
         var year_ = year
@@ -78,7 +78,7 @@ const  EditDoc = (props) => {
 
         // send doc to firebase
         const picturesRef = collection(db, props.galery);
-        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, canvas: canvas_, paint: paint_, year: year_, description: description_})  // 
+        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
 
         // delete doc
         var imageDoc = doc(db, props.galery, props.editDoc.id);
@@ -96,27 +96,28 @@ return (
     {/* <div>Edit</div> */}
     <form onSubmit={formHandler} >
      <div>
-     <div>
-        Category
-        <input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
-        defaultValue={props.editDoc.category} placeholder={props.editDoc.category}/>
+       <div>
+          Category
+          <input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
+          defaultValue={props.editDoc.category} placeholder={props.editDoc.category}/>
 
-        Size
-        <input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
-        defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
+          Size
+          <input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
+          defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
         </div>
-        Canvas
-        <input type="text" name = "canvas" onChange={(e) => {setCanvas(e.target.value)}}
-        defaultValue={props.editDoc.canvas} placeholder={props.editDoc.canvas}></input>
 
-        Paint
-        <input type="text" name = "paint" onChange={(e) => {setPaint(e.target.value)}}
-        defaultValue={props.editDoc.paint}  placeholder={props.editDoc.paint}></input>
-        
-
+        Technique
+        <input type="text" name = "technique" onChange={(e) => {setTechnique(e.target.value)}}
+        defaultValue={props.editDoc.technique} placeholder={props.editDoc.technique}></input>
+      
         Year
         <input type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
          defaultValue={props.editDoc.year} placeholder={props.editDoc.year}></input>
+
+        Price
+        <input type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
+        defaultValue={props.editDoc.price}  placeholder={props.editDoc.price}></input>
+        
 
         <div>
           Description

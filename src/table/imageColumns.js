@@ -18,19 +18,19 @@ export const IMAGE_COLUMNS = [
     accessor: 'size',
   },
   {
-    Header: 'canvas',
-    Footer: 'canvas',    
-    accessor: 'canvas',
-  },
-  {
-    Header: 'paint',
-    Footer: 'paint',    
-    accessor: 'paint',
+    Header: 'technique',
+    Footer: 'technique',    
+    accessor: 'technique',
   },
   {
     Header: 'year',
     Footer: 'year',    
     accessor: 'year'
+  },
+  {
+    Header: 'price',
+    Footer: 'price',    
+    accessor: 'price',
   },
   {
     Header: 'description',
