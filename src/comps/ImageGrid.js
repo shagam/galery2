@@ -10,6 +10,7 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext';
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
+import GlobalFilter from '../table/GlobalFilter'
 
 
 const ImageGrid = (props) => {
@@ -20,6 +21,9 @@ const ImageGrid = (props) => {
   const [selectedDoc, setSelectedDoc] = useState (null)
   const { login, currentUser, admin } = useAuth();
   const [error, setError] = useState();
+  const [globalFilter, setGlobalFilter] = useState();
+
+
   const getPictures = async () => {
     try {
       let documents = [];
@@ -46,7 +50,19 @@ const ImageGrid = (props) => {
   }, []);
 
 
-
+  const filter = (doc) => {
+    if (! doc)
+      return true;
+    if (globalFilter === undefined || globalFilter === '')
+      return true;
+    if (doc.fileName !== undefined && doc.fileName.includes(globalFilter))
+      return true;
+    if (doc.category !== undefined && doc.category.includes(globalFilter))
+      return true;      
+    if (doc.descrition !== undefined && doc.descrition.includes(globalFilter))
+      return true;
+    return false;
+  }
 
   return (
     <div >
@@ -65,21 +81,23 @@ const ImageGrid = (props) => {
       {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
       {error && <div className='error'>{error}</div>}
       { docs && <h3> &nbsp; <strong> Choose an image to focus </strong> </h3>}
+      <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
 
       <div className="img-grid">
 
       { docs && docs.map(doc => (
-        <div>
+        <div>        
+        {filter(doc) && <div>
           <div className="img-wrap" key={doc.id}
             onClick={() => setSelectedDoc(doc)} >
             {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
               <img src={doc.fileUrl} alt={doc.fileName} />}
             {doc.fileType === 'application/pdf' &&
               <iframe src={doc.fileUrl} title={doc.fileName} />   }
-
           </div>
           <div> {doc.fileName}  </div>
-        </div>      
+        </div>}
+        </div> 
       ))}
       </div>
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
