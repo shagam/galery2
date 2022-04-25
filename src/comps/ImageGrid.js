@@ -115,7 +115,7 @@ const ImageGrid = (props) => {
  
       <div className="img-grid">
 
-      { docsFiltered && docsFiltered.map(doc => (
+      {! selectedDoc && docsFiltered && docsFiltered.map(doc => (
         <div>        
           <div className="img-wrap" key={doc.id}
             onClick={() => setSelectedDoc(doc)} >
