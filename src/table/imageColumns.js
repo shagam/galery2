@@ -13,14 +13,14 @@ export const IMAGE_COLUMNS = [
     accessor: 'category',
   }, 
   {
-    Header: 'size',
-    Footer: 'size',    
-    accessor: 'size',
-  },
-  {
     Header: 'technique',
     Footer: 'technique',    
     accessor: 'technique',
+  },
+  {
+    Header: 'size',
+    Footer: 'size',    
+    accessor: 'size',
   },
   {
     Header: 'year',
