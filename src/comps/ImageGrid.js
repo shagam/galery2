@@ -124,11 +124,15 @@ const ImageGrid = (props) => {
             {doc.fileType === 'application/pdf' &&
               <iframe src={doc.fileUrl} title={doc.fileName} />   }
           </div>
-          <h5> {doc.fileName}  &nbsp;  {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
+          <div  style={{display:'flex'}}>
+            <h5 style={{color:'magenta'}}> {doc.fileName}  &nbsp;  </h5>
+            <h5> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
+          </div>
         </div> 
       ))}
       </div>
       </div>}
+
 
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
 
