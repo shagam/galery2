@@ -99,7 +99,7 @@ const ImageGrid = (props) => {
 
       <hr/>
 
-      {<UploadForm getPictures = {getPictures} galery = {props.galery}/> }
+      {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} galery = {props.galery}/> }
       {error && <div className='error'>{error}</div>}
 
       <div>  <input
@@ -125,8 +125,8 @@ const ImageGrid = (props) => {
               <iframe src={doc.fileUrl} title={doc.fileName} />   }
           </div>
           <div  style={{display:'flex'}}>
-            <h5 style={{color:'magenta', 'font-size':'2vw'}}> {doc.fileName}  &nbsp;  </h5>
-            <h5 style= {{'font-size':'2vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
+            <h5 style={{color:'magenta', 'font-size':'1.3vw'}}> {doc.fileName}  &nbsp;  </h5>
+            <h5 style= {{'font-size':'1.3vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
           </div>
         </div> 
       ))}
