@@ -13,9 +13,9 @@ code {
 }
 
 .img-grid {
-  /* width: 90hw; */
+  width: 90vw;
   background-size: cover;
-  width: 100%!important;
+  /* width: 130%!important; */
   margin: 20px auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
