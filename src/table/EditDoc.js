@@ -109,12 +109,12 @@ return (
 
         {/* <input type="text" name = "technique" onChange={(e) => {setTechnique(e.target.value)}}
         defaultValue={props.editDoc.technique} placeholder={props.editDoc.technique}></input> */}
-          <div style={{color: 'red', height: '2em'}}>
+          <div onChange={techClick} style={{color: 'red', height: '2em'}}>
             &nbsp;Technique: &nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;<input type='radio' name='techniqe' value='gouash' checked={isSelected('gouash')} onChange={techClick}/> gouash
-            &nbsp;<input type='radio' name='techniqe' value='oil' checked={isSelected('oil')} onChange={techClick}/> oil
-            &nbsp;<input type='radio' name='techniqe' value='water' checked={isSelected('water')} onChange={techClick}/> water
-            &nbsp;<input type='radio' name='techniqe' value='graphit' checked={isSelected('graphit')} onChange={techClick}/> graphit
+            &nbsp;<input type='radio' name='techniqe' value='gouash' checked={isSelected('gouash')} /> gouash
+            &nbsp;<input type='radio' name='techniqe' value='oil' checked={isSelected('oil')} /> oil
+            &nbsp;<input type='radio' name='techniqe' value='water' checked={isSelected('water')} /> water
+            &nbsp;<input type='radio' name='techniqe' value='graphit' checked={isSelected('graphit')} /> graphit
           </div>
 
           Category
