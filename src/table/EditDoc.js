@@ -22,7 +22,7 @@ const  EditDoc = (props) => {
 
   const formHandler = async (e) => {
     e.preventDefault();
-
+      setError('');
       try {
         var category_ = category
         if (category_ === undefined && props.editDoc.category !== undefined) {
@@ -67,17 +67,7 @@ const  EditDoc = (props) => {
       } catch (e) {setError(e.message) && console.log (e)}
   }
 
-  const isSelected = (technique__) => {
-    return technique__ === technique;
-  } 
-
-  const techClick = (e) => {
-    setTechnique (e.target.value);
-    console.log ('radioSelected: ' , e.target.value);
-  }
-
-  const techList = ['gouash', 'oil', 'water', 'graphit'];
-
+  const techList = ['gouash', 'oil', 'water', 'graphit', 'sketch', 'black&white'];
 
 return (
 
