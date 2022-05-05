@@ -10,6 +10,7 @@ const  EditDoc = (props) => {
   const [category, setCategory] = useState ()
   const [size, setSize] = useState();
   const [technique, setTechnique] = useState(props.editDoc.technique);
+  // const [technique, setTechnique] = useState('water');
   const [price, setPrice] = useState(null);
   const [year, setYear] = useState(null);
   const [description, setDescription] = useState();
@@ -26,53 +27,29 @@ const  EditDoc = (props) => {
         if (category_ === undefined && props.editDoc.category !== undefined) {
           category_ = props.editDoc.category  // copy old value
         }
-        // if (category_ === undefined) {
-        //   setCategory('?')
-        //   category_="?"
-        // }
 
         var size_ = size;
         if (size_ === undefined && props.editDoc.size !== undefined) {
           size_ = props.editDoc.size   // copy old value
         }
-        // if (size_ === undefined){
-        //   setSize('?')
-        //   size_="?"
-        // }
-
+    
         var technique_ = technique;
         if (technique_ === undefined && props.editDoc.technique !== undefined) {
           technique_ = props.editDoc.technique   // copy old value
         }
-        // if (technique_ === undefined){
-        //    setTechnique('?')
-        //    technique_ = "?"
-        // }
 
         var price_ = price
         if (price_ === undefined && props.editDoc.price !== undefined) {
           price_ = props.editDoc.price   // copy old value
         }
-        // if (price_ === undefined){
-        //   setPrice('?')
-        //   price_ = "?";
-        // }
 
         var year_ = year
         if (year_ === undefined && props.editDoc.year !== '')
           year_ = props.editDoc.year   // copy old value
-        // if (year_ === undefined) {
-        //   setYear('?')
-        //   year_="?"
-        // }
 
         var description_ = description;
         if (description_ === undefined && props.editDoc.description !== undefined)
           description_ = props.editDoc.description   // copy old value
-        // if (description_ === undefined) {
-        //   setDescription('?')
-        //   description_ = "?"
-        // }
 
 
         // send doc to firebase
@@ -97,6 +74,9 @@ const  EditDoc = (props) => {
     console.log ('radioSelected: ' , e.target.value);
   }
 
+  const techList = ['gouash', 'oil', 'water', 'graphit'];
+
+
 return (
 
   <div>
@@ -109,8 +89,17 @@ return (
 
         {/* <input type="text" name = "technique" onChange={(e) => {setTechnique(e.target.value)}}
         defaultValue={props.editDoc.technique} placeholder={props.editDoc.technique}></input> */}
-          <div onChange={techClick} style={{color: 'red', height: '2em'}}>
-            &nbsp;Technique: &nbsp;&nbsp;&nbsp;&nbsp;
+          <div onChange={techClick} style={{display: 'flex', color: 'red', height: '2em'}}>
+            Technique: &nbsp;&nbsp;&nbsp;&nbsp;
+
+            {/* {techList.map((tech) => {
+              return (
+              <div>
+                <input type='radio' name='techniqe' value={tech} checked={isSelected({tech})} /> {tech}&nbsp;&nbsp;&nbsp;
+             </div>
+              )
+            })} */}
+            
             &nbsp;<input type='radio' name='techniqe' value='gouash' checked={isSelected('gouash')} /> gouash
             &nbsp;<input type='radio' name='techniqe' value='oil' checked={isSelected('oil')} /> oil
             &nbsp;<input type='radio' name='techniqe' value='water' checked={isSelected('water')} /> water
