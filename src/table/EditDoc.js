@@ -7,10 +7,9 @@ import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireb
 
 const  EditDoc = (props) => {
 
-  
   const [category, setCategory] = useState ()
   const [size, setSize] = useState();
-  const [technique, setTechnique] = useState(null);
+  const [technique, setTechnique] = useState(props.editDoc.technique);
   const [price, setPrice] = useState(null);
   const [year, setYear] = useState(null);
   const [description, setDescription] = useState();
@@ -89,6 +88,14 @@ const  EditDoc = (props) => {
       } catch (e) {console.log (e)}
   }
 
+  const isSelected = (technique__) => {
+    return technique__ === technique;
+  } 
+
+  const techClick = (e) => {
+    setTechnique (e.target.value);
+    console.log ('radioSelected: ' , e.target.value);
+  }
 
 return (
 
@@ -100,28 +107,33 @@ return (
           <hr/>    <hr/>
           <h5> {props.editDoc.fileName} </h5>
 
+        {/* <input type="text" name = "technique" onChange={(e) => {setTechnique(e.target.value)}}
+        defaultValue={props.editDoc.technique} placeholder={props.editDoc.technique}></input> */}
+          <div style={{color: 'red', height: '2em'}}>
+            &nbsp;Technique: &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;<input type='radio' name='techniqe' value='gouash' checked={isSelected('gouash')} onChange={techClick}/> gouash
+            &nbsp;<input type='radio' name='techniqe' value='oil' checked={isSelected('oil')} onChange={techClick}/> oil
+            &nbsp;<input type='radio' name='techniqe' value='water' checked={isSelected('water')} onChange={techClick}/> water
+            &nbsp;<input type='radio' name='techniqe' value='graphit' checked={isSelected('graphit')} onChange={techClick}/> graphit
+          </div>
+
           Category
-          <input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
+          &nbsp;<input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
           defaultValue={props.editDoc.category} placeholder={props.editDoc.category}/>
 
-          Size
-          <input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
+          &nbsp;Size
+          &nbsp;<input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
           defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
         </div>
 
-        Technique
-        <input type="text" name = "technique" onChange={(e) => {setTechnique(e.target.value)}}
-        defaultValue={props.editDoc.technique} placeholder={props.editDoc.technique}></input>
-      
         Year
-        <input type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
+        &nbsp;<input type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
          defaultValue={props.editDoc.year} placeholder={props.editDoc.year}></input>
 
-        Price
-        <input type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
+        &nbsp;Price
+        &nbsp;<input type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
         defaultValue={props.editDoc.price}  placeholder={props.editDoc.price}></input>
         
-
         <div>
           Description
           {/* <div>
@@ -129,7 +141,7 @@ return (
             defaultValue={props.editDoc.description} placeholder={props.editDoc.description}></input>
           </div> */}
           <div>
-          <textarea rows="5" cols="90" name = "description" 
+          <textarea rows="3" cols="90" name = "description" 
            defaultValue={props.editDoc.description}  placeholder={props.editDoc.year}
            onChange={(e) => {setDescription(e.target.value)}}>
 
