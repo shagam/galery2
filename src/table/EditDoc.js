@@ -3,7 +3,7 @@ import { db, app, projectStorage, auth } from '../firebaseConfig'
 import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
 // import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
-
+import { Form, Button, Card, Alert } from 'react-bootstrap'
 
 const  EditDoc = (props) => {
 
@@ -14,6 +14,7 @@ const  EditDoc = (props) => {
   const [price, setPrice] = useState(null);
   const [year, setYear] = useState(null);
   const [description, setDescription] = useState();
+  const [error, setError] = useState ();
 
   // const [newDoc, setNewDoc] = useState({});
   // console.log (props.editDoc)
@@ -52,17 +53,18 @@ const  EditDoc = (props) => {
           description_ = props.editDoc.description   // copy old value
 
 
-        // send doc to firebase
-        const picturesRef = collection(db, props.galery);
-        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
-
         // delete doc
         var imageDoc = doc(db, props.galery, props.editDoc.id);
         await deleteDoc (imageDoc);
 
+
+        // send doc to firebase
+        const picturesRef = collection(db, props.galery);
+        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
+
         props.getPictures(); 
         props.setEditDoc(undefined);
-      } catch (e) {console.log (e)}
+      } catch (e) {setError(e.message) && console.log (e)}
   }
 
   const isSelected = (technique__) => {
@@ -80,6 +82,7 @@ const  EditDoc = (props) => {
 return (
 
   <div>
+    {error && <Alert variant="danger"> {error} </Alert>}
     {/* <div>Edit</div> */}
     <form onSubmit={formHandler} >
      <div>
@@ -87,23 +90,14 @@ return (
           <hr/>    <hr/>
           <h5> {props.editDoc.fileName} </h5>
 
-        {/* <input type="text" name = "technique" onChange={(e) => {setTechnique(e.target.value)}}
-        defaultValue={props.editDoc.technique} placeholder={props.editDoc.technique}></input> */}
-          <div onChange={techClick} style={{display: 'flex', color: 'red', height: '2em'}}>
+          <div  style={{display: 'flex', color: 'red', height: '2em'}}>
             Technique: &nbsp;&nbsp;&nbsp;&nbsp;
-
-            {/* {techList.map((tech) => {
-              return (
-              <div>
-                <input type='radio' name='techniqe' value={tech} checked={isSelected({tech})} /> {tech}&nbsp;&nbsp;&nbsp;
-             </div>
-              )
-            })} */}
-            
-            &nbsp;<input type='radio' name='techniqe' value='gouash' checked={isSelected('gouash')} /> gouash
-            &nbsp;<input type='radio' name='techniqe' value='oil' checked={isSelected('oil')} /> oil
-            &nbsp;<input type='radio' name='techniqe' value='water' checked={isSelected('water')} /> water
-            &nbsp;<input type='radio' name='techniqe' value='graphit' checked={isSelected('graphit')} /> graphit
+            {techList.map((tech) => (
+              <>
+                <input type='radio' name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
+                {tech}&nbsp;&nbsp;&nbsp;
+              </>
+            ))}
           </div>
 
           Category
