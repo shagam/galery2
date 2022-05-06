@@ -5,6 +5,8 @@ import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireb
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 
+import Category from './Category';
+
 const  EditDoc = (props) => {
 
   const [category, setCategory] = useState ()
@@ -90,9 +92,7 @@ return (
             ))}
           </div>
 
-          Category
-          &nbsp;<input type="text" name = "category" onChange={(e) => {setCategory(e.target.value)}}
-          defaultValue={props.editDoc.category} placeholder={props.editDoc.category}/>
+          <Category setCategory = {setCategory}/>
 
           &nbsp;Size
           &nbsp;<input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
