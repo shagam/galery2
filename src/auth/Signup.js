@@ -50,7 +50,7 @@ export default function Signup ()  {
           <h2 className='text-center mb-4'> Sign up</h2>
 
           <div style={{display:'flex'}}>
-            {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+            {currentUser && <div><strong> </strong> {currentUser.email}</div> }
             {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
           </div>
 

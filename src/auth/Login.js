@@ -42,7 +42,7 @@ export default function Login (props)  {
           <h2 className='text-center mb-4'> Log In</h2>
 
           <div style={{display:'flex'}}>
-            {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+            {currentUser && <div><strong> </strong> {currentUser.email}</div> }
             {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
           </div>
           {error && <Alert variant="danger"> {error} </Alert>}

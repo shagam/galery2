@@ -40,7 +40,7 @@
         <Card>
           <Card.Body>
             <h2 className='text-center mb-4'> Password Reset</h2>
-            {currentUser && <div><strong>Email:  </strong> {currentUser.email}</div> }
+            {currentUser && <div><strong> </strong> {currentUser.email}</div> }
             <hr/>   
             {error && <Alert variant="danger"> {error} </Alert>}
             {error && <Alert variant="success"> {message} </Alert>}
