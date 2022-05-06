@@ -90,11 +90,9 @@ const ImageGrid = (props) => {
       <h2>Image Gallery  <strong> {props.name}</strong>   ({docs.length})  </h2>
 
       <div style={{display:'flex'}}>
-        {currentUser && <div><strong>Email: </strong> &nbsp; &nbsp; {currentUser.email}</div> }
+        {currentUser && <div><strong> </strong>  {currentUser.email}</div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
-      </div>
-      <div className='w-100 text-left mt-2'>
-        Need admin access? <Link to="/dashboard" > DashBoard (Login) </Link>
+        &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
       </div>
 
       <hr/>
