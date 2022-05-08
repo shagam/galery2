@@ -21,6 +21,10 @@ const  EditDoc = (props) => {
   // const [newDoc, setNewDoc] = useState({});
   // console.log (props.editDoc)
 
+  function abort () {
+    props.setEditDoc(undefined);
+  }
+
 
   const formHandler = async (e) => {
     e.preventDefault();
@@ -125,6 +129,7 @@ return (
         </div>
      </div>
      <button type="submit"> submit </button> 
+     <button type="submit" onClick={abort} > abort </button> 
      <hr/>
 
 
