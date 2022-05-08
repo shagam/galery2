@@ -4,7 +4,7 @@ export const Category = (props) => {
   const [category, setCategory] = useState (props.category)
 
   
-  const categoryList = ['landscape', 'buildings', 'trees', 'cloth', 'fruits', 'animals'];
+  const categoryList = ['landscape', 'buildings', 'trees', 'cloth', 'fruits', 'animals', 'any'];
 
   function exec (e) {
     setCategory(e.target.value);
@@ -18,7 +18,7 @@ export const Category = (props) => {
     category: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     {categoryList.map((category_) => (
       <>
-        <input type='radio' name='category' value={category_} checked={category === category_} onChange={exec} /> 
+        <input type='radio' style={{zoom:'200%'}} name='category' value={category_} checked={category === category_} onChange={exec} /> 
         {category_}&nbsp;&nbsp;&nbsp;
       </>
     ))}

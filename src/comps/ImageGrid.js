@@ -59,7 +59,7 @@ const ImageGrid = (props) => {
       if (! filter(docs[i]))
         continue;
       
-      if (category === undefined || category === docs[i].values().category)
+      if (category === undefined || category === 'any' || category === docs[i].category)
         list.push(docs[i]);
     }
     setDocsFiltered(list);
@@ -113,7 +113,7 @@ const ImageGrid = (props) => {
     
     {! tableFlag && <div>
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
-      
+      {/* <hr/> */}
       {<Category category = {category} setCategory = {setCategory}/>}
 
       { docs && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}

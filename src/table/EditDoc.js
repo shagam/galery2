@@ -76,7 +76,7 @@ const  EditDoc = (props) => {
   }
 
   const techList = ['gouash', 'oil', 'water', 'graphit', 'sketch', 'black&white'];
-
+// width:'1.2em', height:'1.5em'
 return (
 
   <div>
@@ -88,11 +88,11 @@ return (
           <hr/>    <hr/>
           <h5> {props.editDoc.fileName} </h5>
 
-          <div  style={{display: 'flex', color: 'red', height: '2em'}}>
+          <div  style={{display: 'flex', color: 'bluegreen', height: '2em'}}>
             Technique: &nbsp;&nbsp;&nbsp;&nbsp;
             {techList.map((tech) => (
               <>
-                <input type='radio' name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
+                <input type='radio' style={{zoom:'200%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
                 {tech}&nbsp;&nbsp;&nbsp;
               </>
             ))}
