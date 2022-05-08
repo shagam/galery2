@@ -9,7 +9,7 @@ import Category from './Category';
 
 const  EditDoc = (props) => {
 
-  const [category, setCategory] = useState ()
+  const [category, setCategory] = useState (props.editDoc.category)
   const [size, setSize] = useState();
   const [technique, setTechnique] = useState(props.editDoc.technique);
   // const [technique, setTechnique] = useState('water');
@@ -92,7 +92,7 @@ return (
             ))}
           </div>
 
-          <Category setCategory = {setCategory}/>
+          <Category category = {category} setCategory = {setCategory}/>
 
           &nbsp;Size
           &nbsp;<input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
