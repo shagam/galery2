@@ -108,10 +108,7 @@ const ImageGrid = (props) => {
 
       {<Category category = {category} setCategory = {setCategory}/>}
 
-      <div>  <input
-              type="checkbox" checked={tableFlag}
-              onChange={tableFlagChange}/> table
-      </div>
+      {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
     
     {! tableFlag && <div>
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
@@ -121,21 +118,22 @@ const ImageGrid = (props) => {
       { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
       <div className="img-grid">
 
-      {! selectedDoc && docsFiltered && docsFiltered.map(doc => (
-        <div key={doc.fileName}>        
-          <div className="img-wrap" key={doc.id}
+      {! selectedDoc && docsFiltered && docsFiltered.map(doc => {
+        const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
+        return <li key={fileName}>        
+          <div className="img-wrap" 
             onClick={() => setSelectedDoc(doc)} >
-            {(doc.fileType === 'image/jpeg' || doc.fileType === 'image/png') &&
-              <img src={doc.fileUrl} alt={doc.fileName} />}
+            {(fileType === 'image/jpeg' || fileType === 'image/png') &&
+              <img src={fileUrl} alt={fileName} />}
             {doc.fileType === 'application/pdf' &&
-              <iframe src={doc.fileUrl} title={doc.fileName} />   }
+              <iframe src={doc.fileUrl} title={fileName} />   }
           </div>
           {/* <div  style_={{display:'flex'}}> */}
-            <h5 style={{color:'magenta', 'fontSize':'1.8vw'}}> {doc.fileName}  &nbsp;  </h5>
-            <h5 style= {{'fontSize':'1.8vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} &nbsp; {doc.year}</h5>
+            <h5 style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </h5>
+            <h5 style= {{'fontSize':'1.8vw' }}> {category} &nbsp; {technique} &nbsp; {size} &nbsp; {year}</h5>
           {/* </div> */}
-        </div> 
-      ))}
+        </li> 
+        })}
       </div>
       </div>}
 

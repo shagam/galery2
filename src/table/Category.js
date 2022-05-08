@@ -14,13 +14,13 @@ export const Category = (props) => {
 
   return (
 
-    <div  style={{display: 'flex', color: 'red', height: '2em'}}>
+    <div  style={{display: 'flex', color: 'red', zoom: '150%'}}>
     category: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     {categoryList.map((category_) => (
-      <>
-        <input type='radio' style={{zoom:'200%'}} name='category' value={category_} checked={category === category_} onChange={exec} /> 
-        {category_}&nbsp;&nbsp;&nbsp;
-      </>
+      <div key = {category_}>
+        <input type='radio' style={{zoom:'100%'}} name='category' value={category_} checked={category === category_} onChange={exec} /> 
+        <label>{category_}&nbsp;&nbsp;&nbsp;</label>
+      </div>
     ))}
   </div>
 
