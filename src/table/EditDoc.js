@@ -53,6 +53,8 @@ const  EditDoc = (props) => {
         var description_ = description;
         if (description_ === undefined && props.editDoc.description !== undefined)
           description_ = props.editDoc.description   // copy old value
+        else
+          description_ = '';
 
 
         // delete doc
