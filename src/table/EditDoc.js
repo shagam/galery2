@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { db, app, projectStorage, auth } from '../firebaseConfig'
+import { db } from '../firebaseConfig'
 import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
 // import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'

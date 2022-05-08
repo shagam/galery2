@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { db, app, projectStorage, auth } from '../firebaseConfig'
+import { db, projectStorage } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 import {onAuthStateChanged} from 'firebase/auth'

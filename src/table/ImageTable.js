@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useEffect} from 'react'
+import React, {useState, useMemo} from 'react'
 
 import { useTable, useSortBy, useGlobalFilter, useRowSelect } from 'react-table'
 import GlobalFilter from './GlobalFilter'
@@ -8,7 +8,7 @@ import './table.css'
 
 import CheckBox from './CheckBox'
 import EditDoc from './EditDoc'
-import { db, app, projectStorage, auth } from '../firebaseConfig'
+import { db } from '../firebaseConfig'
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 

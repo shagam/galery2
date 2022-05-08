@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import { db, app, projectStorage } from '../firebaseConfig'
+import { db } from '../firebaseConfig'
 // import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 // import {Document, Page, pdgjs} from 'react-pdf';
 
 import UploadForm from './UploadForm'
@@ -18,10 +18,10 @@ const ImageGrid = (props) => {
   const [docsFiltered, setDocsFiltered] = useState([]);
   const [category, setCategory] = useState ()
 
-  const firebaseCollection = props.galery;
+  // const firebaseCollection = props.galery;
   const picturesRef = collection(db, props.galery);
   const [selectedDoc, setSelectedDoc] = useState (null)
-  const { login, currentUser, admin } = useAuth();
+  const { currentUser, admin } = useAuth();
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
@@ -113,7 +113,9 @@ const ImageGrid = (props) => {
     
     {! tableFlag && <div>
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
+      
       {<Category category = {category} setCategory = {setCategory}/>}
+
       { docs && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
 
 
