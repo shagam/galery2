@@ -11,11 +11,12 @@ import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from '../table/GlobalFilter'
-
+import Category from '../table/Category';
 
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
   const [docsFiltered, setDocsFiltered] = useState([]);
+  const [category, setCategory] = useState ()
 
   const firebaseCollection = props.galery;
   const picturesRef = collection(db, props.galery);
@@ -51,14 +52,19 @@ const ImageGrid = (props) => {
   }, []);
 
   useEffect (() => {
+    console.log (category)
     var list = [];
     for (let i = 0; i < docs.length; i++) {
-      if (filter(docs[i]))
+      // filter according to globalFilter && category
+      if (! filter(docs[i]))
+        continue;
+      
+      if (category === undefined || category === docs[i].values().category)
         list.push(docs[i]);
     }
     setDocsFiltered(list);
 
-  }, [docs, globalFilter]);
+  }, [docs, globalFilter, category]);
 
   function filterCase (str) {
     if (str === undefined || str === null)
@@ -107,6 +113,7 @@ const ImageGrid = (props) => {
     
     {! tableFlag && <div>
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
+      {<Category category = {category} setCategory = {setCategory}/>}
       { docs && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
 
 
@@ -124,7 +131,7 @@ const ImageGrid = (props) => {
           </div>
           <div  style={{display:'flex'}}>
             <h5 style={{color:'magenta', 'fontSize':'1.8vw'}}> {doc.fileName}  &nbsp;  </h5>
-            <h5 style= {{'fontSize':'1.5vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
+            <h5 style= {{'fontSize':'1.8vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
           </div>
         </div> 
       ))}
