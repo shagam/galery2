@@ -16,7 +16,7 @@ import Category from '../table/Category';
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
   const [docsFiltered, setDocsFiltered] = useState([]);
-  const [category, setCategory] = useState ()
+  const [category, setCategory] = useState ('any')
 
   // const firebaseCollection = props.galery;
   const picturesRef = collection(db, props.galery);
@@ -106,6 +106,8 @@ const ImageGrid = (props) => {
       {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} galery = {props.galery}/> }
       {error && <div className='error'>{error}</div>}
 
+      {<Category category = {category} setCategory = {setCategory}/>}
+
       <div>  <input
               type="checkbox" checked={tableFlag}
               onChange={tableFlagChange}/> table
@@ -114,12 +116,9 @@ const ImageGrid = (props) => {
     {! tableFlag && <div>
       <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
       {/* <hr/> */}
-      {<Category category = {category} setCategory = {setCategory}/>}
-
-      { docs && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
-
-
- 
+      
+   
+      { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
       <div className="img-grid">
 
       {! selectedDoc && docsFiltered && docsFiltered.map(doc => (
@@ -143,7 +142,7 @@ const ImageGrid = (props) => {
 
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
 
-      { ! selectedDoc && tableFlag && <ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} admin = {admin} />}
+      { ! selectedDoc && tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} admin = {admin} />}
       <hr/>  
     </div>
   )
