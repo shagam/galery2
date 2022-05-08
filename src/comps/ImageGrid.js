@@ -131,7 +131,7 @@ const ImageGrid = (props) => {
           </div>
           {/* <div  style_={{display:'flex'}}> */}
             <h5 style={{color:'magenta', 'fontSize':'1.8vw'}}> {doc.fileName}  &nbsp;  </h5>
-            <h5 style= {{'fontSize':'1.8vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} </h5>
+            <h5 style= {{'fontSize':'1.8vw' }}> {doc.category} &nbsp; {doc.technique} &nbsp; {doc.size} &nbsp; {doc.year}</h5>
           {/* </div> */}
         </div> 
       ))}
