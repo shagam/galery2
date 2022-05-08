@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 export const Category = (props) => {
-  const [category, setCategory] = useState ('trees')
+  const [category, setCategory] = useState (props.category)
 
   
   const categoryList = ['landscape', 'buildings', 'trees', 'cloth', 'fruits', 'animals'];
@@ -15,7 +15,7 @@ export const Category = (props) => {
   return (
 
     <div  style={{display: 'flex', color: 'red', height: '2em'}}>
-    category: &nbsp;&nbsp;&nbsp;&nbsp;
+    category: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     {categoryList.map((category_) => (
       <>
         <input type='radio' name='category' value={category_} checked={category === category_} onChange={exec} /> 
