@@ -11,19 +11,20 @@ export const Category = (props) => {
     props.setCategory (e.target.value);
   }
 
-
+// , width: '3em', hieght: '3em'
   return (
+    <>
 
-    <div  style={{display: 'flex', color: 'red', zoom: '150%'}}>
-    category: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div  style={{display: 'flex', color: 'red'}}>
+    category: &nbsp;&nbsp;&nbsp;
     {categoryList.map((category_) => (
-      <div key = {category_}>
-        <input type='radio' style={{zoom:'100%'}} name='category' value={category_} checked={category === category_} onChange={exec} /> 
-        <label>{category_}&nbsp;&nbsp;&nbsp;</label>
-      </div>
+      <label key = {category_}  style={{display: 'flex'}} >
+        <input type='radio' style={{zoom: '150%'}} name='category' value={category_} checked={category === category_} onChange={exec} /> 
+        <div>{category_}&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      </label>
     ))}
   </div>
-
+  </>
   )
 }
 

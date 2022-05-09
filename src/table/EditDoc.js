@@ -34,6 +34,9 @@ const  EditDoc = (props) => {
         if (category_ === undefined && props.editDoc.category !== undefined) {
           category_ = props.editDoc.category  // copy old value
         }
+        if (category_ === undefined)
+          category_ = 'any';
+
 
         var size_ = size;
         if (size_ === undefined && props.editDoc.size !== undefined) {
@@ -92,7 +95,7 @@ return (
             Technique: &nbsp;&nbsp;&nbsp;&nbsp;
             {techList.map((tech) => (
               <>
-                <input type='radio' style={{zoom:'200%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
+                <input type='radio' style={{zoom:'150%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
                 {tech}&nbsp;&nbsp;&nbsp;
               </>
             ))}
