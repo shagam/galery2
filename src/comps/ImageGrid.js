@@ -121,7 +121,7 @@ const ImageGrid = (props) => {
 
           {! selectedDoc && docsFiltered && docsFiltered.map(doc => {
             const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
-            return <li key={fileName}>        
+            return <div key={fileName}>        
               <div className="img-wrap" 
                 onClick={() => setSelectedDoc(doc)} >
                 {(fileType === 'image/jpeg' || fileType === 'image/png') &&
@@ -133,7 +133,7 @@ const ImageGrid = (props) => {
                 <h5 style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </h5>
                 <h5 style= {{'fontSize':'1.8vw' }}> {category} &nbsp; {technique} &nbsp; {size} &nbsp; {year}</h5>
               {/* </div> */}
-            </li> 
+            </div> 
           })}
         </div>
       </div>}
