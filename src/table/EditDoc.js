@@ -94,10 +94,10 @@ return (
           <div  style={{display: 'flex', color: 'bluegreen', height: '2em'}}>
             Technique: &nbsp;&nbsp;&nbsp;&nbsp;
             {techList.map((tech) => (
-              <>
+              <dev key={tech}>
                 <input type='radio' style={{zoom:'150%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
                 {tech}&nbsp;&nbsp;&nbsp;
-              </>
+              </dev>
             ))}
           </div>
 
