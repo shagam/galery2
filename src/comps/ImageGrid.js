@@ -11,7 +11,7 @@ import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from '../table/GlobalFilter'
-import Category from '../table/Category';
+import Category from '../comps/Category';
 
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);

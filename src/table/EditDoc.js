@@ -5,7 +5,7 @@ import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "fireb
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 
-import Category from './Category';
+import Category from '../comps/Category';
 
 const  EditDoc = (props) => {
 
