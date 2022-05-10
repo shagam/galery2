@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 
 
-export const IsMobile = () => {
+export const MobileContext = () => {
   const [userAgent, setUserAgent] = useState("");
   const [userAgentMobile, setUserAgentMobile] = useState(false);
   const [isAndroid, setIsAndroid] = useState("");
@@ -53,6 +53,6 @@ export const IsMobile = () => {
 
 }
 
-export default IsMobile;
+export default MobileContext;
 
 

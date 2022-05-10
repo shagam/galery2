@@ -12,6 +12,7 @@ import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from '../table/GlobalFilter'
 import Category from '../comps/Category';
+import MobileContext from './MobileContext'
 
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
@@ -25,6 +26,8 @@ const ImageGrid = (props) => {
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
+
+  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
   const getPictures = async () => {
     try {
@@ -90,6 +93,7 @@ const ImageGrid = (props) => {
   }
 
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
+  // (! userAgentMobile || tableFlag) && 
 
   return (
     <div >
@@ -110,7 +114,7 @@ const ImageGrid = (props) => {
 
       {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
     
-      {! tableFlag && <div>
+      {! tableFlag && <div style={{}}>
         <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
         {/* <hr/> */}
         

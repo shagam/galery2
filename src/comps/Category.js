@@ -17,7 +17,8 @@ export const Category = (props) => {
 
   var style = {};
   if (! isAndroid)
-    style = {display: 'flex'}
+    style = {display: 'flex', color: 'red',
+   zoom: '150%'}
   else
     style = {display: 'flex'}
 
