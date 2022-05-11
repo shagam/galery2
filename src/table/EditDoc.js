@@ -91,11 +91,11 @@ return (
           <hr/>    <hr/>
           <h5> {props.editDoc.fileName} </h5>
 
-          <div  style={{display: 'flex', color: 'bluegreen', height: '2em'}}>
+          <div  style={{display: 'flex', color: 'bluegreen'}}>
             Technique: &nbsp;&nbsp;&nbsp;&nbsp;
             {techList.map((tech) => (
               <dev key={tech}>
-                <input type='radio' style={{zoom:'150%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
+                <input type='radio' style={{zoom:'200%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
                 {tech}&nbsp;&nbsp;&nbsp;
               </dev>
             ))}

@@ -17,7 +17,7 @@ import Dashboard from './auth/Dashboard'
 import Login from './auth/Login';
 import ForgotPassword from './auth/ForgotPassword';
 import UpdateProfile from './auth/UpdateProfile';
-
+import Dina_CV from './comps/Dina_CV'
 import {getAuth, signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
 import {auth} from './firebaseConfig'
 
@@ -66,6 +66,9 @@ function App() {
                     <Route path="/" element={<ImageGrid galery={admins[0].galery} name={admins[0].name} adminEmail={admins[0].email}  />} />
                     <Route path="/dina" element={<ImageGrid galery={admins[0].galery} name={admins[0].name} adminEmail={admins[0].email} />} />
                     <Route path="/test" element={<ImageGrid  galery={admins[1].galery} name={admins[1].name} adminEmail={admins[1].email} />}/>                    
+
+                    <Route path="/cv" element={<Dina_CV />}/>                    
+
                     {/* <Route path="/shlomit" element={<ImageGrid galery={admins[2].galery}  adminEmail={admins[2].email}  />} /> */}
 
                 </Routes>

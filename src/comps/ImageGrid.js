@@ -103,8 +103,9 @@ const ImageGrid = (props) => {
         {currentUser && <div><strong> </strong>  {currentUser.email}</div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
         &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
-      </div>
 
+      </div>
+      <div> <Link to="/cv" > Dina Goldstein CV</Link> </div>
       <hr/>
 
       {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} galery = {props.galery}/> }
