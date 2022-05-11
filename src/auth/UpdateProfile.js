@@ -9,11 +9,15 @@ export default function UpdateProfile ()  {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const [showPassword, setShowPassword]= useState(false);
 
   const { currentUser, admin, updateEmail, updatePassword } = useAuth();
   const [error, setError] = useState ('');
   const [loading, setLoading] = useState(false);
   const nvigate = useNavigate();
+  
+  
+  const toggleShowPassword = () => {setShowPassword (! showPassword)}
 
   async function handleSubmit (e) {
     e.preventDefault();
@@ -69,15 +73,22 @@ export default function UpdateProfile ()  {
 
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="Password" ref = {passwordRef}  
+              <Form.Control type={showPassword ? "text":"Password" } ref = {passwordRef}  
                         placeholder={"Leave blank to keep the same"} />
             </Form.Group>
 
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="Password" ref = {passwordConfirmRef}  
+              <Form.Control type={showPassword ? "text":"Password" } ref = {passwordConfirmRef}  
                          placeholder={"Leave blank to keep the same"} />
             </Form.Group>
+
+            <div>
+            <input type="checkbox" checked={showPassword} onChange={toggleShowPassword}/>
+            Show Password
+            </div>
+
+           <hr/>
 
             <Button disabled={loading} className="w-100" type="submit"> Update </Button>
           </Form>
