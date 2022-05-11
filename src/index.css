@@ -32,7 +32,7 @@ code {
 
   position: relative;
   opacity: 0.8;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
 }
 
 .img-wrap img {
