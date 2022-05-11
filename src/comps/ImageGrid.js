@@ -105,7 +105,9 @@ const ImageGrid = (props) => {
         &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
 
       </div>
-      <div> <Link to="/cv" > Dina Goldstein CV</Link> </div>
+      
+      <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> </div>
+      {/* <div> <Link to="/cv" > Dina Goldstein CV</Link> </div> */}
       <hr/>
 
       {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} galery = {props.galery}/> }
