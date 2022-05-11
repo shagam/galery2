@@ -78,7 +78,7 @@ const  EditDoc = (props) => {
       } catch (e) {setError(e.message) && console.log (e)}
   }
 
-  const techList = ['gouash', 'oil', 'water', 'graphit', 'sketch', 'black&white'];
+  const techList = ['gouash', 'oil', 'water', 'Etching', 'black&white', 'Sketch'];
 // width:'1.2em', height:'1.5em'
 return (
 
