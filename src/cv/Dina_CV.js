@@ -13,7 +13,7 @@ const Cv = (props) => {
   const style = {
       padding: '0px',
       margin: '0px',
-      'white-space': 'pre-wrap',
+      'whiteSpace': 'pre-wrap',
       width: '800px',
       height: '200%',
       /* font-size: 100%; */
