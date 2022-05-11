@@ -6,7 +6,7 @@ export const Category = (props) => {
   const [category, setCategory] = useState (props.category)
 
   
-  const categoryList = ['landscape', 'buildings', 'trees', 'cloth', 'fruits', 'animals', 'any'];
+  const categoryList = ['landscape', 'buildings', 'nature', 'fabrique', 'travel', 'other', 'all'];
 
   function exec (e) {
     setCategory(e.target.value);
