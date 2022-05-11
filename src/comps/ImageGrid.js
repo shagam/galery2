@@ -109,7 +109,7 @@ const ImageGrid = (props) => {
       <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> </div>
 
       <div className='w-100 text-left mt-2'> <Link to="/exibitions" > Exibitions</Link> </div>
-      
+
       {/* <div> <Link to="/cv" > Dina Goldstein CV</Link> </div> */}
       <hr/>
 
@@ -139,10 +139,10 @@ const ImageGrid = (props) => {
                 {doc.fileType === 'application/pdf' &&
                   <iframe src={doc.fileUrl} title={fileName} />   }
               </div>
-              {/* <div  style_={{display:'flex'}}> */}
-                <h5 style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </h5>
-                <h5 style= {{'fontSize':'1.8vw' }}> {category} &nbsp; {technique} &nbsp; {size} &nbsp; {year}</h5>
-              {/* </div> */}
+              <div  style_={{display:'flex'}}>
+                <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </div>
+                <div style= {{'fontSize':'1.6vw' }}> {category} &nbsp; {technique}</div>
+              </div>
             </div> 
           })}
         </div>

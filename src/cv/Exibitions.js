@@ -14,7 +14,7 @@ function Exibitions () {
       <div className='w-100 text-left mt-2'>  <Link to="/dina" > Dina Goldstein Gallery </Link> </div>
       <h2>Exibition of Dina Goldstein, in Bezalel </h2>
       <h2>Observation Patterns (Nov 2021)   </h2>
-      <h3>Curator Prof. Tal Frenkel Alroy</h3>
+      <h3>Curator  Prof. Tal Frenkel Alroy</h3>
       <img src={jpg} alt="jpg"  style={{width: '100%'}}/>
     </div>
   )
