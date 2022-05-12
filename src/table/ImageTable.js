@@ -15,7 +15,7 @@ import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 import { IMAGE_COLUMNS } from './imageColumns'
 
 import {nanoid} from 'nanoid';
-
+import { useAuth } from '../contexts/AuthContext';
 
 
 export const ImageTable = (props) => {
@@ -28,7 +28,7 @@ export const ImageTable = (props) => {
 
     const picturesRef = collection(db, props.galery);
     var  data = props.docs;
-  
+    const { currentUser, admin } = useAuth();
 
   function findDocFromImageName (name) {
     for (let i = 0; i < props.docs.length; i++) {
@@ -195,8 +195,8 @@ export const ImageTable = (props) => {
                       })}
                         <div>
                         <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
-                        {props.admin && <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>}
-                        {props.admin && <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>}
+                        {admin && <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>}
+                        {admin && <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>}
                         </div>
                     </tr>
                   )
