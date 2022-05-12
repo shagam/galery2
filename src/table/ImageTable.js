@@ -207,7 +207,7 @@ export const ImageTable = (props) => {
         </div>
 
 
-      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} galery = {props.galery}/>}
+      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} gallery = {props.galery}/>}
 
     </div>
   )

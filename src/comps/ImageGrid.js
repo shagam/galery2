@@ -149,7 +149,8 @@ const ImageGrid = (props) => {
       </div>}
 
 
-      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}/> }
+      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery}/> }
+
 
       { ! selectedDoc && tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} />}
       <hr/>  
