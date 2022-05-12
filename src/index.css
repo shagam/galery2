@@ -16,7 +16,7 @@ code {
   width: 95vw;
   background-size: cover;
   /* width: 130%!important; */
-  margin: 20px auto;
+  /* margin: 20px auto; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
