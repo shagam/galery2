@@ -98,6 +98,8 @@ const ImageGrid = (props) => {
   return (
     <div>
       <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
+   
+      {! selectedDoc && <div style={{}}> 
       <div style={{display:'flex'}}>
          {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
@@ -105,7 +107,7 @@ const ImageGrid = (props) => {
       <hr/>
       </div>
 
-      {! selectedDoc && <div style={{}}> 
+
 
         
         <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
