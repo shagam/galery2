@@ -50,6 +50,7 @@ function App() {
       {/* edf5257d68c415d14740754eaee029e1  8e9c701f67e523ab4e950709a41a777a */}
       {/* https://galery-58c6a.firebaseapp.com/__/auth/handler */}
       {/*  google auth project project-830819266596 */}
+      <h2 style={{color:'green'}}> &nbsp; Image Gallery  </h2>
       <Container  className='d-flex align-items-left justify-content-left' style={{minHeight: "50vh", minWidth: "100%"}}  >
           <div>
             <Router>

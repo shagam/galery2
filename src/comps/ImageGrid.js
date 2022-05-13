@@ -96,19 +96,18 @@ const ImageGrid = (props) => {
   // (! userAgentMobile || tableFlag) && 
 
   return (
-    <div >
-      <h2>Image Gallery  <strong> {props.name}</strong>   ({docs.length})  </h2>
+    <div>
+      <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
 
       <div style={{display:'flex'}}>
-        {currentUser && <div><strong> </strong>  {currentUser.email}</div> }
+        {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
         &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
 
       </div>
       
-      <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> </div>
+      <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
 
-      <div className='w-100 text-left mt-2'> <Link to="/exibitions" > Exibitions</Link> </div>
 
       {/* <div> <Link to="/cv" > Dina Goldstein CV</Link> </div> */}
       <hr/>
