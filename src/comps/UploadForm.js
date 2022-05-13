@@ -17,7 +17,7 @@ const UploadForm = (props) => {
   const { currentUser, admin } = useAuth();
   const [user, setUser] = useState();
 
-  const picturesRef = collection(db, props.galery);
+  const picturesRef = collection(db, props.gallery);
 
   const types = ['image/png', 'image/jpeg', 'application/pdf'];
 
@@ -67,7 +67,7 @@ const UploadForm = (props) => {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
       
-        const storageRef = ref(projectStorage, `/files/${props.galery}_${file.name}`)
+        const storageRef = ref(projectStorage, `/files/${props.gallery}_${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on(

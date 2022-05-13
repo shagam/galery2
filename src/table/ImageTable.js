@@ -26,7 +26,7 @@ export const ImageTable = (props) => {
 
     const columns = useMemo(() => IMAGE_COLUMNS, []);
 
-    const picturesRef = collection(db, props.galery);
+    const picturesRef = collection(db, props.gallery);
     var  data = props.docs;
     const { currentUser, admin } = useAuth();
 
@@ -43,12 +43,12 @@ export const ImageTable = (props) => {
 
     try{ 
       // delete doc
-      var imageDoc = doc(db, props.galery, id);
+      var imageDoc = doc(db, props.gallery, id);
       await deleteDoc (imageDoc);
 
       // Delete the image
       const storage = getStorage();
-      const fullFileName = 'files/' + props.galery + '_' + fileDoc.fileName
+      const fullFileName = 'files/' + props.gallery + '_' + fileDoc.fileName
       const imageRef = ref (storage, fullFileName);
       await deleteObject(imageRef);
       console.log ('delete success ', fileDoc)
@@ -207,7 +207,7 @@ export const ImageTable = (props) => {
         </div>
 
 
-      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} gallery = {props.galery}/>}
+      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} gallery = {props.gallery}/>}
 
     </div>
   )

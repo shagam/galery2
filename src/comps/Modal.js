@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import EditDoc from '../table/EditDoc'
 import { useAuth } from '../contexts/AuthContext';
 
-const Modal = ({ selectedDoc, setSelectedDoc, getPictures, galery }) => {
+const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
   const [editDoc, setEditDoc] = useState();
 
   const { admin } = useAuth();
@@ -27,7 +27,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, galery }) => {
       </div>
       <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>      <hr/>
 
-      {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {galery}/>}
+      {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery}/>}
 
 
 

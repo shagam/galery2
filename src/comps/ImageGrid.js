@@ -19,8 +19,8 @@ const ImageGrid = (props) => {
   const [docsFiltered, setDocsFiltered] = useState([]);
   const [category, setCategory] = useState ('any')
 
-  // const firebaseCollection = props.galery;
-  const picturesRef = collection(db, props.galery);
+
+  const picturesRef = collection(db, props.gallery);
   const [selectedDoc, setSelectedDoc] = useState (null)
   const { currentUser, admin } = useAuth();
   const [error, setError] = useState();
@@ -113,7 +113,7 @@ const ImageGrid = (props) => {
       {/* <div> <Link to="/cv" > Dina Goldstein CV</Link> </div> */}
       <hr/>
 
-      {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} galery = {props.galery}/> }
+      {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
       {error && <div className='error'>{error}</div>}
 
       {<Category category = {category} setCategory = {setCategory}/>}
@@ -149,10 +149,10 @@ const ImageGrid = (props) => {
       </div>}
 
 
-      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery}/> }
+      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery}/> }
 
 
-      { ! selectedDoc && tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} galery = {props.galery} />}
+      { ! selectedDoc && tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} />}
       <hr/>  
     </div>
   )

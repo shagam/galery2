@@ -39,9 +39,8 @@ function App() {
   // console.log (admins.dina, admins.test, admins.shlomit)
 
   const admins = [
-    {galery: "dina", name: "Dina Goldstein", email: adminsEmail.dina},
-    {galery: "test",  name: "test", email: adminsEmail.eli},
-    // {galery: "shlomit teff", email: adminsEmail.shlomit}
+    {gallery: "dina", name: "Dina Goldstein", email: adminsEmail.dina},
+    {gallery: "test",  name: "test", email: adminsEmail.eli},
   ]
   
 
@@ -66,14 +65,12 @@ function App() {
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
 
-                    <Route path="/" element={<ImageGrid galery={admins[0].galery} name={admins[0].name} adminEmail={admins[0].email}  />} />
-                    <Route path="/dina" element={<ImageGrid galery={admins[0].galery} name={admins[0].name} adminEmail={admins[0].email} />} />
-                    <Route path="/test" element={<ImageGrid  galery={admins[1].galery} name={admins[1].name} adminEmail={admins[1].email} />}/>                    
+                    <Route path="/" element={<ImageGrid gallery={admins[0].gallery} name={admins[0].name} adminEmail={admins[0].email}  />} />
+                    <Route path="/dina" element={<ImageGrid gallery={admins[0].gallery} name={admins[0].name} adminEmail={admins[0].email} />} />
+                    <Route path="/test" element={<ImageGrid  gallery={admins[1].gallery} name={admins[1].name} adminEmail={admins[1].email} />}/>                    
 
                     <Route path="/dina_cv" element={<Dina_CV />}/>                    
                     <Route path="/exibitions" element={<Exibitions />}/>  
-
-                    {/* <Route path="/shlomit" element={<ImageGrid galery={admins[2].galery}  adminEmail={admins[2].email}  />} /> */}
 
                 </Routes>
               </AuthProvider>
