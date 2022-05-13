@@ -98,60 +98,62 @@ const ImageGrid = (props) => {
   return (
     <div>
       <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
-
       <div style={{display:'flex'}}>
-        {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
+         {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
         &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
-
-      </div>
-      
-      <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
-
-
-      {/* <div> <Link to="/cv" > Dina Goldstein CV</Link> </div> */}
       <hr/>
+      </div>
 
-      {(admin || false) && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
-      {error && <div className='error'>{error}</div>}
+      {! selectedDoc && <div style={{}}> 
 
-      {<Category category = {category} setCategory = {setCategory}/>}
-
-      {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
-    
-      {! tableFlag && <div style={{}}>
-        <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
-        {/* <hr/> */}
         
-    
-        { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
+        <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
 
-        <div className="img-grid">
+        <hr/>
 
-          {! selectedDoc && docsFiltered && docsFiltered.map(doc => {
-            const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
-            return <div key={fileName}>        
-              <div className="img-wrap" 
-                onClick={() => setSelectedDoc(doc)} >
-                {(fileType === 'image/jpeg' || fileType === 'image/png') &&
-                  <img src={fileUrl} alt={fileName} />}
-                {doc.fileType === 'application/pdf' &&
-                  <iframe src={doc.fileUrl} title={fileName} />   }
-              </div>
-              <div  style_={{display:'flex'}}>
-                <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </div>
-                <div style= {{'fontSize':'1.6vw' }}> {category} &nbsp; {technique}</div>
-              </div>
-            </div> 
-          })}
-        </div>
+        {admin && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
+
+        {error && <div className='error'>{error}</div>}
+
+        {<Category category = {category} setCategory = {setCategory}/>}
+
+        {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
+      
+        {! tableFlag && <div style={{}}>
+          <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
+          {/* <hr/> */}
+          
+      
+          { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
+
+          <div className="img-grid">
+
+            {docsFiltered && docsFiltered.map(doc => {
+              const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
+              return <div key={fileName}>        
+                <div className="img-wrap" 
+                  onClick={() => setSelectedDoc(doc)} >
+                  {(fileType === 'image/jpeg' || fileType === 'image/png') &&
+                    <img src={fileUrl} alt={fileName} />}
+                  {doc.fileType === 'application/pdf' &&
+                    <iframe src={doc.fileUrl} title={fileName} />   }
+                </div>
+                <div  style_={{display:'flex'}}>
+                  <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </div>
+                  <div style= {{'fontSize':'1.6vw' }}> {category} &nbsp; {technique}</div>
+                </div>
+              </div> 
+            })}
+          </div>
+        </div>}
+
+        { tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} />}
+
       </div>}
-
 
       {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery}/> }
 
-
-      { ! selectedDoc && tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} />}
       <hr/>  
     </div>
   )
