@@ -10,7 +10,7 @@ import { useAuth } from '../contexts/AuthContext';
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
-import GlobalFilter from '../table/GlobalFilter'
+import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
 import MobileContext from './MobileContext'
 

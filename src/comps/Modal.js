@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import EditDoc from '../table/EditDoc'
+import EditDoc from './EditDoc'
 import { useAuth } from '../contexts/AuthContext';
 
 const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {

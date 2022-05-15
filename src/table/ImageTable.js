@@ -1,13 +1,13 @@
 import React, {useState, useMemo} from 'react'
 
 import { useTable, useSortBy, useGlobalFilter, useRowSelect } from 'react-table'
-import GlobalFilter from './GlobalFilter'
+import GlobalFilter from '../comps/GlobalFilter'
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 // import{ Styles } from './TableStyles'
 import './table.css'
 
 import CheckBox from './CheckBox'
-import EditDoc from './EditDoc'
+import EditDoc from '../comps/EditDoc'
 import { db } from '../firebaseConfig'
 import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
