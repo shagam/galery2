@@ -64,7 +64,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
         </div>}
         <hr/>   <hr/>   <hr/>   <hr/>   
         
-        {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery}/>}
+        {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery} setSelectedDoc={setSelectedDoc}/>}
 
 
 

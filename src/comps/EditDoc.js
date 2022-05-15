@@ -75,6 +75,7 @@ const  EditDoc = (props) => {
 
         props.getPictures(); 
         props.setEditDoc(undefined);
+        props.setSelectedDoc(undefined);
       } catch (e) {setError(e.message) && console.log (e)}
   }
 
