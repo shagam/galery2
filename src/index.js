@@ -4,7 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css//bootstrap.min.css"
+import ReCAPTCHA from "react-google-recaptcha";
+// console.log (process.env)
+const recaptchaRef = React.createRef();
+
+// const onSubmit = () => {
+//   const recaptchaValue = recaptchaRef.current.getValue();
+//   this.props.onSubmit(recaptchaValue);
+// }
+function onChange(value) {
+  console.log("Captcha value:", value);
+}
+
 ReactDOM.render(
+  // <ReCAPTCHA
+  //   sitekey=process.env.REACT_APP_RECAPTCHA
+  //   onChange={onChange}
+  // />,
   <React.StrictMode>
     <App />
   </React.StrictMode>,
