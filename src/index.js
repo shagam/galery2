@@ -17,11 +17,12 @@ function onChange(value) {
 }
 
 ReactDOM.render(
-  // <ReCAPTCHA
-  //   sitekey=process.env.REACT_APP_RECAPTCHA
-  //   onChange={onChange}
-  // />,
   <React.StrictMode>
+   {/* <ReCAPTCHA
+     sitekey={process.env.REACT_APP_RECAPTCHA}
+     onChange={onChange}
+   />, */}
+
     <App />
   </React.StrictMode>,
   document.getElementById('root')
