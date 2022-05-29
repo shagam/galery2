@@ -15,7 +15,7 @@
     const [error, setError] = useState ('');
     const [ message, setMessage] = useState ()
     const [loading, setLoading] = useState(false);
-
+    // const navigate = useNavigate();
   
     async function handleSubmit (e) {
       e.preventDefault();
@@ -26,7 +26,7 @@
         // await sendPasswordResetEmail(emailRef.current.value)
         await resetPassword (emailRef.current.value);
         setMessage ('Check your inbox for further instructions');
-        // history.push ('/')
+        // navigate ('/')
 
       } catch (e) {setError ('Failed to reset passwrd' + e.message) && console.log (e)}
       setLoading (false);
@@ -43,7 +43,7 @@
             {currentUser && <div><strong> </strong> {currentUser.email}</div> }
             <hr/>   
             {error && <Alert variant="danger"> {error} </Alert>}
-            {error && <Alert variant="success"> {message} </Alert>}
+            {message && <Alert variant="success"> {message} </Alert>}
   
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
