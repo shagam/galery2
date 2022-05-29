@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {auth} from '../firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,
+   signOut, updatePassword, updateEmail } from "firebase/auth";
 import { getDefaultNormalizer } from '@testing-library/react';
 
 
@@ -47,7 +48,7 @@ export function AuthProvider ({ children }) {
   function logout () {
     try {
       // return signInWithEmailAndPassword (auth, email, password)
-      const stat = auth.signOut ();
+      const stat = signOut (auth);
       setAdmin (false);
       return stat;
 
@@ -58,12 +59,12 @@ export function AuthProvider ({ children }) {
     return sendPasswordResetEmail (auth,email);
   }
 
-  function updateEmail (email) {
-    return currentUser.updateEmail(email);
+  function updateEmail_ (email) {
+    return updateEmail(currentUser, email);
   }
 
-  function updatePassword (password) {
-    return currentUser.updatePassword(password);
+  function updatePass (password) {
+    return updatePassword(currentUser, password);
   }
 
   // onAuthStateChanged(auth, (user) => {
@@ -86,10 +87,7 @@ export function AuthProvider ({ children }) {
     if (user) console.log(user.email);
       if (user && (user.email === 'eli.shagam@gmail.com' 
       || user.email === 'j321111@gmail.com' 
-      || user.email === 'dina146@bezeqint.net'
-      || user.email === 'ami.kaminsky@gmail.com'
-      || user.email === 'novmerav56@gmail.com'
-      )) {
+      || user.email === 'dina146@bezeqint.net')) {
         setAdmin(true)
         console.log ('setAdmin', ) 
       }
@@ -109,8 +107,8 @@ export function AuthProvider ({ children }) {
     login,
     logout,
     resetPassword,
-    updateEmail,
-    updatePassword
+    updateEmail_,
+    updatePass
   }
   return (
     <AuthContext.Provider value={value}>
