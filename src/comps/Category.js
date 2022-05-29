@@ -6,7 +6,7 @@ export const Category = (props) => {
   const [category, setCategory] = useState (props.category)
 
   
-  const categoryList = ['landscape', 'buildings', 'nature', 'fabrique', 'travel', 'other', 'all'];
+  const categoryList = ['Landscape', 'Buildings', 'Nature', 'Fabrique', 'Travel', 'Other', 'all'];
 
   function exec (e) {
     setCategory(e.target.value);
@@ -26,8 +26,8 @@ export const Category = (props) => {
   return (
     <>
 
-    <div  style={{display: 'flex', color: 'red'}}>
-    category: &nbsp;&nbsp;&nbsp;
+    <div  style={{display: 'flex'}}>
+    {/* category: &nbsp;&nbsp;&nbsp; */}
     {categoryList.map((category_) => (
       <div key = {category_}  style={style} >
         <input type='radio' style={{zoom: '150%'}} name='category' value={category_} checked={category === category_} onChange={exec} /> 
