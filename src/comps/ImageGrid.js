@@ -14,6 +14,9 @@ import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
 import MobileContext from './MobileContext'
 
+import CustomSelect from './CustomSelect'
+
+
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
   const [docsFiltered, setDocsFiltered] = useState([]);
@@ -95,6 +98,10 @@ const ImageGrid = (props) => {
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
   // (! userAgentMobile || tableFlag) && 
 
+  function onChangeInput (value) {
+    console.log (value)
+  }
+
   return (
     <div>
       <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
@@ -117,6 +124,8 @@ const ImageGrid = (props) => {
         {admin && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
 
         {error && <div className='error'>{error}</div>}
+
+        <CustomSelect label='Choose category' onChange={onChangeInput }  />
 
         {<Category category = {category} setCategory = {setCategory}/>}
 
