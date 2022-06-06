@@ -20,7 +20,7 @@ import CustomSelect from './CustomSelect'
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
   const [docsFiltered, setDocsFiltered] = useState([]);
-  const [category, setCategory] = useState ('any')
+  const [category, setCategory] = useState ('all')
 
 
   const picturesRef = collection(db, props.gallery);
@@ -104,12 +104,12 @@ const ImageGrid = (props) => {
   }
 
   const categoryOptions = [
+    {label: 'all', value: 'all'},
     {label: 'Landscape', value: 'Landscape'},
     {label: 'Structure', value: 'Structure'},
     {label: 'Nature', value: 'Nature'},
     {label: 'Fabrique', value: 'Fabrique'},
     {label: 'Other', value: 'Other'},
-    {label: 'all', value: 'all'},
   ]
   const defaultCategory = [
     {label: {category}, value: {category}},

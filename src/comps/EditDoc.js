@@ -35,7 +35,7 @@ const  EditDoc = (props) => {
           category_ = props.editDoc.category  // copy old value
         }
         if (category_ === undefined)
-          category_ = 'any';
+          category_ = 'all';
 
 
         var size_ = size;
