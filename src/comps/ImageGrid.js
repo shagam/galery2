@@ -139,7 +139,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>}
 
-        <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[5]} />
+        <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[0]} />
 
         {/* {<Category category = {category} setCategory = {setCategory}/>} */}
 
