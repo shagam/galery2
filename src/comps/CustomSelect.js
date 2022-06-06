@@ -2,15 +2,6 @@ import React from 'react'
 import Select from 'react-select'
 
 
-const options = [
-  {label: 'Landscape', value: 'Landscape'},
-  {label: 'Structure', value: 'Structure'},
-  {label: 'Nature', value: 'Nature'},
-  {label: 'Fabrique', value: 'Fabrique'},
-  {label: 'Other', value: 'Other'},
-  {label: 'all', value: 'all'},
-]
-
 const selectStyle= {
   width: '100%',
   maxWidth: 600
@@ -23,15 +14,12 @@ export function CustomSelect (props) {
     console.log (value)
   }
 
-
-  // console.log (label_)
   return (
-    <div>
-      
-      {/* {label_} */}
-      <h1>{props.label}</h1>
-      <Select options={options} onChange={props.onChange}/>
-
+    <div style={{display:'flex'}}>   
+      <h4>{props.label}&nbsp;&nbsp;</h4>
+      <div style={{ width:'250px'}}>
+        <Select  options={props.options} onChange={props.onChange} defaultValue={props.defaultValue}/>
+      </div>
     </div>
   )
 }

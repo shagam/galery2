@@ -65,7 +65,7 @@ const ImageGrid = (props) => {
       if (! filter(docs[i]))
         continue;
       
-      if (category === undefined || category === 'any' || category === docs[i].category)
+      if (category === undefined || category === 'all' || category === docs[i].category)
         list.push(docs[i]);
     }
     setDocsFiltered(list);
@@ -99,8 +99,22 @@ const ImageGrid = (props) => {
   // (! userAgentMobile || tableFlag) && 
 
   function onChangeInput (value) {
+    setCategory(value.value)
     console.log (value)
   }
+
+  const categoryOptions = [
+    {label: 'Landscape', value: 'Landscape'},
+    {label: 'Structure', value: 'Structure'},
+    {label: 'Nature', value: 'Nature'},
+    {label: 'Fabrique', value: 'Fabrique'},
+    {label: 'Other', value: 'Other'},
+    {label: 'all', value: 'all'},
+  ]
+  const defaultCategory = [
+    {label: {category}, value: {category}},
+  ]
+  
 
   return (
     <div>
@@ -125,9 +139,9 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>}
 
-        <CustomSelect label='Choose category' onChange={onChangeInput }  />
+        <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[5]} />
 
-        {<Category category = {category} setCategory = {setCategory}/>}
+        {/* {<Category category = {category} setCategory = {setCategory}/>} */}
 
         {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
       
