@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import MobileContext from './MobileContext';
-
+import CustomSelect from './CustomSelect'
 
 export const Category = (props) => {
   const [category, setCategory] = useState (props.category)
@@ -8,12 +8,24 @@ export const Category = (props) => {
   
   const categoryList = ['Landscape', 'Buildings', 'Nature', 'Fabrique', 'Travel', 'Other', 'all'];
 
+  function onChangeInput (value) {
+    props.setCategory(value.value)
+    console.log (value)
+  }
   function exec (e) {
     setCategory(e.target.value);
     props.setCategory (e.target.value);
   }
+  const categoryOptions = [
+    {label: 'all', value: 'all'},
+    {label: 'Landscape', value: 'Landscape'},
+    {label: 'Structure', value: 'Structure'},
+    {label: 'Nature', value: 'Nature'},
+    {label: 'Fabrique', value: 'Fabrique'},
+    {label: 'Other', value: 'Other'},
+  ]
 
-  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+ const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
   var style = {};
   if (! isAndroid)
@@ -22,11 +34,12 @@ export const Category = (props) => {
   else
     style = {display: 'flex'}
 
-// , width: '3em', hieght: '3em'
-  return (
+    const oldMode = false;
+    return (
     <>
+      {! oldMode && <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[0]} />}
 
-    <div  style={{display: 'flex'}}>
+    {oldMode && <div  style={{display: 'flex'}}>
     {/* category: &nbsp;&nbsp;&nbsp; */}
     {categoryList.map((category_) => (
       <div key = {category_}  style={style} >
@@ -34,7 +47,7 @@ export const Category = (props) => {
         <div>{category_}&nbsp;&nbsp;&nbsp;&nbsp;</div>
       </div>
     ))}
-  </div>
+  </div>}
   </>
   )
 }

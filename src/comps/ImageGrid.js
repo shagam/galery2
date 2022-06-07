@@ -12,10 +12,7 @@ import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
-import MobileContext from './MobileContext'
-
-import CustomSelect from './CustomSelect'
-
+// import MobileContext from './MobileContext'
 
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
@@ -30,7 +27,7 @@ const ImageGrid = (props) => {
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
 
-  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+  // const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
   const getPictures = async () => {
     try {
@@ -96,25 +93,6 @@ const ImageGrid = (props) => {
   }
 
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
-  // (! userAgentMobile || tableFlag) && 
-
-  function onChangeInput (value) {
-    setCategory(value.value)
-    console.log (value)
-  }
-
-  const categoryOptions = [
-    {label: 'all', value: 'all'},
-    {label: 'Landscape', value: 'Landscape'},
-    {label: 'Structure', value: 'Structure'},
-    {label: 'Nature', value: 'Nature'},
-    {label: 'Fabrique', value: 'Fabrique'},
-    {label: 'Other', value: 'Other'},
-  ]
-  const defaultCategory = [
-    {label: {category}, value: {category}},
-  ]
-  
 
   return (
     <div>
@@ -127,9 +105,6 @@ const ImageGrid = (props) => {
         &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
       <hr/>
       </div>
-
-
-
         
         <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
 
@@ -139,9 +114,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>}
 
-        <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[0]} />
-
-        {/* {<Category category = {category} setCategory = {setCategory}/>} */}
+        {<Category category = {category} setCategory = {setCategory}/>}
 
         {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
       
@@ -149,7 +122,6 @@ const ImageGrid = (props) => {
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {/* <hr/> */}
           
-      
           { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
 
           <div className="img-grid">
