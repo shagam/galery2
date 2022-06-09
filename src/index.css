@@ -12,17 +12,6 @@ code {
     monospace;
 }
 
-.img-grid {
-  width: 95vw;
-  background-size: cover;
-  /* width: 130%!important; */
-  /* margin: 20px auto; */
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
-  /* justify-content: start; */
-}
-
 .img-wrap {
   overflow: hidden;
   height: 0;
