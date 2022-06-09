@@ -50,14 +50,14 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
       
         <img src={selectedDoc.fileUrl} alt="enlarged pic" />
      
-        <div style={{display:'flex'}}>
+        <div style={{display:'flex', fontSize:'2.0vw'}}>
 
-          <button type="button" style= {{'fontSize':'1.5vw' }} onClick={()=>setSelectedDoc (null)}>close</button>
-          {admin && <button type="button" style= {{'fontSize':'1.5vw' }} onClick={()=>setEditDoc (selectedDoc)}>edit</button>}
-          {admin && <button type="button" style= {{'fontSize':'1.5vw' }} onClick={()=>deleteClick(selectedDoc)}>del</button>}
+          <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
+          {admin && <button type="button"  onClick={()=>setEditDoc (selectedDoc)}>edit</button>}
+          {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
 
-          <h4 className='text-center mb-1' style= {{color:'magenta','fontSize':'1.8vw' }} >  &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </h4>
-          <h4  style= {{'fontSize':'1.8vw' }}> {selectedDoc.category} &nbsp; {selectedDoc.technique}  &nbsp; {selectedDoc.size}  &nbsp; &nbsp; {selectedDoc.year}</h4>
+          <div  style= {{color:'magenta' }} >  &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
+          <div> {selectedDoc.category} &nbsp; {selectedDoc.technique}  &nbsp; {selectedDoc.size}  &nbsp; &nbsp; {selectedDoc.year}</div>
              
         </div>
         {/* <hr/>         <hr/>      <hr/> */}
