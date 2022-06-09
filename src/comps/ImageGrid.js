@@ -156,7 +156,7 @@ const ImageGrid = (props) => {
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {/* <hr/> */}
 
-          <InputNumber title='Images in a row' setNumber={setGrid}/>
+          <InputNumber title='Images per row' setNumber={setGrid}/>
           {console.log(img_grid["grid-template-columns"])}
 
           { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
