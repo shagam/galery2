@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import EditDoc from './EditDoc'
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebaseConfig'
-import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
+import {  doc, deleteDoc} from "firebase/firestore"
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 
 
