@@ -12,11 +12,10 @@ const App = (props) => {
 
   function submit () {
     props.setNumber(value)
-  }
-
-  console.log(value);
+    console.log(value);
   // console.log(typeof value);
   // console.log(Number(value));
+  }
 
   return (
     <form onSubmit={submit} >
