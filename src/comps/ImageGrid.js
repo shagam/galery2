@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { db } from '../firebaseConfig'
 // import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
-import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
-import { Link, useNavigate } from 'react-router-dom'
+import {collection, getDocs} from "firebase/firestore";
+import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
 // import {Document, Page, pdgjs} from 'react-pdf';
 
@@ -28,7 +28,7 @@ const ImageGrid = (props) => {
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
-  const [rowImages, setRowImages] = useState(3);
+  // const [rowImages, setRowImages] = useState(3);
   // const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
 
   var gridTemplateColumns = localStorage.getItem('grid')
