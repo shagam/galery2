@@ -70,6 +70,7 @@ const  EditDoc = (props) => {
 
 
         // send doc to firebase
+        console.log ('Del', props.editDoc, category_, 'size:', size_, 'technique:', technique_, 'price:', price_, 'year:', year_, 'description:', description_)
         const picturesRef = collection(db, props.gallery);
         await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
 
@@ -79,7 +80,7 @@ const  EditDoc = (props) => {
       } catch (e) {setError(e.message) && console.log (e)}
   }
 
-  const techList = ['gouash', 'oil', 'water', 'Etching', 'black&white', 'Sketch'];
+  const techList = ['gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
 // width:'1.2em', height:'1.5em'
 return (
 
