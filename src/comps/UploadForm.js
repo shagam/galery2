@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 
 import { db, projectStorage } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
-import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore";
-import {onAuthStateChanged} from 'firebase/auth'
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import {collection, getDocs, addDoc, query, where} from "firebase/firestore";
+// import {onAuthStateChanged} from 'firebase/auth'
+// import { AuthProvider, useAuth } from '../contexts/AuthContext';
 
 // import cloneDeep from 'lodash/cloneDeep'
 
 
 
 const UploadForm = (props) => {
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
-  const { currentUser, admin } = useAuth();
-  const [user, setUser] = useState();
+  // const { currentUser, admin } = useAuth();
+  // const [user, setUser] = useState();
 
   const picturesRef = collection(db, props.gallery);
 
@@ -46,14 +46,14 @@ const UploadForm = (props) => {
 
 
     if (selectedFiles) {
-      setFiles (selectedFiles);
+      // setFiles (selectedFiles);
       setError('');
       try {
         // console.log (selectedFiles);
         uploadFiles(selectedFiles);
       } catch (e) {setError(e.message) && console.log (e)}
     } else {
-      setFiles(null);
+      // setFiles(null);
       setError ('Please select an new image file (png or jpeg or pdf)');
     }
   }
