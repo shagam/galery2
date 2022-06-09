@@ -10,7 +10,7 @@ export const Category = (props) => {
 
   function onChangeInput (value) {
     props.setCategory(value.value)
-    console.log (value)
+    // console.log (value)
   }
   function exec (e) {
     setCategory(e.target.value);
@@ -34,8 +34,8 @@ export const Category = (props) => {
   else
     style = {display: 'flex'}
 
-    const oldMode = false;
-    return (
+  const oldMode = false;
+  return (
     <>
       {! oldMode && <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[0]} />}
 

@@ -15,8 +15,8 @@ const App = (props) => {
   }
 
   console.log(value);
-  console.log(typeof value);
-  console.log(Number(value));
+  // console.log(typeof value);
+  // console.log(Number(value));
 
   return (
     <form onSubmit={submit} >
