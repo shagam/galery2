@@ -84,7 +84,7 @@ const UploadForm = (props) => {
             const kb = Math.round(file.size / 1024);
     
             addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
-              fileScanned: file.lastModifiedDate})          
+              fileScanned: '', category: '', size: '', technique: '', price: '', year: '', description: '' })          
           });
         }
         );
