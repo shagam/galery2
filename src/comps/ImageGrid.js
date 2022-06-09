@@ -12,6 +12,8 @@ import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
+import InputNumber from './InputNumber';
+
 // import MobileContext from './MobileContext'
 
 const ImageGrid = (props) => {
@@ -26,6 +28,12 @@ const ImageGrid = (props) => {
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
+  const [rowImages, setRowImages] = useState(3);
+  // const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
+
+  var gridTemplateColumns = localStorage.getItem('grid')
+  if (gridTemplateColumns === null )
+    gridTemplateColumns = '1fr 1fr 1fr'
 
   // const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
@@ -94,6 +102,32 @@ const ImageGrid = (props) => {
 
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
 
+  var img_grid  = {
+    width: '95vw',
+    'backgroundSize': 'cover',
+    /* width: 130%!important; */
+    /* margin: 20px auto; */
+    display: 'grid',
+    // 'grid-template-columns': '1fr 1fr 1fr',
+    'gridTemplateColumns':  gridTemplateColumns ,
+    'gridGap': '10px'
+    /* justify-content: start; */
+  }
+
+  function setGrid (num) {
+    // setRowImages(num)
+    if (num < 1 || num > 8) {
+      setError('invalid gris value')
+      return;
+    }
+
+    var grid_template = '1fr'
+    for (var i = 1; i < num; i++)
+    grid_template += ' 1fr'
+    // setGridTemplate(grid_template)
+    localStorage.setItem('grid', grid_template)
+  }
+
   return (
     <div>
       <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
@@ -121,10 +155,13 @@ const ImageGrid = (props) => {
         {! tableFlag && <div style={{}}>
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {/* <hr/> */}
-          
+
+          <InputNumber title='Images in a row' setNumber={setGrid}/>
+          {console.log(img_grid["grid-template-columns"])}
+
           { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
 
-          <div className="img-grid">
+          <div  style={img_grid}>
 
             {docsFiltered && docsFiltered.map(doc => {
               const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
