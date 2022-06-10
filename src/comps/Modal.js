@@ -6,7 +6,7 @@ import {  doc, deleteDoc} from "firebase/firestore"
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 
 
-const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
+const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGallery }) => {
   const [editDoc, setEditDoc] = useState();
   const [error, setError] = useState();
   const { admin } = useAuth();
@@ -53,7 +53,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
         <div style={{display:'flex', fontSize:'2.0vw'}}>
 
           <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-          {admin && <button type="button"  onClick={()=>setEditDoc (selectedDoc)}>edit</button>}
+          {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
           {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
 
           <div  style= {{color:'magenta' }} >  &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>

@@ -14,6 +14,7 @@ import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
 import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
+import EditDoc from './EditDoc'
 
 // import MobileContext from './MobileContext'
 
@@ -29,10 +30,15 @@ const ImageGrid = (props) => {
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
-  // const [rowImages, setRowImages] = useState(3);
+  const [editDoc, setEditDoc] = useState();
+
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
 
   // const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+
+  function setEditDoc_ (editDoc) {
+    setEditDoc(editDoc);
+  }
 
   const getPictures = async () => {
     try {
@@ -186,7 +192,9 @@ const ImageGrid = (props) => {
 
       </div>}
 
-      {selectedDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery}/> }
+      {selectedDoc && ! editDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
+
+      {editDoc && <EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
 
       <hr/>  
     </div>
