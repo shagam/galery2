@@ -154,17 +154,18 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>}
 
+        {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
+        
         {<Category category = {category} setCategory = {setCategory}/>}
 
-        {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
-      
         {! tableFlag && <div style={{}}>
-          <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
-          {/* <hr/> */}
 
-          {/* <InputNumber title='Images per row' setNumber={setGrid}/> */}
-          <CustomSelect options={imagePerRowOptions} label='layout' onChange={layoutChange } defaultValue={imagePerRowOptions[2]} />
-
+          <div style={{display:'flex'}}>
+            <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
+            &nbsp; &nbsp;
+            <CustomSelect options={imagePerRowOptions} label='layout' onChange={layoutChange } defaultValue={imagePerRowOptions[2]} />
+          </div>
+          <hr/>
           { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
 
           <div  style={img_grid}>
