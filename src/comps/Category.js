@@ -25,6 +25,15 @@ export const Category = (props) => {
     {label: 'Other', value: 'Other'},
   ]
 
+  // getIndex of default category
+  function searchInitialCategory (cat) {
+    for (var i = 0; i < categoryOptions.length; i++) {
+      if (categoryOptions[i].value === cat)
+        return i;
+    }
+    return 0; // default is all
+  }
+
  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
   var style = {};
@@ -37,7 +46,7 @@ export const Category = (props) => {
   const oldMode = false;
   return (
     <>
-      {! oldMode && <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[0]} />}
+      {! oldMode && <CustomSelect options={categoryOptions} label='Choose category' onChange={onChangeInput } defaultValue={categoryOptions[searchInitialCategory(props.category)]} />}
 
     {oldMode && <div  style={{display: 'flex'}}>
     {/* category: &nbsp;&nbsp;&nbsp; */}

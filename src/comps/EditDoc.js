@@ -97,7 +97,7 @@ return (
             Technique: &nbsp;&nbsp;&nbsp;&nbsp;
             {techList.map((tech) => (
               <div key={tech}>
-                <input type='radio' style={{zoom:'200%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
+                <input type='radio' style={{zoom:'130%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
                 {tech}&nbsp;&nbsp;&nbsp;
               </div>
             ))}
