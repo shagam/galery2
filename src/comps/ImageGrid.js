@@ -13,6 +13,7 @@ import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
 import InputNumber from './InputNumber';
+import CustomSelect from './CustomSelect'
 
 // import MobileContext from './MobileContext'
 
@@ -29,11 +30,7 @@ const ImageGrid = (props) => {
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
   // const [rowImages, setRowImages] = useState(3);
-  // const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
-
-  var gridTemplateColumns = localStorage.getItem('grid')
-  if (gridTemplateColumns === null )
-    gridTemplateColumns = '1fr 1fr 1fr'
+  const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
 
   // const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
@@ -114,18 +111,21 @@ const ImageGrid = (props) => {
     /* justify-content: start; */
   }
 
-  function setGrid (num) {
-    // setRowImages(num)
-    if (num < 1 || num > 8) {
-      setError('invalid gris value')
-      return;
-    }
+  const imagePerRowOptions = [
+    {label: '1_images_per_row', value: '1fr'},
+    {label: '2_images_per_row', value: '1fr 1fr'},
+    {label: '3_images_per_row', value: '1fr 1fr 1fr'},
+    {label: '4_images_per_row', value: '1fr 1fr 1fr 1fr'},
+    {label: '5_images_per_row', value: '1fr 1fr 1fr 1fr 1fr'},
+    {label: '6_images_per_row', value: '1fr 1fr 1fr 1fr 1fr 1fr'},
+    {label: '7_images_per_row', value: '1fr 1fr 1fr 1fr 1fr 1fr 1fr'},
+    {label: '8_images_per_row', value: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr'},
+  ]
 
-    var grid_template = '1fr'
-    for (var i = 1; i < num; i++)
-    grid_template += ' 1fr'
-    // setGridTemplate(grid_template)
-    localStorage.setItem('grid', grid_template)
+  function layoutChange (value) {
+    localStorage.setItem('grid', value.value)
+    setGridTemplate (value.value);
+    // console.log (value)
   }
 
   return (
@@ -156,8 +156,8 @@ const ImageGrid = (props) => {
           <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
           {/* <hr/> */}
 
-          <InputNumber title='Images per row' setNumber={setGrid}/>
-          {console.log(img_grid["grid-template-columns"])}
+          {/* <InputNumber title='Images per row' setNumber={setGrid}/> */}
+          <CustomSelect options={imagePerRowOptions} label='layout' onChange={layoutChange } defaultValue={imagePerRowOptions[2]} />
 
           { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
 
