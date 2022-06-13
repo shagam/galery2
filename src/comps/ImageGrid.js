@@ -66,7 +66,7 @@ const ImageGrid = (props) => {
   }, []);
 
   useEffect (() => {
-    console.log (category)
+    // console.log (category)
     var list = [];
     for (let i = 0; i < docs.length; i++) {
       // filter according to globalFilter && category
