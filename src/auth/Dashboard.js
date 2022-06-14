@@ -18,13 +18,7 @@ export default function Dashboard (props) {
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     signInWithPopup(auth, provider)
     .then((result => {
-      console.log(result)
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = provider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-
+      console.log ('name: ', result.user.displayName, ' email: ', result.user.email, 'photo: ', result.user.photoURL)
     }))
     .catch((error) => {
       setError (error.message);
@@ -44,13 +38,7 @@ export default function Dashboard (props) {
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result)
-         // This gives you a Google Access Token. You can use it to access the Google API.
-        //  const credential = provider.credentialFromResult(result);
-        //  const token = credential.accessToken;
-         // The signed-in user info.
-         const user = result.user;
-         console.log(result)
+      console.log ('name: ', result.user.displayName, ' email: ', result.user.email, 'photo: ', result.user.photoURL)
     })
     .catch((error) => { 
       setError (error.message);
@@ -96,7 +84,7 @@ export default function Dashboard (props) {
 
         <div className='w-100 text-left mt-2'> <Link to="/exibitions" > Exibitions</Link> </div>
 
-        <hr/>  <hr/>
+        <hr/> 
         
         <div style={{display:'flex'}}>
           {currentUser && <div><strong> </strong> {currentUser.email}</div> }
