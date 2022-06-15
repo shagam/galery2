@@ -29,6 +29,16 @@ const  EditDoc = (props) => {
   const formHandler = async (e) => {
     e.preventDefault();
       setError('');
+
+      if (category === 'all' || category === '') {
+        setError ('Please choose category other than "all" ')
+        return;
+      }
+      if (technique === '') {
+        setError ('Please choose technique ')
+        return
+      }
+
       try {
         var category_ = category
         if (category_ === undefined && props.editDoc.category !== undefined) {
