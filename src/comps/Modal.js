@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebaseConfig'
 import {  doc, deleteDoc} from "firebase/firestore"
 import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
-
+import MobileContext from './MobileContext';
 
 const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGallery }) => {
   const [editDoc, setEditDoc] = useState();
@@ -17,6 +17,8 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
     }
   } 
   
+  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+
   async function deleteClick(delDoc) {
     // const fileDoc = findDocFromImageName(fileName)
     const id = delDoc.id;
@@ -40,7 +42,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
     }
   }
 
-
+  const fontSizeStyle = userAgentMobile ? '1.2em' : '1.7em'
 
   return (
 
@@ -50,19 +52,19 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
       
         <img src={selectedDoc.fileUrl} alt="enlarged pic" />
      
-        <div style={{display:'flex', fontSize:'2.0vw'}}>
+        <div style={{display:'flex', fontSize:`${fontSizeStyle}`}}>
+        {/* <div style={{display:'flex', fontSize:'1.3em'  }}> */}
 
           <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
           {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
           {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
 
           <div  style= {{color:'magenta' }} >  &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
-          <div> {selectedDoc.category} &nbsp; {selectedDoc.technique}  &nbsp; {selectedDoc.size}  &nbsp; &nbsp; {selectedDoc.year}</div>
-             
+          <div  style={{display:'flex'}}> {selectedDoc.category} &nbsp; {selectedDoc.technique}  &nbsp; {selectedDoc.size}  &nbsp; &nbsp; {selectedDoc.year}</div>
+          <hr/>   
         </div>
         {/* <hr/>         <hr/>      <hr/> */}
         </div>}
-        <hr/>   <hr/>   <hr/>   <hr/>   
         
         {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery} setSelectedDoc={setSelectedDoc}/>}
 

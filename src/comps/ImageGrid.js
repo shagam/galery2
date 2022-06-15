@@ -15,6 +15,7 @@ import Category from '../comps/Category';
 import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
 import EditDoc from './EditDoc'
+import MobileContext from './MobileContext';
 
 // import MobileContext from './MobileContext'
 
@@ -34,7 +35,7 @@ const ImageGrid = (props) => {
 
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
 
-  // const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
 
   function setEditDoc_ (editDoc) {
     setEditDoc(editDoc);
@@ -133,6 +134,8 @@ const ImageGrid = (props) => {
     setGridTemplate (value.value);
     // console.log (value)
   }
+
+  const fontSizeStyle = userAgentMobile ? '2.8vw' :'2.0vw'
 
   return (
     <div>
