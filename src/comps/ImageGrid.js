@@ -149,7 +149,8 @@ const ImageGrid = (props) => {
       <hr/>
       </div>
         
-        <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
+        <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> 
+        <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
 
         <hr/>
 

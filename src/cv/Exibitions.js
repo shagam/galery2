@@ -11,7 +11,8 @@ function Exibitions () {
   return (
     <div style={{width: '100%'}}>
       <div className='w-100 text-left mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
-      <div className='w-100 text-left mt-2'>  <Link to="/dina" > Dina Goldstein Gallery </Link> </div>
+      <div className='w-100 text-left mt-2'>  <Link to="/dina" > Back to Gallery </Link> </div>
+      <hr/>
       <h2>Exibition of Dina Goldstein, in Bezalel </h2>
       <h2>Observation Patterns (Nov 2021)   </h2>
       <h3>Curator  Prof. Tal Frenkel Alroy</h3>
