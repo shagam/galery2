@@ -18,7 +18,7 @@ import Login from './auth/Login';
 import ForgotPassword from './auth/ForgotPassword';
 import UpdateProfile from './auth/UpdateProfile';
 
-import Dina_CV from './cv/DinaCV'
+import DinaCV from './cv/DinaCV'
 import Exibitions from './cv/Exibitions'
 
 // import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
@@ -70,7 +70,7 @@ function App() {
                     <Route path="/dina" element={<ImageGrid gallery={admins[0].gallery} name={admins[0].name} adminEmail={admins[0].email} />} />
                     <Route path="/test" element={<ImageGrid  gallery={admins[1].gallery} name={admins[1].name} adminEmail={admins[1].email} />}/>                    
 
-                    <Route path="/dina_cv" element={<Dina_CV />}/>                    
+                    <Route path="/dina_cv" element={<DinaCV />}/>                    
                     <Route path="/exibitions" element={<Exibitions />}/>  
 
                 </Routes>
