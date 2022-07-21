@@ -64,7 +64,7 @@ const ImageGrid = (props) => {
 
   useEffect (() => {
     getPictures ();
-  }, [getPictures]);
+  }, []);
 
   useEffect (() => {
     // console.log (category)
