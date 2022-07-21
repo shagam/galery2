@@ -1,11 +1,11 @@
 
   import React, { useState, useRef } from 'react'
-  import { sendPasswordResetEmail } from 'firebase/auth';
+  // import { sendPasswordResetEmail } from 'firebase/auth';
 
   import { Form, Button, Card, Alert } from 'react-bootstrap'
-  import { Link, useNavigate } from 'react-router-dom'
-  import { AuthProvider, useAuth } from '../contexts/AuthContext';
-  import { db, app, projectStorage, auth } from '../firebaseConfig'    
+  import { Link} from 'react-router-dom'
+  import { useAuth } from '../contexts/AuthContext';
+  // import { db, app, projectStorage, auth } from '../firebaseConfig'    
   import { Container } from 'react-bootstrap'
 
   export default function ForgotPassword  ()  {

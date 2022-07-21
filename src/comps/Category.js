@@ -34,7 +34,7 @@ export const Category = (props) => {
     return 0; // default is all
   }
 
- const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+ const { isAndroid } = MobileContext();
 
   var style = {};
   if (! isAndroid)

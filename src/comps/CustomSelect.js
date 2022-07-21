@@ -2,17 +2,17 @@ import React from 'react'
 import Select from 'react-select'
 
 
-const selectStyle= {
-  width: '100%',
-  maxWidth: 600
+// const selectStyle= {
+//   width: '100%',
+//   maxWidth: 600
 
-}
+// }
 
 export function CustomSelect (props) {
 
-  function onChangeInput (value) {
-    console.log (value)
-  }
+  // function onChangeInput (value) {
+  //   console.log (value)
+  // }
 
   return (
     <div style={{display:'flex'}}>   

@@ -9,12 +9,12 @@ import './table.css'
 import CheckBox from './CheckBox'
 import EditDoc from '../comps/EditDoc'
 import { db } from '../firebaseConfig'
-import {collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
-import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
+import { doc, deleteDoc} from "firebase/firestore"
+import { getStorage, ref, deleteObject } from "firebase/storage"
 
 import { IMAGE_COLUMNS } from './imageColumns'
 
-import {nanoid} from 'nanoid';
+// import {nanoid} from 'nanoid';
 import { useAuth } from '../contexts/AuthContext';
 
 
@@ -26,9 +26,9 @@ export const ImageTable = (props) => {
 
     const columns = useMemo(() => IMAGE_COLUMNS, []);
 
-    const picturesRef = collection(db, props.gallery);
+    // const picturesRef = collection(db, props.gallery);
     var  data = props.docs;
-    const { currentUser, admin } = useAuth();
+    const { admin } = useAuth();
 
   function findDocFromImageName (name) {
     for (let i = 0; i < props.docs.length; i++) {
@@ -112,10 +112,10 @@ export const ImageTable = (props) => {
     top: 0
   }
     
-  const column_Label_id = {
-    // 'margin-right': '0px',
-    // 'line-height': '0.7em'
-  }
+  // const column_Label_id = {
+  //   // 'margin-right': '0px',
+  //   // 'line-height': '0.7em'
+  // }
   const style_table = {
     // background: 'blue',
     // color: 'red',

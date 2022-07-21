@@ -135,7 +135,7 @@ const ImageGrid = (props) => {
     // console.log (value)
   }
 
-  const fontSizeStyle = userAgentMobile ? '2.8vw' :'2.0vw'
+  // const fontSizeStyle = userAgentMobile ? '2.8vw' :'2.0vw'
 
   return (
     <div>
@@ -176,6 +176,7 @@ const ImageGrid = (props) => {
 
             {docsFiltered && docsFiltered.map(doc => {
               const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
+              (size === undefined || year === undefined) && console.log (size,year)
               return <div key={fileName}>        
                 <div className="img-wrap" 
                   onClick={() => setSelectedDoc(doc)} >

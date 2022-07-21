@@ -6,15 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css//bootstrap.min.css"
 import ReCAPTCHA from "react-google-recaptcha";
 // console.log (process.env)
-const recaptchaRef = React.createRef();
+// const recaptchaRef = React.createRef();
 
 // const onSubmit = () => {
 //   const recaptchaValue = recaptchaRef.current.getValue();
 //   this.props.onSubmit(recaptchaValue);
 // }
-function onChange(value) {
-  console.log("Captcha value:", value);
-}
+// function onChange(value) {
+//   console.log("Captcha value:", value);
+// }
 
 ReactDOM.render(
   <React.StrictMode>
