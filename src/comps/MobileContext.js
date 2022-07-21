@@ -21,7 +21,7 @@ export const MobileContext = () => {
   const checkMobile = async () => {
 
     // userAgent
-    const userAgent = navigator.userAgent;
+    // const userAgent = navigator.userAgent;
     setUserAgent(navigator.userAgent)
     //if (/Android/i.test(navigator.userAgent))
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){

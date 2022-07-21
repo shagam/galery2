@@ -35,7 +35,7 @@ const ImageGrid = (props) => {
 
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
 
-  const { userAgentMobile} = MobileContext();
+  // const { userAgentMobile} = MobileContext();
 
   function setEditDoc_ (editDoc) {
     setEditDoc(editDoc);
