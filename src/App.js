@@ -18,7 +18,7 @@ import Login from './auth/Login';
 import ForgotPassword from './auth/ForgotPassword';
 import UpdateProfile from './auth/UpdateProfile';
 
-import Dina_CV from './cv/Dina_CV'
+import Dina_CV from './cv/DinaCV'
 import Exibitions from './cv/Exibitions'
 
 // import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
