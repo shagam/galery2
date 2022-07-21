@@ -21,7 +21,7 @@ import UpdateProfile from './auth/UpdateProfile';
 import Dina_CV from './cv/Dina_CV'
 import Exibitions from './cv/Exibitions'
 
-import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
+// import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
 // import {auth} from './firebaseConfig'
 
 // import {facebookProvider, googleProvider} from "./auth/AuthMethods"
