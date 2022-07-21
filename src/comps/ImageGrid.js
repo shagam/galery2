@@ -67,6 +67,29 @@ const ImageGrid = (props) => {
   }, []);
 
   useEffect (() => {
+  
+    function filterCase (str) {
+      if (str === undefined || str === null)
+        return true;
+      if (globalFilter === undefined || globalFilter === null)
+        return true;
+      return str.toUpperCase().includes(globalFilter.toUpperCase());
+    }
+      
+    const filter = (doc) => {
+      if (globalFilter === undefined || globalFilter === '')
+        return true;
+      if (doc.fileName !== undefined && filterCase(doc.fileName))
+        return true;
+      if (doc.category !== undefined && doc.category !== null &&  filterCase(doc.category))
+        return true;
+      if (doc.descrition !== undefined && doc.descrition !== null && filterCase(doc.descrition))
+        return true;
+      if (doc.technique !== undefined && doc.technique !== null && filterCase(doc.technique))
+        return true;      
+      return false;
+    }
+  
     // console.log (category)
     var list = [];
     for (let i = 0; i < docs.length; i++) {
@@ -81,29 +104,7 @@ const ImageGrid = (props) => {
 
   }, [docs, globalFilter, category]);
 
-  function filterCase (str) {
-    if (str === undefined || str === null)
-      return true;
-    if (globalFilter === undefined || globalFilter === null)
-      return true;
-    return str.toUpperCase().includes(globalFilter.toUpperCase());
-  }
-
-
-  const filter = (doc) => {
-    if (globalFilter === undefined || globalFilter === '')
-      return true;
-    if (doc.fileName !== undefined && filterCase(doc.fileName))
-      return true;
-    if (doc.category !== undefined && doc.category !== null &&  filterCase(doc.category))
-      return true;
-    if (doc.descrition !== undefined && doc.descrition !== null && filterCase(doc.descrition))
-      return true;
-    if (doc.technique !== undefined && doc.technique !== null && filterCase(doc.technique))
-      return true;      
-    return false;
-  }
-
+  
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
 
   var img_grid  = {
