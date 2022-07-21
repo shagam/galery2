@@ -12,7 +12,7 @@ import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
 import Category from '../comps/Category';
-import InputNumber from './InputNumber';
+// import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
 import EditDoc from './EditDoc'
 import MobileContext from './MobileContext';
@@ -64,7 +64,7 @@ const ImageGrid = (props) => {
 
   useEffect (() => {
     getPictures ();
-  }, []);
+  }, [getPictures]);
 
   useEffect (() => {
     // console.log (category)

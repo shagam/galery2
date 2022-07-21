@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {auth} from '../firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,
    signOut, updatePassword, updateEmail } from "firebase/auth";
-import { getDefaultNormalizer } from '@testing-library/react';
+// import { getDefaultNormalizer } from '@testing-library/react';
 
 
 const AuthContext = React.createContext();
@@ -73,7 +73,7 @@ export function AuthProvider ({ children }) {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
+      // const uid = user.uid;
       // ...
     } else {
       // User is signed out

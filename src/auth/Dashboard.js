@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Card, Button, Alert } from 'react-bootstrap'
 
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, updateCurrentUser } from 'firebase/auth'
+import { GoogleAuthProvider, FacebookAuthProvider, signInWithPopup} from 'firebase/auth'
 import { auth } from '../firebaseConfig'
-import {  useAuth, logout } from '../contexts/AuthContext';
+import {  useAuth } from '../contexts/AuthContext';
 import { Container } from 'react-bootstrap'
 
 export default function Dashboard (props) {
@@ -25,10 +25,10 @@ export default function Dashboard (props) {
       setError (error.message);
       console.log(error.message)
        // Handle Errors here.
-       const errorCode = error.code;
-       const errorMessage = error.message;
+      //  const errorCode = error.code;
+      //  const errorMessage = error.message;
        // The email of the user's account used.
-       const email = error.email;
+      //  const email = error.email;
        // The AuthCredential type that was used.
       //  const credential = provider.credentialFromError(error);
     })

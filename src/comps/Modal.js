@@ -3,7 +3,7 @@ import EditDoc from './EditDoc'
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebaseConfig'
 import {  doc, deleteDoc} from "firebase/firestore"
-import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
+import { getStorage, ref, deleteObject } from "firebase/storage"
 import MobileContext from './MobileContext';
 
 const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGallery }) => {
@@ -17,7 +17,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
     }
   } 
   
-  const { userAgentMobile, isAndroid, isIPhone} = MobileContext();
+  const { userAgentMobile } = MobileContext();
 
   async function deleteClick(delDoc) {
     // const fileDoc = findDocFromImageName(fileName)

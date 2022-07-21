@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import { db } from '../firebaseConfig'
-import { collection, getDocs, addDoc,  doc, deleteDoc, query, where} from "firebase/firestore"
+import { collection, addDoc, doc, deleteDoc} from "firebase/firestore"
 // import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
-import { Form, Button, Card, Alert } from 'react-bootstrap'
+import { Alert } from 'react-bootstrap'
 
 import Category from './Category';
 

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Container } from 'react-bootstrap'
 
 export default function Signup ()  {
@@ -35,7 +35,7 @@ export default function Signup ()  {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value)
       navigate ('/')
-      const a = 1;
+      // const a = 1;
     } catch (e) {setError (e.message)}
     setLoading (false);
   }

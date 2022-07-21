@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from 'react-bootstrap'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 // import Title from './comps/Title';
 // import UploadForm from './comps/UploadForm'
@@ -21,8 +21,8 @@ import UpdateProfile from './auth/UpdateProfile';
 import Dina_CV from './cv/Dina_CV'
 import Exibitions from './cv/Exibitions'
 
-import {getAuth, signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
-import {auth} from './firebaseConfig'
+import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
+// import {auth} from './firebaseConfig'
 
 // import {facebookProvider, googleProvider} from "./auth/AuthMethods"
 // import SocialMediaAuth  from './auth/Auth';
