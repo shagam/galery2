@@ -15,7 +15,7 @@ import Category from '../comps/Category';
 // import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
 import EditDoc from './EditDoc'
-import MobileContext from './MobileContext';
+// import MobileContext from './MobileContext';
 
 // import MobileContext from './MobileContext'
 
