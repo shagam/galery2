@@ -62,10 +62,11 @@ const ImageGrid = (props) => {
 
   }
 
+  // eslint-disable-next-line
   useEffect (() => {
     getPictures ();
   }, []);
-
+  // eslint-enable
   useEffect (() => {
   
     function filterCase (str) {
