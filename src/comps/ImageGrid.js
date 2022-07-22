@@ -1,3 +1,4 @@
+// eslint-enable
 import React, { useState, useEffect } from "react";
 
 import { db } from '../firebaseConfig'
@@ -65,8 +66,9 @@ const ImageGrid = (props) => {
   // eslint-disable-next-line
   useEffect (() => {
     getPictures ();
+  // eslint-disable-next-line
   }, []);
-  // eslint-enable
+
   useEffect (() => {
   
     function filterCase (str) {
