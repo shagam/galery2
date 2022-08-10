@@ -150,10 +150,10 @@ const ImageGrid = (props) => {
       {! selectedDoc && <div style={{}}> 
          {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
-         <Link to="/dashboard" > DashBoard (Login) </Link>
+         <Link to="/dashboard" > DashBoard (Login)</Link>
           {/* <div className='w-100 text-left mt-2'> */}
           &nbsp; &nbsp; &nbsp; 
-            {props.gallery==='dina' && <Link to="/Dina_CV" > Dina Goldstein CV</Link>}
+            {props.gallery==='dina' && <Link to="/Dina_CV" >Dina Goldstein CV</Link>}
             &nbsp; &nbsp; &nbsp; 
             {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
 
