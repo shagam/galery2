@@ -143,19 +143,21 @@ const ImageGrid = (props) => {
 
   return (
     <div>
-      <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
-   
-      {! selectedDoc && <div style={{}}> 
       <div style={{display:'flex'}}>
+        <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
+        <div style={{color:'blue', 'fontSize':'1.2vw', 'margin-top': '0.8vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
+      </div>
+      {! selectedDoc && <div style={{}}> 
          {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
         {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
-        &nbsp; &nbsp;  <Link to="/dashboard" > DashBoard (Login) </Link>
-      <hr/>
-      </div>
-        
-        <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> 
-        <Link to="/exibitions" >  &nbsp; Exibitions</Link> </div>
+         <Link to="/dashboard" > DashBoard (Login) </Link>
+          {/* <div className='w-100 text-left mt-2'> */}
+          &nbsp; &nbsp; &nbsp; 
+            {props.gallery==='dina' && <Link to="/Dina_CV" > Dina Goldstein CV</Link>}
+            &nbsp; &nbsp; &nbsp; 
+            {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
 
+  
         <hr/>
 
         {admin && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
