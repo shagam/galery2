@@ -145,24 +145,27 @@ const ImageGrid = (props) => {
     <div>
       <div style={{display:'flex'}}>
         <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
-        <div style={{color:'blue', 'fontSize':'1.2vw', 'margin-top': '0.8vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
+        <div style={{color:'blue', 'fontSize':'1.2vw', 'margin-top': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
       </div>
-      {! selectedDoc && <div style={{}}> 
-         {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
-        {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
+
+      {! selectedDoc && <div>
+
+        <div style={{display:'flex'}}> 
+          {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
+          {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
+        </div>
          <Link to="/dashboard" > DashBoard (Login)</Link>
           {/* <div className='w-100 text-left mt-2'> */}
-          &nbsp; &nbsp; &nbsp; 
+            &nbsp; &nbsp; &nbsp; 
             {props.gallery==='dina' && <Link to="/Dina_CV" >Dina Goldstein CV</Link>}
             &nbsp; &nbsp; &nbsp; 
             {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
 
-  
         <hr/>
 
         {admin && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
 
-        {error && <div className='error'>{error}</div>}
+        {error && <div className='error'>{error}</div>} 
 
         {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
         
