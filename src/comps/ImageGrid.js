@@ -16,6 +16,7 @@ import Category from '../comps/Category';
 // import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
 import EditDoc from './EditDoc'
+import MobileContext from './MobileContext';
 // import MobileContext from './MobileContext';
 
 // import MobileContext from './MobileContext'
@@ -35,6 +36,7 @@ const ImageGrid = (props) => {
   const [editDoc, setEditDoc] = useState();
 
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
+  const { userAgentMobile } = MobileContext();
 
   // const { userAgentMobile} = MobileContext();
 
@@ -122,6 +124,8 @@ const ImageGrid = (props) => {
     /* justify-content: start; */
   }
 
+  const emailFontSize = userAgentMobile ? '3vw' : '1.4vw'
+
   const imagePerRowOptions = [
     {label: '1_images_per_row', value: '1fr'},
     {label: '2_images_per_row', value: '1fr 1fr'},
@@ -145,7 +149,7 @@ const ImageGrid = (props) => {
     <div>
       <div style={{display:'flex'}}>
         <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
-        <div style={{color:'blue', 'fontSize':'1.2vw', 'margin-top': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
+        <div style={{color:'blue', 'fontSize':{emailFontSize}, 'margin-top': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
       </div>
 
       {! selectedDoc && <div>
