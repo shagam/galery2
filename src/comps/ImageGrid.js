@@ -214,8 +214,8 @@ const ImageGrid = (props) => {
                     <iframe src={doc.fileUrl} title={fileName} />   }
                 </div>
                 <div  style_={{display:'flex'}}>
-                  <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </div>
-                  <div style= {{'fontSize':'1.6vw' }}> {title} ({category}, {technique})</div>
+                  <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {title}  &nbsp;  </div>
+                  <div style= {{'fontSize':'1.6vw' }}> ({category}, {technique})</div>
                 </div>
               </div> 
             })}
