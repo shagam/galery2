@@ -124,6 +124,9 @@ const ImageGrid = (props) => {
     /* justify-content: start; */
   }
 
+
+  const categoryList =['all', 'Landscape', 'Structure', 'Nature','Fabrique','Other']
+
   const emailFontSize = userAgentMobile ? '3vw' : '1.4vw'
 
   const imagePerRowOptions = [
@@ -173,7 +176,17 @@ const ImageGrid = (props) => {
 
         {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
         
-        {<Category category = {category} setCategory = {setCategory}/>}
+        {/* {<Category category = {category} setCategory = {setCategory}/>} */}
+
+        <div>
+          <strong>Category:</strong> &nbsp;
+            <select   value={category}  onChange={(e) =>setCategory (e.target.value)} >
+              {categoryList.map((cat) => (
+                  <option key={cat} value={cat} > {cat} &nbsp; </option> 
+              ))}  
+            </select>
+          </div>
+
 
         {! tableFlag && <div style={{}}>
 
