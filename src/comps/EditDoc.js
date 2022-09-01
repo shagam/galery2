@@ -5,17 +5,17 @@ import { collection, addDoc, doc, deleteDoc} from "firebase/firestore"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 import { Alert } from 'react-bootstrap'
 
-import Category from './Category';
+// import Category from './Category';
 
 const  EditDoc = (props) => {
 
   const [category, setCategory] = useState (props.editDoc.category)
-  const [size, setSize] = useState();
+  const [size, setSize] = useState(props.editDoc.size);
   const [technique, setTechnique] = useState(props.editDoc.technique);
-  // const [technique, setTechnique] = useState('water');
-  const [price, setPrice] = useState(null);
-  const [year, setYear] = useState(null);
-  const [description, setDescription] = useState();
+  const [price, setPrice] = useState(props.editDoc.price);
+  const [year, setYear] = useState(props.editDoc.price);
+  const [description, setDescription] = useState(props.editDoc.description);
+
   const [error, setError] = useState ();
 
   // const [newDoc, setNewDoc] = useState({});
@@ -106,11 +106,11 @@ return (
      <div>
      <hr/>    <hr/>
        <div style={{display:'flex'}}> 
-          <div>
+          <div style={{color:'magenta', 'fontSize':'1.8vw'}}>
            <strong> {props.editDoc.fileName}</strong>
           </div>
           <div>
-          &nbsp; &nbsp; Technique: &nbsp;
+          &nbsp; &nbsp; <strong>Technique:</strong> &nbsp;
             <select   value={technique}  onChange={(e) =>setTechnique (e.target.value)} >
               {techList.map((tech) => (
                   <option key={tech} value={tech} > {tech} &nbsp; </option> 
@@ -119,7 +119,7 @@ return (
           </div>
 
           <div>
-          &nbsp; &nbsp;Category: &nbsp;
+          &nbsp; &nbsp;<strong>Category:</strong> &nbsp;
             <select   value={category}  onChange={(e) =>setCategory (e.target.value)} >
               {categoryList.map((cat) => (
                   <option key={cat} value={cat} > {cat} &nbsp; </option> 
@@ -127,17 +127,17 @@ return (
             </select>
           </div>
 
-          &nbsp;&nbsp;Size:
-          &nbsp;<input style={{ 'width': '10vw'}}type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
+          &nbsp;&nbsp;<strong>Size:</strong>&nbsp;
+          <input style={{ 'width': '10vw'}}type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
           defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
         </div>
 
-        &nbsp;&nbsp;Year:
-        &nbsp;<input style={{ 'width': '10vw'}} type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
+        &nbsp;&nbsp;<strong>Year:</strong>&nbsp;
+        <input style={{ 'width': '10vw'}} type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
          defaultValue={props.editDoc.year} placeholder={props.editDoc.year}></input>
 
-        &nbsp;&nbsp;Price:
-        &nbsp;<input style={{ 'width': '10vw'}} type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
+        &nbsp;&nbsp;<strong>Price:</strong>&nbsp;
+        <input style={{ 'width': '10vw'}} type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
         defaultValue={props.editDoc.price}  placeholder={props.editDoc.price}></input>
         
         <div>
