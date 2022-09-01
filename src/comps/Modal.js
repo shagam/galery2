@@ -56,7 +56,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
         {/* <div style={{display:'flex', fontSize:'1.3em'  }}> */}
 
           <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-          {<button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
+          {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
           {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
 
           <div  style= {{color:'magenta' }} > &nbsp; &nbsp; {selectedDoc.title} &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
