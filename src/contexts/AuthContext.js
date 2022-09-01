@@ -87,6 +87,8 @@ export function AuthProvider ({ children }) {
     if (user) console.log(user.email);
       if (user && (user.email === 'eli.shagam@gmail.com' 
       || user.email === 'j321111@gmail.com' 
+      || user.email === 'd0544546356@gmail.com' 
+      || user.email === 'ilanshagam.com' 
       || user.email === 'dina146@bezeqint.net')) {
         setAdmin(true)
         console.log ('setAdmin', ) 
