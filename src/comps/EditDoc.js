@@ -91,6 +91,10 @@ const  EditDoc = (props) => {
   }
 
   const techList = ['gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
+
+  const categoryList =['all', 'Landscape', 'Structure', 'Nature','Fabrique','Other']
+
+
 // width:'1.2em', height:'1.5em'
 return (
 
@@ -98,24 +102,32 @@ return (
     {error && <Alert variant="danger"> {error} </Alert>}
     {/* <div>Edit</div> */}
     <form onSubmit={formHandler} >
-     <div>
-       <div>
-          <hr/>    <hr/>
-          <h5> {props.editDoc.fileName} </h5>
 
-          <div  style={{display: 'flex', color: 'bluegreen'}}>
-            Technique: &nbsp;&nbsp;&nbsp;&nbsp;
-            {techList.map((tech) => (
-              <div key={tech}>
-                <input type='radio' style={{zoom:'130%'}}  name='techniqe' value={tech} checked={technique === tech} onChange={(e)=>setTechnique(e.target.value)} /> 
-                {tech}&nbsp;&nbsp;&nbsp;
-              </div>
-            ))}
+     <div>
+     <hr/>    <hr/>
+       <div style={{display:'flex'}}> 
+          <div>
+           <strong> {props.editDoc.fileName}</strong>
+          </div>
+          <div>
+          &nbsp; &nbsp; Technique: &nbsp;
+            <select   value={technique}  onChange={(e) =>setTechnique (e.target.value)} >
+              {techList.map((tech) => (
+                  <option key={tech} value={tech} > {tech} &nbsp; </option> 
+              ))}  
+            </select>
           </div>
 
-          <Category category = {category} setCategory = {setCategory}/>
+          <div>
+          &nbsp; &nbsp;Category: &nbsp;
+            <select   value={category}  onChange={(e) =>setCategory (e.target.value)} >
+              {categoryList.map((cat) => (
+                  <option key={cat} value={cat} > {cat} &nbsp; </option> 
+              ))}  
+            </select>
+          </div>
 
-          &nbsp;Size
+          &nbsp;&nbsp;Size:
           &nbsp;<input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
           defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
         </div>
