@@ -128,16 +128,16 @@ return (
           </div>
 
           &nbsp;&nbsp;Size:
-          &nbsp;<input type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
+          &nbsp;<input style={{ 'width': '10vw'}}type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
           defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
         </div>
 
-        Year
-        &nbsp;<input type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
+        &nbsp;&nbsp;Year:
+        &nbsp;<input style={{ 'width': '10vw'}} type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
          defaultValue={props.editDoc.year} placeholder={props.editDoc.year}></input>
 
-        &nbsp;Price
-        &nbsp;<input type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
+        &nbsp;&nbsp;Price:
+        &nbsp;<input style={{ 'width': '10vw'}} type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
         defaultValue={props.editDoc.price}  placeholder={props.editDoc.price}></input>
         
         <div>
