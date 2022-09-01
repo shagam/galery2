@@ -149,7 +149,7 @@ const ImageGrid = (props) => {
     <div>
       <div style={{display:'flex'}}>
         <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
-        <div style={{color:'blue', 'fontSize':{emailFontSize}, 'margin-top': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
+        <div style={{color:'blue', 'fontSize':{emailFontSize}, 'marginTop': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div> 
       </div>
 
       {! selectedDoc && <div>
