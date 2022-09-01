@@ -8,7 +8,7 @@ import { Alert } from 'react-bootstrap'
 // import Category from './Category';
 
 const  EditDoc = (props) => {
-
+  const [title, setTitle] = useState (props.editDoc.title)
   const [category, setCategory] = useState (props.editDoc.category)
   const [size, setSize] = useState(props.editDoc.size);
   const [technique, setTechnique] = useState(props.editDoc.technique);
@@ -24,18 +24,20 @@ const  EditDoc = (props) => {
   function abort () {
     props.setEditDoc(undefined);
   }
-
+  const categoryList =['Other','Landscape', 'Structure', 'Nature','Fabrique']
+  if (category === '')
+    setCategory (categoryList[0])
 
   const formHandler = async (e) => {
     e.preventDefault();
       setError('');
 
       if (category === 'all' || category === '') {
-        setError ('Please choose category other than "all" ')
+        setError ('Please choose category (' + category +')')
         return;
       }
       if (technique === '') {
-        setError ('Please choose technique ')
+        setError ('Please choose technique (' + technique +')')
         return
       }
 
@@ -44,9 +46,15 @@ const  EditDoc = (props) => {
         if (category_ === undefined && props.editDoc.category !== undefined) {
           category_ = props.editDoc.category  // copy old value
         }
-        if (category_ === undefined)
-          category_ = 'all';
+        if (category_ === undefined || category_ === 'all')
+          category_ = 'other';
 
+        var title_ = title;
+        if (title_ === undefined && props.editDoc.title !== undefined) {
+          title_ = props.editDoc.title   // copy old value
+        }
+        if (title_ === undefined || props.editDoc.title === undefined) 
+          title_ = ''// props.editDoc.fileName;
 
         var size_ = size;
         if (size_ === undefined && props.editDoc.size !== undefined) {
@@ -80,9 +88,9 @@ const  EditDoc = (props) => {
 
 
         // send doc to firebase
-        console.log ('Edit', props.editDoc, category_, 'size:', size_, 'technique:', technique_, 'price:', price_, 'year:', year_, 'description:', description_)
+        console.log ('Edit', props.editDoc, 'title:', title_, 'category:', category_, 'size:', size_, 'technique:', technique_, 'price:', price_, 'year:', year_, 'description:', description_)
         const picturesRef = collection(db, props.gallery);
-        await addDoc (picturesRef, {fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
+        await addDoc (picturesRef, {title: title_, fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
 
         props.getPictures(); 
         props.setEditDoc(undefined);
@@ -92,7 +100,7 @@ const  EditDoc = (props) => {
 
   const techList = ['gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
 
-  const categoryList =['all', 'Landscape', 'Structure', 'Nature','Fabrique','Other']
+
 
 
 // width:'1.2em', height:'1.5em'
@@ -106,8 +114,14 @@ return (
      <div>
      <hr/>    <hr/>
        <div style={{display:'flex'}}> 
+
+          &nbsp;&nbsp;<strong>Title:</strong>&nbsp;
+          <input style={{ 'width': '10vw', 'height': '3vh'}}type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
+          defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
+
+
           <div style={{color:'magenta', 'fontSize':'1.8vw'}}>
-           <strong> {props.editDoc.fileName}</strong>
+           <strong> &nbsp;&nbsp;{props.editDoc.fileName}</strong>
           </div>
           <div>
           &nbsp; &nbsp; <strong>Technique:</strong> &nbsp;
@@ -128,7 +142,7 @@ return (
           </div>
 
           &nbsp;&nbsp;<strong>Size:</strong>&nbsp;
-          <input style={{ 'width': '10vw'}}type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
+          <input style={{ 'width': '10vw', 'height': '3vh'}}type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
           defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
         </div>
 

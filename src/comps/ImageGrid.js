@@ -84,6 +84,8 @@ const ImageGrid = (props) => {
     const filter = (doc) => {
       if (globalFilter === undefined || globalFilter === '')
         return true;
+      if (doc.title !== undefined && filterCase(doc.title))
+        return true;
       if (doc.fileName !== undefined && filterCase(doc.fileName))
         return true;
       if (doc.category !== undefined && doc.category !== null &&  filterCase(doc.category))
@@ -201,7 +203,7 @@ const ImageGrid = (props) => {
           <div  style={img_grid}>
 
             {docsFiltered && docsFiltered.map(doc => {
-              const {fileName, fileType, fileUrl, category, technique, size, year} = doc;
+              const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
               (size === undefined || year === undefined) && console.log (size,year)
               return <div key={fileName}>        
                 <div className="img-wrap" 
@@ -213,7 +215,7 @@ const ImageGrid = (props) => {
                 </div>
                 <div  style_={{display:'flex'}}>
                   <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {fileName}  &nbsp;  </div>
-                  <div style= {{'fontSize':'1.6vw' }}> {category} &nbsp; {technique}</div>
+                  <div style= {{'fontSize':'1.6vw' }}> {title} ({category}, {technique})</div>
                 </div>
               </div> 
             })}

@@ -83,7 +83,7 @@ const UploadForm = (props) => {
             console.log ( 'firebasePictureInfoAdd', file.name);
             const kb = Math.round(file.size / 1024);
     
-            addDoc (picturesRef, {fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
+            addDoc (picturesRef, {title: file.name, fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
               fileScanned: '', category: '', size: '', technique: '', price: '', year: '', description: '' })          
           });
         }
