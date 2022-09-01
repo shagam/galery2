@@ -12,7 +12,7 @@ import UploadForm from './UploadForm'
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
-import Category from '../comps/Category';
+// import Category from '../comps/Category';
 // import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
 import EditDoc from './EditDoc'
