@@ -4,7 +4,7 @@ import { db, projectStorage } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc, query, where} from "firebase/firestore";
 // import {onAuthStateChanged} from 'firebase/auth'
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import {getDate} from './Date'
 
 // import cloneDeep from 'lodash/cloneDeep'
@@ -15,7 +15,7 @@ const UploadForm = (props) => {
   // const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
-  const { currentUser, admin } = useAuth();
+  const { currentUser } = useAuth();
   // const [user, setUser] = useState();
 
   const picturesRef = collection(db, props.gallery);

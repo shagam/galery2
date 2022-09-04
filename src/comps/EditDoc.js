@@ -5,12 +5,12 @@ import { collection, addDoc, doc, deleteDoc} from "firebase/firestore"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 import { Alert } from 'react-bootstrap'
 
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import {getDate} from './Date' 
 // import Category from './Category';
 
 const  EditDoc = (props) => {
-  const { currentUser, admin } = useAuth();
+  const { currentUser } = useAuth();
 
   const [title, setTitle] = useState (props.editDoc.title)
   const [category, setCategory] = useState (props.editDoc.category)
