@@ -112,27 +112,32 @@ return (
     <form onSubmit={formHandler} >
 
      <div>
-     <hr/>    <hr/>
-       <div style={{display:'flex'}}> 
+     <hr/>   
 
-          &nbsp;&nbsp;<strong>Title:</strong>&nbsp;
-          <input style={{ 'width': '10vw', 'height': '3vh'}}type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
-          defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
-
-
-          <div style={{color:'magenta', 'fontSize':'1.8vw'}}>
-           <strong> &nbsp;&nbsp;{props.editDoc.fileName}</strong>
+          <div  style={{ zoom: '35%'}}>
+            <img src={props.editDoc.fileUrl} alt="enlarged pic" />
           </div>
+          <hr/>  
+          <div style={{display:'flex'}}> 
+            <hr/>    <hr/>
+            &nbsp;&nbsp;<strong>Title:</strong>&nbsp;
+            <input style={{ 'width': '10vw', 'height': '3vh'}}type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
+            defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
+
+              &nbsp;&nbsp;fileName: 
+            <div  style={{color:'magenta', 'fontSize':'1.8vw'}}>
+            <strong> &nbsp; {props.editDoc.fileName}</strong>
+            </div>
+          </div>
+          <hr/>  
           <div>
-          &nbsp; &nbsp; <strong>Technique:</strong> &nbsp;
+              &nbsp; &nbsp; <strong>Technique:</strong> &nbsp;
             <select   value={technique}  onChange={(e) =>setTechnique (e.target.value)} >
               {techList.map((tech) => (
                   <option key={tech} value={tech} > {tech} &nbsp; </option> 
               ))}  
             </select>
-          </div>
 
-          <div>
           &nbsp; &nbsp;<strong>Category:</strong> &nbsp;
             <select   value={category}  onChange={(e) =>setCategory (e.target.value)} >
               {categoryList.map((cat) => (
@@ -141,10 +146,10 @@ return (
             </select>
           </div>
 
+          <hr/>  
           &nbsp;&nbsp;<strong>Size:</strong>&nbsp;
           <input style={{ 'width': '10vw', 'height': '3vh'}}type="text" name = "size" onChange={(e) => {setSize(e.target.value)}}
           defaultValue={props.editDoc.size} placeholder={props.editDoc.size}></input>
-        </div>
 
         &nbsp;&nbsp;<strong>Year:</strong>&nbsp;
         <input style={{ 'width': '10vw'}} type="text" name = "year" onChange={(e) => {setYear(e.target.value)}}
