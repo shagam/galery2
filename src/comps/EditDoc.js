@@ -121,7 +121,7 @@ return (
           <div style={{display:'flex'}}> 
             <hr/>    <hr/>
             &nbsp;&nbsp;<strong>Title:</strong>&nbsp;
-            <input style={{ 'width': '10vw', 'height': '3vh'}}type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
+            <input style={{ 'width': '40vw', 'height': '3vh'}}type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
             defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
 
               &nbsp;&nbsp;fileName: 
