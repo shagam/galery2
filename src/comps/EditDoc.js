@@ -5,9 +5,13 @@ import { collection, addDoc, doc, deleteDoc} from "firebase/firestore"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 import { Alert } from 'react-bootstrap'
 
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import {getDate} from './Date' 
 // import Category from './Category';
 
 const  EditDoc = (props) => {
+  const { currentUser, admin } = useAuth();
+
   const [title, setTitle] = useState (props.editDoc.title)
   const [category, setCategory] = useState (props.editDoc.category)
   const [size, setSize] = useState(props.editDoc.size);
@@ -90,7 +94,7 @@ const  EditDoc = (props) => {
         // send doc to firebase
         console.log ('Edit', props.editDoc, 'title:', title_, 'category:', category_, 'size:', size_, 'technique:', technique_, 'price:', price_, 'year:', year_, 'description:', description_)
         const picturesRef = collection(db, props.gallery);
-        await addDoc (picturesRef, {title: title_, fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_})  // 
+        await addDoc (picturesRef, {title: title_, fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_, update: getDate(), user: currentUser.email})  // 
 
         props.getPictures(); 
         props.setEditDoc(undefined);

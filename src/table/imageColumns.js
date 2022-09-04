@@ -50,6 +50,17 @@ export const IMAGE_COLUMNS = [
     Header: 'file_kb',
     Footer: 'file_kb',    
     accessor: 'file_kb',
-  }, 
+  },
+  {
+    Header: 'update',
+    Footer: 'update',    
+    accessor: 'update',
+  },
+  {
+    Header: 'user',
+    Footer: 'user',    
+    accessor: 'user',
+  },
+  
  
 ]

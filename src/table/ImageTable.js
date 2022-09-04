@@ -89,7 +89,7 @@ export const ImageTable = (props) => {
     columns,
     data,
     initialState: {
-      hiddenColumns: ["price", "fileUrl", "fileType", "file_kb", 'description' ]
+      hiddenColumns: ["price", "fileUrl", "fileType", "file_kb", 'description', 'update', 'user' ]
     }
 
   },

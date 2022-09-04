@@ -4,7 +4,8 @@ import { db, projectStorage } from '../firebaseConfig'
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
 import {collection, getDocs, addDoc, query, where} from "firebase/firestore";
 // import {onAuthStateChanged} from 'firebase/auth'
-// import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import {getDate} from './Date'
 
 // import cloneDeep from 'lodash/cloneDeep'
 
@@ -14,7 +15,7 @@ const UploadForm = (props) => {
   // const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [progress, setProgress] = React.useState(0)
-  // const { currentUser, admin } = useAuth();
+  const { currentUser, admin } = useAuth();
   // const [user, setUser] = useState();
 
   const picturesRef = collection(db, props.gallery);
@@ -84,7 +85,7 @@ const UploadForm = (props) => {
             const kb = Math.round(file.size / 1024);
     
             addDoc (picturesRef, {title: file.name, fileName: file.name, fileUrl: url, file_kb: kb, fileType: file.type,
-              fileScanned: '', category: '', size: '', technique: '', price: '', year: '', description: '' })          
+              fileScanned: '', category: '', size: '', technique: '', price: '', year: '', description: '', update: getDate(), user: currentUser.email })          
           });
         }
         );
