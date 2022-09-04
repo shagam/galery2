@@ -48,24 +48,38 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
 
     <div className="backdrop" onClick={focusClick}>
       {error && <div className='error'>{error}</div>}
-      { !editDoc && <div>
+      <div  style={{display:'flex'}}>
       
-        <img src={selectedDoc.fileUrl} alt="enlarged pic" />
-     
-        <div style={{display:'flex', fontSize:`${fontSizeStyle}`}}>
+        <div>
+          <img style={{zoom:'100%'}} src={selectedDoc.fileUrl} alt="enlarged pic" />
+        </div>
+
+        <div style={{ fontSize:`${fontSizeStyle}`, marginTop: '10vh'}}>
         {/* <div style={{display:'flex', fontSize:'1.3em'  }}> */}
+          <hr/> 
+          <div  style= {{color:'magenta' }} >  {selectedDoc.title} &nbsp;  &nbsp;   </div>
+          <div  style= {{color:'magenta' }} > <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
+          <div  style={{display:'flex'}}> ({selectedDoc.category}, {selectedDoc.technique}, {selectedDoc.size}, {selectedDoc.year})</div>
 
-          <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-          {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
-          {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
 
-          <div  style= {{color:'magenta' }} > &nbsp; &nbsp; {selectedDoc.title} &nbsp; <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
-          <div  style={{display:'flex'}}> ({selectedDoc.category}, {selectedDoc.technique}, {selectedDoc.size},
-            &nbsp; &nbsp; {selectedDoc.year})</div>
-          <hr/>   
+          <hr/>
+          <textarea rows="12" cols="35" name = "description" 
+           defaultValue={selectedDoc.description}  placeholder={selectedDoc.description}
+          >
+
+          </textarea>
+
+          <hr/>
+
+          <div>
+            <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
+            {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
+            {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
+          </div>
+
         </div>
         {/* <hr/>         <hr/>      <hr/> */}
-        </div>}
+        </div>
         
         {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery} setSelectedDoc={setSelectedDoc}/>}
 
