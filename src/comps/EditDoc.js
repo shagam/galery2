@@ -7,7 +7,7 @@ import { Alert } from 'react-bootstrap'
 
 import { useAuth } from '../contexts/AuthContext';
 import {getDate} from './Date' 
-// import Category from './Category';
+import Editor from "./Editor";
 
 const  EditDoc = (props) => {
   const { currentUser } = useAuth();
@@ -21,6 +21,7 @@ const  EditDoc = (props) => {
   const [description, setDescription] = useState(props.editDoc.description);
 
   const [error, setError] = useState ();
+
 
   // const [newDoc, setNewDoc] = useState({});
   // console.log (props.editDoc)
@@ -117,15 +118,20 @@ return (
 
      <div>
      <hr/>   
-
-          <div  style={{ zoom: '35%'}}>
+        <div style={{display:'flex'}}>
+          <div  style={{ zoom: '30%'}}>
             <img src={props.editDoc.fileUrl} alt="enlarged pic" />
           </div>
+
+          <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+             <Editor/>  
+          </div>
+        </div>
           <hr/>  
           <div style={{display:'flex'}}> 
             <hr/>    <hr/>
             &nbsp;&nbsp;<strong>Title:</strong>&nbsp;
-            <input style={{ 'width': '40vw', 'height': '3vh'}}type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
+            <input style={{ 'width': '30vw', 'height': '3vh'}} type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
             defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
 
               &nbsp;&nbsp;fileName: 
@@ -170,7 +176,7 @@ return (
             defaultValue={props.editDoc.description} placeholder={props.editDoc.description}></input>
           </div> */}
           <div>
-          <textarea rows="3" cols="90" name = "description" 
+          <textarea rows="5" cols="90" name = "description" 
            defaultValue={props.editDoc.description}  placeholder={props.editDoc.year}
            onChange={(e) => {setDescription(e.target.value)}}>
 
@@ -186,6 +192,8 @@ return (
      {/* {error && <div className='error'>{error}</div>} */}
      {/* {files && <div> {files} </div>} */}
    </form>
+   
+
   </div>
    
   )

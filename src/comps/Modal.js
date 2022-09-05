@@ -5,6 +5,7 @@ import { db } from '../firebaseConfig'
 import {  doc, deleteDoc} from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 import MobileContext from './MobileContext';
+// import Editor from "./Editor";
 
 const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGallery }) => {
   const [editDoc, setEditDoc] = useState();
@@ -83,7 +84,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
         
         {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery} setSelectedDoc={setSelectedDoc}/>}
 
-
+        {/* <Editor/> */}
 
         {/* <textarea rows="5" cols="100" name = "description"  readOnly
             //  defaultValue={selectedDoc.description}
