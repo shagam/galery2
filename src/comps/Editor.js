@@ -7,9 +7,8 @@ import { convertToRaw } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useState } from 'react';
-// import draftToHtml from 'draftjs-to-html'
-// import htmlToDraft from 'html-to-draftjs'
-// const in = EditorState.createEmpty();
+import draftToHtml from 'draftjs-to-html'
+import htmlToDraft from 'html-to-draftjs'
 
 function DraftEditor () {
 
@@ -17,7 +16,8 @@ function DraftEditor () {
   // console.log (editorState.getCurrentContent())
 
   function onEditorStateChange (editorState_) {
-    console.log (convertToRaw (editorState_.getCurrentContent()))
+    console.log (draftToHtml (convertToRaw (editorState_.getCurrentContent())))
+    // console.log (draftToHtml)
     setEditorState (editorState_)
   };
 
@@ -33,9 +33,10 @@ function DraftEditor () {
         />
 
       </div>
-      <div> 
-        {/* {editorState.getCurrentContent()} */}
-      </div>
+      <hr/>
+      {/* <div> 
+        <textarea disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>
+      </div> */}
     </div> 
   )
 }
