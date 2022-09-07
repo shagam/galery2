@@ -34,7 +34,7 @@ const  EditDoc = (props) => {
   function abort () {
     props.setEditDoc(undefined);
   }
-  const categoryList =['Other','Landscape', 'Structure', 'Nature','Fabrique']
+  const categoryList =['Other','Landscape', 'Building', 'Nature','Fabrique','stickers']
   if (category === '')
     setCategory (categoryList[0])
 

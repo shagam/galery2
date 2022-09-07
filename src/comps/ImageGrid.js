@@ -126,8 +126,7 @@ const ImageGrid = (props) => {
     /* justify-content: start; */
   }
 
-
-  const categoryList =['all', 'Landscape', 'Structure', 'Nature','Fabrique','Other']
+  const categoryList =['all', 'Landscape', 'Building', 'Nature','Fabrique','stickers','Other']
 
   const emailFontSize = userAgentMobile ? '3vw' : '1.4vw'
 
