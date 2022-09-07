@@ -66,7 +66,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
       <div  style={{display:'flex'}}>
       
         <div>
-          <img style={{zoom:'100%'}} src={selectedDoc.fileUrl} alt="enlarged pic" />
+          <img style={{zoom:'80%'}} src={selectedDoc.fileUrl} alt="enlarged pic" />
         </div>
 
         <div style={{ fontSize:`${fontSizeStyle}`, marginTop: '10vh'}}>
@@ -78,7 +78,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
           
           <hr/>
 
-          <div style={{ 'width': '40vw', 'height': '60vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+          <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
              <EditorReadOnly editorState={EditorState.createEmpty()} />  
           </div>
 
