@@ -1,5 +1,3 @@
-// https://jpuri.github.io/react-draft-wysiwyg/#/docs?_k=jjqinp
-
 import React, { } from 'react'
 // Component  Function
 import { EditorState, } from 'draft-js';
@@ -10,45 +8,40 @@ import { useState } from 'react';
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
 
-function DraftEditor (props) {
+function EditorReadOnly (props) {
 
-  const [editorState, setEditorState] = useState (EditorState.createEmpty())
+  // const [editorState, setEditorState] = useState (EditorState.createEmpty())
   // const [editorState, setEditorState] = useState (props.draftState) 
    //({props.draftState})
   // (EditorState.createWithContent(htmlToDraft('<p>abcd</p>')))  
   // htmlToDraft('<p>abcd</p>')
   // console.log (editorState.getCurrentContent())
 
-  function onEditorStateChange (editorState_) {
-    console.log (draftToHtml (convertToRaw (editorState_.getCurrentContent())))
-    // console.log (draftToHtml)
-    setEditorState (editorState_)
-    // props.setEditorState(editorState)
-  };
+  // function onEditorStateChange (editorState_) {
+  //   console.log (draftToHtml (convertToRaw (editorState_.getCurrentContent())))
+  //   // console.log (draftToHtml)
+  //   setEditorState (editorState_)
+  //   // props.setEditorState(editorState)
+  // };
 
   return (
     // {console.log (convertToRaw (editorState.getCurrentContent()))}
     <div>
       <div>
         <Editor
-          editorState={editorState}
+          toolbarHidden
+          readOnly
+          editorState={props.editorState}
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
-          onEditorStateChange={onEditorStateChange}
+          // onEditorStateChange={onEditorStateChange}
         />
 
       </div>
       <hr/>
-      <div> 
-        <textarea disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>
-      </div>
-
-      {/* <div>
-        {draftToHtml (convertToRaw (editorState.getCurrentContent()))}
-      </div> */}
     </div> 
   )
 }
 
 
-export default DraftEditor
+export default EditorReadOnly

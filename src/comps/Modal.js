@@ -7,11 +7,25 @@ import { getStorage, ref, deleteObject } from "firebase/storage"
 import MobileContext from './MobileContext';
 // import Editor from "./Editor";
 
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import EditorReadOnly from "./EditorReadOnly";
+import draftToHtml from 'draftjs-to-html'
+import htmlToDraft from 'html-to-draftjs'
+
+
 const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGallery }) => {
   const [editDoc, setEditDoc] = useState();
   const [error, setError] = useState();
   const { admin } = useAuth();
+  const [editorState, setEditorState] = useState(EditorState.createEmpty())
 
+  const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
+  const contentBlock = htmlToDraft(html);
+  if (contentBlock) {
+    const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+    const editorState_ = EditorState.createWithContent(contentState);
+    // setEditorState (editorState_)
+  }
   const focusClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
       setSelectedDoc (null);
@@ -61,14 +75,20 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
           <div  style= {{color:'magenta' }} >  {selectedDoc.title} &nbsp;  &nbsp;   </div>
           <div  style= {{color:'magenta' }} > <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
           <div  style={{display:'flex'}}> ({selectedDoc.category}, {selectedDoc.technique}, {selectedDoc.size}, {selectedDoc.year})</div>
-
-
+          
           <hr/>
+
+          <div style={{ 'width': '40vw', 'height': '60vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+             <EditorReadOnly editorState={EditorState.createEmpty()} />  
+          </div>
+
+
+          {/* <hr/>
           <textarea rows="12" cols="35" name = "description" 
            defaultValue={selectedDoc.description}  placeholder={selectedDoc.description}
           >
 
-          </textarea>
+          </textarea> */}
 
           <hr/>
 

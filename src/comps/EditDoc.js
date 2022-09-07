@@ -8,6 +8,8 @@ import { Alert } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext';
 import {getDate} from './Date' 
 import Editor from "./Editor";
+import { EditorState, } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs'
 
 const  EditDoc = (props) => {
   const { currentUser } = useAuth();
@@ -21,6 +23,9 @@ const  EditDoc = (props) => {
   const [description, setDescription] = useState(props.editDoc.description);
 
   const [error, setError] = useState ();
+
+  const [draftState, setDraftState] = useState (EditorState.createEmpty())
+  // const [draftState, setDraftState] = useState (EditorState.createWithContent(htmlToDraft('<p>abcd</p>')))
 
 
   // const [newDoc, setNewDoc] = useState({});
@@ -124,7 +129,7 @@ return (
           </div>
 
           <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
-             <Editor/>  
+             <Editor  draftState={draftState} setDraftState={setDraftState}/>  
           </div>
         </div>
           <hr/>  
