@@ -128,7 +128,7 @@ return (
             <img src={props.editDoc.fileUrl} alt="enlarged pic" />
           </div>
 
-          <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+          <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
              <Editor  draftState={draftState} setDraftState={setDraftState}/>  
           </div>
         </div>
@@ -136,7 +136,7 @@ return (
           <div style={{display:'flex'}}> 
             <hr/>    <hr/>
             &nbsp;&nbsp;<strong>Title:</strong>&nbsp;
-            <input style={{ 'width': '20vw', 'height': '3vh'}} type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
+            <input style={{ 'width': '30vw', 'height': '3vh'}} type="text" name = "title" onChange={(e) => {setTitle(e.target.value)}}
             defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
 
               &nbsp;&nbsp;fileName: 
@@ -175,7 +175,7 @@ return (
         defaultValue={props.editDoc.price}  placeholder={props.editDoc.price}></input>
         
         <div>
-          Description
+          {/* Description */}
           {/* <div>
             <input type="textarea" name = "description" onChange={(e) => {setDescription(e.target.value)}}
             defaultValue={props.editDoc.description} placeholder={props.editDoc.description}></input>

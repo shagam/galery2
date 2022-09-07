@@ -75,7 +75,15 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
           <div  style= {{color:'magenta' }} >  {selectedDoc.title} &nbsp;  &nbsp;   </div>
           <div  style= {{color:'magenta' }} > <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
           <div  style={{display:'flex'}}> ({selectedDoc.category}, {selectedDoc.technique}, {selectedDoc.size}, {selectedDoc.year})</div>
+
+          <hr/>
           
+          <div>
+            <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
+            {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
+            {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
+          </div>
+      
           <hr/>
 
           <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
@@ -92,12 +100,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
 
           <hr/>
 
-          <div>
-            <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-            {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
-            {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
-          </div>
-
+    
         </div>
         {/* <hr/>         <hr/>      <hr/> */}
         </div>
