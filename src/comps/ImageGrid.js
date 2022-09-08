@@ -193,7 +193,7 @@ const ImageGrid = (props) => {
 
           <div style={{display:'flex'}}>
             <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
-            &nbsp; &nbsp;
+            &nbsp; ({docsFiltered.length}) &nbsp;&nbsp;
             <CustomSelect options={imagePerRowOptions} label='layout' onChange={layoutChange } defaultValue={imagePerRowOptions[2]} />
           </div>
           <hr/>
