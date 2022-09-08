@@ -46,10 +46,10 @@ const  EditDoc = (props) => {
         setError ('Please choose category (' + category +')')
         return;
       }
-      if (technique === '') {
-        setError ('Please choose technique (' + technique +')')
-        return
-      }
+      // if (technique === '') {
+      //   setError ('Please choose technique (' + technique +')')
+      //   return
+      // }
 
       try {
         var category_ = category
@@ -108,7 +108,7 @@ const  EditDoc = (props) => {
       } catch (e) {setError(e.message) && console.log (e)}
   }
 
-  const techList = ['gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
+  const techList = ['', 'gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
 
 
 
