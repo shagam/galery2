@@ -175,7 +175,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>} 
 
-        {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
+        { <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
         
         {/* {<Category category = {category} setCategory = {setCategory}/>} */}
 
