@@ -123,7 +123,7 @@ export const ImageTable = (props) => {
     overflowY: 'scroll',
     /* background: yellow; */
     textAlign: 'center',
-    height: '30vh',
+    height: '60vh',
     display: 'block'
     // padding: '-20px',
     // margin: '-20px'
