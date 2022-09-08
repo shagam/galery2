@@ -193,10 +193,15 @@ export const ImageTable = (props) => {
                       {row.cells.map((cell) => {
                         return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                       })}
-                        <div>
+                        <div style={{display:'flex'}}>
                         <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
                         {admin && <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>}
                         {admin && <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>}
+                        <div  style={{ zoom: '10%'}}>
+
+                        <img src={findDocFromImageName (row.values.fileName).fileUrl} alt="enlarged pic" />
+
+                        </div>
                         </div>
                     </tr>
                   )
