@@ -16,6 +16,8 @@ const  EditDoc = (props) => {
 
   const [title, setTitle] = useState (props.editDoc.title)
   const [category, setCategory] = useState (props.editDoc.category)
+  const [represent, setRepresent ] = useState(false)
+
   const [size, setSize] = useState(props.editDoc.size);
   const [technique, setTechnique] = useState(props.editDoc.technique);
   const [price, setPrice] = useState(props.editDoc.price);
@@ -25,6 +27,8 @@ const  EditDoc = (props) => {
   const [error, setError] = useState ();
 
   const [draftState, setDraftState] = useState (EditorState.createEmpty())
+
+  const { admin } = useAuth();
   // const [draftState, setDraftState] = useState (EditorState.createWithContent(htmlToDraft('<p>abcd</p>')))
 
 
@@ -144,21 +148,26 @@ return (
             <strong> &nbsp; {props.editDoc.fileName}</strong>
             </div>
           </div>
-          <hr/>  
-          <div>
-              &nbsp; &nbsp; <strong>Technique:</strong> &nbsp;
+          <hr/>
+
+          <div style={{display:'flex'}}>
+             &nbsp; <strong>Technique:</strong> &nbsp;
             <select   value={technique}  onChange={(e) =>setTechnique (e.target.value)} >
               {techList.map((tech) => (
                   <option key={tech} value={tech} > {tech} &nbsp; </option> 
               ))}  
             </select>
 
-          &nbsp; &nbsp;<strong>Category:</strong> &nbsp;
+             &nbsp; &nbsp;<strong>Category:</strong> &nbsp;
             <select   value={category}  onChange={(e) =>setCategory (e.target.value)} >
               {categoryList.map((cat) => (
                   <option key={cat} value={cat} > {cat} &nbsp; </option> 
               ))}  
             </select>
+           
+            {admin && <div>
+             &nbsp;&nbsp;<input type="checkbox" checked={represent} onChange={() =>{setRepresent(! represent)}}/>  &nbsp;represent 
+            </div>}
           </div>
 
           <hr/>  
