@@ -43,7 +43,7 @@ export function Represent (props) {
     console.log (props.docs.length)
     collectReps()
   }
-  }, [props.docs]);
+  }, [props.docs, collectReps, repDocs]);
 
   var img_grid  = {
     width: '95vw',
