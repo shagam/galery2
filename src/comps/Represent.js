@@ -33,14 +33,30 @@ export function Represent (props) {
       setRepDocs(repDocs_)
     
   }
+
+  // useEffect (() => { // eslint-disable-line
+  //   getPictures ();  // eslint-disable-line
+  // }, []);  // eslint-disable-line
+
   if (props.docs && props.docs.length > 0 && (! repDocs || repDocs.length === 0)) {
     console.log (props.docs.length)
     collectReps()
   }
 
+  var img_grid  = {
+    width: '95vw',
+    'backgroundSize': 'cover',
+    /* width: 130%!important; */
+    /* margin: 20px auto; */
+    display: 'grid',
+    // 'grid-template-columns': '1fr 1fr 1fr',
+    'gridTemplateColumns':  '1fr 1fr' ,
+    'gridGap': '10px'
+    /* justify-content: start; */
+  }
 
   return (
-    <div>
+    <div style={img_grid}>
       {repDocs && repDocs.map(doc => {
           const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
           (size === undefined || year === undefined) && console.log (size,year)
