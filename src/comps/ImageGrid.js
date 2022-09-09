@@ -227,7 +227,8 @@ const ImageGrid = (props) => {
       {selectedDoc && ! editDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
 
       {editDoc && <EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
-      <Represent docs={docs}/>
+
+      {!editDoc && !selectedDoc && <Represent docs={docs}/>}
       <hr/>  
     </div>
   )

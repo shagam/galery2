@@ -1,17 +1,19 @@
+import React, { useState } from "react";
 
 
 export function Represent (props) {
-
+  const [repDocs, setRepDocs] = useState()
+  const [category, setCategory] = useState()
 
   function collectReps () {
     // collect all checkedBox reps
     var repsArray = [];
-    var repDocs = [];
+    var repDocs_ = [];
 
     for (let i = 0; i < props.docs.length; i++) {
       if (props.docs[i].represent && ! repsArray.includes(props.docs[i].category)) { // uniqu rep
         repsArray.push (props.docs[i].category)
-        repDocs.push(props.docs[i])
+        repDocs_.push(props.docs[i])
       }
     }
 
@@ -19,19 +21,47 @@ export function Represent (props) {
     for (let i = 0; i < props.docs.length; i++) {
       if ( ! repsArray.includes(props.docs[i].category)) { // uniqu rep
         repsArray.push (props.docs[i].category)
-        repDocs.push(props.docs[i])
+        repDocs_.push(props.docs[i])
       }
     }
     var str = '';
-    for (let i = 0; i < repDocs.length; i++)
-      str += repDocs[i].fileName + ' (' + repDocs[i].category + ')  ';
+    for (let i = 0; i < repDocs_.length; i++)
+      str += repDocs_[i].fileName + ' (' + repDocs_[i].category + ')  ';
+
     console.log (repsArray, str)
+    if (repDocs_.length > 0)
+      setRepDocs(repDocs_)
+    
+  }
+  if (props.docs && props.docs.length > 0 && (! repDocs || repDocs.length === 0)) {
+    console.log (props.docs.length)
+    collectReps()
   }
 
-  collectReps()
 
   return (
-    <div></div>
+    <div>
+      {repDocs && repDocs.map(doc => {
+          const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
+          (size === undefined || year === undefined) && console.log (size,year)
+          return <div key={fileName}>        
+            <div className="img-wrap" 
+              onClick={() => setCategory(doc.category)} >
+              {(fileType === 'image/jpeg' || fileType === 'image/png') &&
+                <img src={fileUrl} alt={fileName} />}
+              {doc.fileType === 'application/pdf' &&
+                <iframe src={doc.fileUrl} title={fileName} />   }
+            </div>
+            <div  style_={{display:'flex'}}>
+              <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {title}  &nbsp;  </div>
+              <div style= {{'fontSize':'1.6vw' }}> ({category}, {technique})</div>
+            </div>
+          </div> 
+        })}
+ 
+
+
+    </div>
 
   )
 
