@@ -64,7 +64,7 @@ export function Represent (props) {
           (size === undefined || year === undefined) && console.log (size,year)
           return <div key={fileName}>        
             <div className="img-wrap" 
-              onClick={() => setCategory(doc.category)} >
+              onClick={() => props.setCategory(doc.category)} >
               {(fileType === 'image/jpeg' || fileType === 'image/png') &&
                 <img src={fileUrl} alt={fileName} />}
               {doc.fileType === 'application/pdf' &&
