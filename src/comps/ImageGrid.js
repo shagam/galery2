@@ -176,17 +176,9 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>} 
 
+        {!editDoc && !selectedDoc && <Represent docs={docs} setCategory={setCategory}/>}
+
         { <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
-
-        {/* <div>
-          <strong>Category:</strong> &nbsp;
-            <select   value={category}  onChange={(e) =>setCategory (e.target.value)} >
-              {categoryList.map((cat) => (
-                  <option key={cat} value={cat} > {cat} &nbsp; </option> 
-              ))}  
-          </select>
-        </div> */}
-
 
         {! tableFlag && <div style={{}}>
 
@@ -228,7 +220,6 @@ const ImageGrid = (props) => {
 
       {editDoc && <EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
 
-      {!editDoc && !selectedDoc && <Represent docs={docs} setCategory={setCategory}/>}
       <hr/>  
     </div>
   )
