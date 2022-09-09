@@ -16,6 +16,7 @@ import GlobalFilter from './GlobalFilter'
 // import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
 import EditDoc from './EditDoc'
+import { Represent } from "./Represent";
 import MobileContext from './MobileContext';
 // import MobileContext from './MobileContext';
 
@@ -226,7 +227,7 @@ const ImageGrid = (props) => {
       {selectedDoc && ! editDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
 
       {editDoc && <EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
-
+      <Represent docs={docs}/>
       <hr/>  
     </div>
   )
