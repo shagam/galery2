@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 export function Represent (props) {
@@ -38,10 +38,12 @@ export function Represent (props) {
   //   getPictures ();  // eslint-disable-line
   // }, []);  // eslint-disable-line
 
+  useEffect (() => {
   if (props.docs && props.docs.length > 0 && (! repDocs || repDocs.length === 0)) {
     console.log (props.docs.length)
     collectReps()
   }
+  }, [props.docs]);
 
   var img_grid  = {
     width: '95vw',
