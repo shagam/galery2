@@ -43,7 +43,7 @@ export function Represent (props) {
     console.log (props.docs.length)
     collectReps()
   }
-  }, [props.docs]);
+  });
 
   var img_grid  = {
     width: '95vw',
@@ -52,7 +52,7 @@ export function Represent (props) {
     /* margin: 20px auto; */
     display: 'grid',
     // 'grid-template-columns': '1fr 1fr 1fr',
-    'gridTemplateColumns':  '1fr 1fr 1fr 1fr' ,
+    'gridTemplateColumns':  '1fr 1fr 1fr 1fr 1fr 1fr' ,
     'gridGap': '10px'
     /* justify-content: start; */
   }
