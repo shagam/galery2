@@ -80,7 +80,7 @@ export default function Dashboard (props) {
         {/* {props.admins[0].name}  */}
         <div className='w-100 text-left mt-2'>  <Link to="/dina" > {props.admins[0].name} Gallery </Link> </div>
 
-        <div className='w-100 text-left mt-2'>  <Link to="/test" > {props.admins[1].name} Gallery  </Link> </div>
+        {admin && <div className='w-100 text-left mt-2'>  <Link to="/test" > {props.admins[1].name} Gallery  </Link> </div>}
         
         <div className='w-100 text-left mt-2'> <Link to="/Dina_CV" > Dina Goldstein CV</Link> </div>
 
