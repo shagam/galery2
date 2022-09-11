@@ -40,7 +40,7 @@ export function Represent (props) {
     console.log (props.docs.length)
     collectReps()
   }
-  }, [props.docs]);
+  });
 
   var img_grid  = {
     width: '95vw',
