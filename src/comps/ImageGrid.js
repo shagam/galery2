@@ -176,7 +176,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>} 
 
-        {!editDoc && !selectedDoc && <Represent docs={docs} setCategory={setCategory}/>}
+        {!editDoc && !selectedDoc && category=== 'all'  && <Represent docs={docs} setCategory={setCategory}/>}
 
         { <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
 
@@ -188,7 +188,11 @@ const ImageGrid = (props) => {
             <CustomSelect options={imagePerRowOptions} label='layout' onChange={layoutChange } defaultValue={imagePerRowOptions[2]} />
           </div>
           <hr/>
-          { docsFiltered && <h3> &nbsp; <strong> Click image to focus </strong> </h3>}
+
+          <div style={{display:'flex', 'marginTop': '0.9vh'}}> 
+            <div style= {{color: 'magenta', fontSize:'5vw',  }}><strong> {category}  &nbsp;</strong> </div> 
+            { docsFiltered && <div style= {{color: 'red', fontSize:'5vw',  }}> &nbsp;  Click image to focus </div>}
+          </div>
 
           <div  style={img_grid}>
 
