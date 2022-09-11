@@ -55,11 +55,16 @@ export function Represent (props) {
   }
 
   return (
-    <div style={img_grid}>
-      {repDocs && repDocs.map(doc => {
-          const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
+    <div>
+      <div style= {{fontSize:'5vw', color: 'magenta' }}> Choose Category </div> 
+      <br></br>       <br></br>
 
-          return <div key={fileName}>        
+      <div style={img_grid}>
+        {repDocs && repDocs.map(doc => {
+            const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
+
+          return <div key={fileName}>
+      
             <div className="img-wrap" 
               onClick={() => props.setCategory(doc.category)} >
 
@@ -75,10 +80,8 @@ export function Represent (props) {
           </div> 
         })}
  
-
-
+      </div>
     </div>
-
   )
 
 }
