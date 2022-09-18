@@ -5,6 +5,7 @@ export function Represent (props) {
   const [repDocs, setRepDocs] = useState()
   const [category, setCategory] = useState()
 
+  const LOG = false;
   function collectReps () {
     // collect all checkedBox reps
     var repsArray = [];
@@ -29,7 +30,8 @@ export function Represent (props) {
     //   str += repDocs_[i].fileName + ' (' + repDocs_[i].category + ')  ';
     // console.log (str)
 
-    console.log (repsArray)
+    if (LOG)
+      console.log (repsArray)
     if (repDocs_.length > 0)
       setRepDocs(repDocs_)
     
@@ -37,7 +39,8 @@ export function Represent (props) {
 
   useEffect (() => {
   if (props.docs && props.docs.length > 0 && (! repDocs || repDocs.length === 0)) {
-    console.log (props.docs.length)
+    if (LOG) 
+      console.log (props.docs.length)
     collectReps()
   }
   });
