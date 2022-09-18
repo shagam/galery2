@@ -169,6 +169,10 @@ const ImageGrid = (props) => {
             {props.gallery==='dina' && <Link to="/Dina_CV" >Dina Goldstein CV</Link>}
             &nbsp; &nbsp; &nbsp; 
             {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
+            &nbsp; &nbsp; &nbsp; 
+            {props.gallery==='dina' && <Link to="/contact" >Contact</Link>}
+
+
 
         <hr/>
 

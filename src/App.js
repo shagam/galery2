@@ -20,6 +20,7 @@ import UpdateProfile from './auth/UpdateProfile';
 
 import DinaCV from './cv/DinaCV'
 import Exibitions from './cv/Exibitions'
+import Contact from './comps/Contact'
 import { Represent } from "./comps/Represent";
 
 // import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
@@ -62,6 +63,7 @@ function App() {
                     <Route exact path ="/dashBoard"  element={<Dashboard admins= {admins}/>}/>
                     {/* <Route path="/" element={<Dashboard/>}   /> */}
 
+                    <Route path="/contact" element={<Contact/> } />
                     <Route path="/signup" element={<Signup/> } />
                     <Route path="/login" element={<Login/> }/>
                     <Route path="/forgotPassword" element={<ForgotPassword />}/>
