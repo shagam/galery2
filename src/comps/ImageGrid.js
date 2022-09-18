@@ -176,7 +176,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>} 
 
-        {!editDoc && !selectedDoc && props.category=== 'all'  && <Represent docs={docs}/>}
+        {!editDoc && !selectedDoc && props.category=== ''  && <Represent docs={docs}/>}
 
         { <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
 

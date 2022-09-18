@@ -43,7 +43,7 @@ function App() {
     {gallery: "dina", name: "Dina Goldstein", email: adminsEmail.dina},
     {gallery: "test",  name: "test", email: adminsEmail.eli},
   ]
-    const categoryList =['all', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
+    const categoryList =['', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
 
   return (
     <div>
