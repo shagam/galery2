@@ -105,7 +105,7 @@ const ImageGrid = (props) => {
       if (! filter(docs[i]))
         continue;
       
-      if (props.category === undefined || props.category === 'all' || props.category === '' || props.category === docs[i].category)
+      if (props.category === undefined || props.category === 'all' || props.category === docs[i].category)
         list.push(docs[i]);
     }
     setDocsFiltered(list);
@@ -178,9 +178,9 @@ const ImageGrid = (props) => {
 
         {!editDoc && !selectedDoc && props.category=== ''  && <Represent docs={docs}/>}
 
-        { <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
+        {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
 
-        {! tableFlag && <div style={{}}>
+        {! tableFlag && props.category !== '' && <div style={{}}>
 
           <div style={{display:'flex'}}>
             <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
