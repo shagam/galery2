@@ -46,21 +46,21 @@ export function Represent (props) {
   });
 
   var img_grid  = {
-    width: '95vw',
+    width: '30vw',
     'backgroundSize': 'cover',
     /* width: 130%!important; */
     /* margin: 20px auto; */
     display: 'grid',
     // 'grid-template-columns': '1fr 1fr 1fr',
-    'gridTemplateColumns':  '1fr 1fr 1fr 1fr 1fr' ,
+    'gridTemplateColumns':  '1fr 1fr ' ,
     'gridGap': '10px'
     /* justify-content: start; */
   }
 
   return (
     <div>
-      <div style= {{fontSize:'5vw', color: 'magenta' }}> Choose Image Category </div> 
-      <br></br>       <br></br>
+      <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Image Category </div> 
+      <br></br>     
 
       <div style={img_grid}>
         {repDocs && repDocs.map(doc => {
@@ -70,12 +70,9 @@ export function Represent (props) {
 
           return <div key={fileName}>
       
-                    <div>
-
-              <Link to={link}
-                  // onClick={() => props.setCategory(category)} 
-                  >
-                <img src={fileUrl} alt="example" />
+            <div>
+              <Link to={link}   >
+                <img src={fileUrl} alt="categoryImg" />
                 <div style= {{'fontSize':'3vw' }}> {category}</div>
               </Link>
 
