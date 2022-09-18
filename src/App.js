@@ -20,6 +20,7 @@ import UpdateProfile from './auth/UpdateProfile';
 
 import DinaCV from './cv/DinaCV'
 import Exibitions from './cv/Exibitions'
+import { Represent } from "./comps/Represent";
 
 // import { signInWithPopup, FacebookAuthProvider, GoogleAuthProvider}  from 'firebase/auth'
 // import {auth} from './firebaseConfig'
@@ -42,10 +43,11 @@ function App() {
     {gallery: "dina", name: "Dina Goldstein", email: adminsEmail.dina},
     {gallery: "test",  name: "test", email: adminsEmail.eli},
   ]
-  
+    const categoryList =['all', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
 
   return (
     <div>
+      {/* <Represent docs={docs} setCategory={setCategory}/> */}
       {/* fb app id 339984971431912     507755754172582  */}
       {/* edf5257d68c415d14740754eaee029e1  8e9c701f67e523ab4e950709a41a777a */}
       {/* https://galery-58c6a.firebaseapp.com/__/auth/handler */}
@@ -65,10 +67,23 @@ function App() {
                     <Route path="/forgotPassword" element={<ForgotPassword />}/>
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
+                    <Route path="/" element={<ImageGrid gallery={admins[0].gallery} 
+                    name={admins[0].name} adminEmail={admins[0].email} category={categoryList[0]} />} />
 
-                    <Route path="/" element={<ImageGrid gallery={admins[0].gallery} name={admins[0].name} adminEmail={admins[0].email}  />} />
-                    <Route path="/dina" element={<ImageGrid gallery={admins[0].gallery} name={admins[0].name} adminEmail={admins[0].email} />} />
-                    <Route path="/test" element={<ImageGrid  gallery={admins[1].gallery} name={admins[1].name} adminEmail={admins[1].email} />}/>                    
+                    <Route path="/Landscape" element={<ImageGrid  gallery={admins[1].gallery}
+                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[1]}/>}/>                    
+                    
+                    <Route path="/Building" element={<ImageGrid  gallery={admins[1].gallery}
+                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[2]}/>}/> 
+                    
+                    <Route path="/Fabrique" element={<ImageGrid  gallery={admins[1].gallery}
+                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[3]}/>}/> 
+                    
+                    <Route path="/Stickers" element={<ImageGrid  gallery={admins[1].gallery}
+                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[4]}/>}/> 
+                    
+                    <Route path="/Fruits" element={<ImageGrid  gallery={admins[1].gallery}
+                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[5]}/>}/> 
 
                     <Route path="/dina_cv" element={<DinaCV />}/>                    
                     <Route path="/exibitions" element={<Exibitions />}/>  

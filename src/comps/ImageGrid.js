@@ -25,7 +25,7 @@ import MobileContext from './MobileContext';
 const ImageGrid = (props) => {
   const [docs, setDocs] = useState([]);
   const [docsFiltered, setDocsFiltered] = useState([]);
-  const [category, setCategory] = useState ('all')
+  // const [category, setCategory] = useState (props.category)
 
 
   const picturesRef = collection(db, props.gallery);
@@ -40,7 +40,7 @@ const ImageGrid = (props) => {
   const { userAgentMobile } = MobileContext();
 
   // const { userAgentMobile} = MobileContext();
-
+  console.log (props.category)
   function setEditDoc_ (editDoc) {
     setEditDoc(editDoc);
   }
@@ -105,12 +105,12 @@ const ImageGrid = (props) => {
       if (! filter(docs[i]))
         continue;
       
-      if (category === undefined || category === 'all' || category === docs[i].category)
+      if (props.category === undefined || props.category === 'all' || props.category === '' || props.category === docs[i].category)
         list.push(docs[i]);
     }
     setDocsFiltered(list);
 
-  }, [docs, globalFilter, category]);
+  }, [docs, globalFilter, props.category]);
 
   
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
@@ -176,7 +176,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>} 
 
-        {!editDoc && !selectedDoc && category=== 'all'  && <Represent docs={docs} setCategory={setCategory}/>}
+        {!editDoc && !selectedDoc && props.category=== 'all'  && <Represent docs={docs}/>}
 
         { <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
 
@@ -190,7 +190,7 @@ const ImageGrid = (props) => {
           <hr/>
 
           <div style={{display:'flex', 'marginTop': '0.9vh'}}> 
-            <div style= {{color: 'magenta', fontSize:'5vw',  }}><strong> {category}  &nbsp;</strong> </div> 
+            <div style= {{color: 'magenta', fontSize:'5vw',  }}><strong> {props.category}  &nbsp;</strong> </div> 
             { docsFiltered && <div style= {{color: 'red', fontSize:'5vw',  }}> &nbsp;  Click image to focus </div>}
           </div>
 

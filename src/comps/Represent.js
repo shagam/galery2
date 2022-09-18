@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link, useNavigate } from 'react-router-dom'
 
 export function Represent (props) {
   const [repDocs, setRepDocs] = useState()
@@ -49,7 +49,7 @@ export function Represent (props) {
     /* margin: 20px auto; */
     display: 'grid',
     // 'grid-template-columns': '1fr 1fr 1fr',
-    'gridTemplateColumns':  '1fr 1fr 1fr' ,
+    'gridTemplateColumns':  '1fr 1fr 1fr 1fr 1fr' ,
     'gridGap': '10px'
     /* justify-content: start; */
   }
@@ -61,21 +61,21 @@ export function Represent (props) {
 
       <div style={img_grid}>
         {repDocs && repDocs.map(doc => {
-            const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
+
+          const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
+          const link = '/' + category;
 
           return <div key={fileName}>
       
-            <div className="img-wrap" 
-              onClick={() => props.setCategory(doc.category)} >
+                    <div>
 
-              {(fileType === 'image/jpeg' || fileType === 'image/png') &&
-                <img src={fileUrl} alt={fileName} />}
-              {doc.fileType === 'application/pdf' &&
-                <iframe src={fileUrl} title={fileName} />}
+              <Link to={link}
+                  // onClick={() => props.setCategory(category)} 
+                  >
+                <img src={fileUrl} alt="example" />
+                <div style= {{'fontSize':'3vw' }}> {category}</div>
+              </Link>
 
-            </div>
-            <div>
-              <div style= {{'fontSize':'5vw' }}> {category}</div>
             </div>
           </div> 
         })}
