@@ -86,9 +86,9 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
       
           <hr/>
 
-          <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+          {/* <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
              <EditorReadOnly editorState={EditorState.createEmpty()} />  
-          </div>
+          </div> */}
 
 
           {/* <hr/>
