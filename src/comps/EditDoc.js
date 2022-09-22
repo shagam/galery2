@@ -132,9 +132,9 @@ return (
             <img src={props.editDoc.fileUrl} alt="enlarged pic" />
           </div>
 
-          {/* <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+          <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
              <Editor  draftState={draftState} setDraftState={setDraftState}/>  
-          </div> */}
+          </div>
         </div>
           <hr/>  
           <div style={{display:'flex'}}> 

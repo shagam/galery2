@@ -80,7 +80,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
           
           <div>
             <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-            {admin && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
+            {true && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
             {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
           </div>
       
