@@ -22,9 +22,11 @@ const  EditDoc = (props) => {
   const [technique, setTechnique] = useState(props.editDoc.technique);
   const [price, setPrice] = useState(props.editDoc.price);
   const [year, setYear] = useState(props.editDoc.price);
-  const [description, setDescription] = useState(props.editDoc.description);
+  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc);
+
 
   const [error, setError] = useState ();
+
 
   const [draftState, setDraftState] = useState (EditorState.createEmpty())
 
@@ -89,11 +91,11 @@ const  EditDoc = (props) => {
         if (year_ === undefined && props.editDoc.year !== '')
           year_ = props.editDoc.year   // copy old value
 
-        var description_ = description;
-        if (description_ === undefined && props.editDoc.description !== undefined)
-          description_ = props.editDoc.description   // copy old value
+        var richDoc_ = richDoc;
+        if (richDoc_ === undefined && props.editDoc.richDoc !== undefined)
+        richDoc_ = props.editDoc.richDoc   // copy old value
         else
-          description_ = '';
+        richDoc_ = '';
 
 
         // delete doc
@@ -102,9 +104,9 @@ const  EditDoc = (props) => {
 
 
         // send doc to firebase
-        console.log ('Edit', props.editDoc, 'title:', title_, 'category:', category_, 'size:', size_, 'technique:', technique_, 'price:', price_, 'year:', year_, 'description:', description_)
+        console.log ('Edit', props.editDoc, 'title:', title_, 'category:', category_, 'size:', size_, 'technique:', technique_, 'price:', price_, 'year:', year_, 'richDoc:', richDoc.length)
         const picturesRef = collection(db, props.gallery);
-        await addDoc (picturesRef, {title: title_, fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, description: description_, update: getDate(), user: currentUser.email})  // 
+        await addDoc (picturesRef, {title: title_, fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, richDoc: richDoc_, update: getDate(), user: currentUser.email})  // 
 
         props.getPictures(); 
         props.setEditDoc(undefined);
@@ -133,7 +135,7 @@ return (
           </div>
 
           <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
-             <EditorDraft  draftState={draftState} setDraftState={setDraftState}/>  
+             <EditorDraft  richDoc={richDoc} setRichDoc={setRichDoc}/>  
           </div>
         </div>
           <hr/>  

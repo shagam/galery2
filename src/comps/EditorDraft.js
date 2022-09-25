@@ -30,7 +30,7 @@ function DraftEditor (props) {
 
 const emptyState = EditorState.createEmpty();
 // const content = EditorState.createWithContent("Hellow")
-const [editorState, setEditorState] = useState (EditorState.createEmpty())
+const [editorState, setEditorState] = useState (props.richDoc !== '' || props.richDoc === undefined? props.richDoc : EditorState.createEmpty())
 
 // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
 
@@ -60,19 +60,22 @@ try {
   // console.log (editorState.getCurrentContent())
 
   function onEditorStateChange (editorState_) {
-    const rawContentState = convertToRaw(editorState_);
-    const contentState = editorState.getCurrentContent();
-    console.log('content state', convertToRaw(contentState));
-    
-    const html = draftToHtml (convertToRaw (editorState_.getCurrentContent()));
-    console.log (html)
-    const draft = htmlToDraft(html)
-
+    // if (editorState_) {
+    //   const rawContentState = convertToRaw(editorState_);
+    //   const contentState = editorState.getCurrentContent();
+    //   console.log('content state', convertToRaw(contentState));
+      
+    //   const html = draftToHtml (convertToRaw (editorState_.getCurrentContent()));
+    //   console.log (html)
+    //   const draft = htmlToDraft(html)
+    //   console.log (draft)
+    // }
 
     // console.log (draftToHtml)
      setEditorState (editorState_)
+     props.setRichDoc(editorState_)
 
-     console.log (draft)
+
 
     // props.setEditorState(editorState)
   };
@@ -90,9 +93,9 @@ try {
 
       </div>
       <hr/>
-      <div> 
-        <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>
-      </div>
+      {/* <div> 
+        {editorState && <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>}
+      </div> */}
 
       {/* <div>
         {draftToHtml (convertToRaw (editorState.getCurrentContent()))}
