@@ -7,7 +7,7 @@
 
 
 
-import React, { } from 'react'
+import React, {useState  } from 'react'
 // Component  Function
 import { convertToRaw, convertFromRaw, EditorState, convertFromHTML} from 'draft-js';
 import draftToHtml from 'draftjs-to-html'
@@ -16,14 +16,11 @@ import htmlToDraft from 'html-to-draftjs'
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useState } from 'react';
 
 
 function DraftEditor (props) {
 
-  const sampleMarkup =
-  '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
-  '<a href="http://www.facebook.com">Example link</a>';
+
 
   // const [editorState, setEditorState] = useState({
   //   editorState: EditorState.createWithContent(
@@ -31,6 +28,8 @@ function DraftEditor (props) {
   //   ),
   // });
 
+const emptyState = EditorState.createEmpty();
+// const content = EditorState.createWithContent("Hellow")
 const [editorState, setEditorState] = useState (EditorState.createEmpty())
 
 // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
@@ -39,9 +38,11 @@ try {
 
   // const stat = EditorState.getCurrentContent()
 
-  const contentState = draftToHtml (editorState)
+  // const contentState = draftToHtml (editorState)
   // const cotentState = convertToRaw (editorState)
-
+  const sampleMarkup =
+  '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
+  '<a href="http://www.facebook.com">Example link</a>';
   const blocksFromHTML = convertFromHTML(sampleMarkup);
 
 } catch (e) {console.log (e)}
@@ -55,19 +56,24 @@ try {
   // );
 
 
-  // htmlToDraft('<p>abcd</p>')
+  const draft1 = htmlToDraft('<p>abcd</p>')
   // console.log (editorState.getCurrentContent())
 
   function onEditorStateChange (editorState_) {
-    
+    const rawContentState = convertToRaw(editorState_);
     const contentState = editorState.getCurrentContent();
     console.log('content state', convertToRaw(contentState));
-    setEditorState (editorState_);
     
-    console.log (draftToHtml (convertToRaw (editorState_.getCurrentContent())))
+    const html = draftToHtml (convertToRaw (editorState_.getCurrentContent()));
+    console.log (html)
+    const draft = htmlToDraft(html)
+
 
     // console.log (draftToHtml)
-    setEditorState (editorState_)
+     setEditorState (editorState_)
+
+     console.log (draft)
+
     // props.setEditorState(editorState)
   };
 
