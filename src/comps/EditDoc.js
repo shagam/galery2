@@ -7,7 +7,7 @@ import { Alert } from 'react-bootstrap'
 
 import { useAuth } from '../contexts/AuthContext';
 import {getDate} from './Date' 
-import Editor from "./Editor";
+import EditorDraft from "./EditorDraft";
 import { EditorState, } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs'
 
@@ -133,7 +133,7 @@ return (
           </div>
 
           <div style={{ 'width': '40vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
-             <Editor  draftState={draftState} setDraftState={setDraftState}/>  
+             <EditorDraft  draftState={draftState} setDraftState={setDraftState}/>  
           </div>
         </div>
           <hr/>  
