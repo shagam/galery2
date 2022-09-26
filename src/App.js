@@ -44,6 +44,8 @@ function App() {
     {gallery: "dina", name: "Dina Goldstein", email: adminsEmail.dina},
     {gallery: "test",  name: "test", email: adminsEmail.eli},
   ]
+
+  const adminId = 0;
     const categoryList =['', 'Landscape', 'Building', 'Fabrique','stickers','fruits', 'Other']
 
   return (
@@ -69,23 +71,23 @@ function App() {
                     <Route path="/forgotPassword" element={<ForgotPassword />}/>
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
-                    <Route path="/" element={<ImageGrid gallery={admins[0].gallery} 
-                    name={admins[0].name} adminEmail={admins[0].email} category={categoryList[0]} />} />
+                    <Route path="/" element={<ImageGrid gallery={admins[adminId].gallery} 
+                    name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[0]} />} />
 
-                    <Route path="/Landscape" element={<ImageGrid  gallery={admins[1].gallery}
-                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[1]}/>}/>                    
+                    <Route path="/Landscape" element={<ImageGrid  gallery={admins[adminId].gallery}
+                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[1]}/>}/>                    
                     
-                    <Route path="/Building" element={<ImageGrid  gallery={admins[1].gallery}
-                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[2]}/>}/> 
+                    <Route path="/Building" element={<ImageGrid  gallery={admins[adminId].gallery}
+                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[2]}/>}/> 
                     
-                    <Route path="/Fabrique" element={<ImageGrid  gallery={admins[1].gallery}
-                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[3]}/>}/> 
+                    <Route path="/Fabrique" element={<ImageGrid  gallery={admins[adminId].gallery}
+                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[3]}/>}/> 
                     
-                    <Route path="/Stickers" element={<ImageGrid  gallery={admins[1].gallery}
-                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[4]}/>}/> 
+                    <Route path="/Stickers" element={<ImageGrid  gallery={admins[adminId].gallery}
+                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[4]}/>}/> 
                     
-                    <Route path="/Fruits" element={<ImageGrid  gallery={admins[1].gallery}
-                     name={admins[1].name} adminEmail={admins[1].email} category={categoryList[5]}/>}/> 
+                    <Route path="/Fruits" element={<ImageGrid  gallery={admins[adminId].gallery}
+                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[5]}/>}/> 
 
                     <Route path="/dina_cv" element={<DinaCV />}/>                    
                     <Route path="/exibitions" element={<Exibitions />}/>  
