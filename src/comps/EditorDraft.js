@@ -16,6 +16,7 @@ import htmlToDraft from 'html-to-draftjs'
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { initializeAuth } from 'firebase/auth';
 
 
 function DraftEditor (props) {
@@ -30,7 +31,13 @@ function DraftEditor (props) {
 
 const emptyState = EditorState.createEmpty();
 // const content = EditorState.createWithContent("Hellow")
-const [editorState, setEditorState] = useState (props.richDoc !== '' || props.richDoc === undefined? props.richDoc : EditorState.createEmpty())
+
+const init = props.richDoc !== '' || props.richDoc === undefined? props.richDoc : EditorState.createEmpty();
+
+if (init) {
+  console.log (draftToHtml (convertToRaw (init.getCurrentContent())))
+}
+const [editorState, setEditorState] = useState (init);
 
 // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
 
@@ -71,9 +78,8 @@ try {
     //   console.log (draft)
     // }
 
-    // console.log (draftToHtml)
-     setEditorState (editorState_)
-     props.setRichDoc(editorState_)
+    setEditorState (editorState_)
+    props.setRichDoc(editorState_)
 
 
 
@@ -93,9 +99,10 @@ try {
 
       </div>
       <hr/>
-      {/* <div> 
+      <div> 
         {editorState && <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>}
-      </div> */}
+        {/* {console.log (draftToHtml (convertToRaw (editorState.getCurrentContent())))} */}
+      </div>
 
       {/* <div>
         {draftToHtml (convertToRaw (editorState.getCurrentContent()))}
