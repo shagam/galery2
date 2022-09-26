@@ -16,7 +16,7 @@ import htmlToDraft from 'html-to-draftjs'
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { initializeAuth } from 'firebase/auth';
+// import { initializeAuth } from 'firebase/auth';
 
 
 function DraftEditor (props) {
@@ -35,7 +35,10 @@ function DraftEditor (props) {
   var init1;
   if (LOG && init) { 
     const initContents = (init.getCurrentContent());
-    const init1 = EditorState.createWithContent(initContents)
+    // console.log (initContents)
+    const raw = convertToRaw (init.getCurrentContent());
+    const contents = convertFromRaw (raw)
+    const init1 = EditorState.createWithContent(contents)
     console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
   }
   const [editorState, setEditorState] = useState (init1);
