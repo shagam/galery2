@@ -22,55 +22,40 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 function DraftEditor (props) {
 
   const LOG = true;
-  // const [editorState, setEditorState] = useState({
-  //   editorState: EditorState.createWithContent(
-  //     convertFromRaw(sampleMarkup),
-  //   ),
-  // });
 
-  const emptyState = EditorState.createEmpty();
+
   // const content = EditorState.createWithContent("Hellow")
 
-  const html = props.richDoc;
-
+  var html = props.richDoc;
+  if (html === undefined || html === "") {
+    html = '<p></p>';  // empty html
+    // const emptyState = EditorState.createEmpty();
+    // const raw = convertToRaw (emptyState.getCurrentContent())
+    // const html =  draftToHtml (raw)
+  }
     // build editorState from html
     console.log (html)
     const blocksFromHtml = htmlToDraft(html);
     const { contentBlocks, entityMap } = blocksFromHtml;
     const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
     const editorState_ = EditorState.createWithContent(contentState);
-
-    // const initContents = (init.getCurrentContent());
-    // // console.log (initContents)
-    // const raw = convertToRaw (init.getCurrentContent());
-    // const contents = convertFromRaw (raw)
-    // const html =  draftToHtml (contents)
-    // const draft = htmlToDraft(html)
-
-
-    // const init1 = EditorState.createWithContent(contents)
     // if (LOG)
-    //   console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
+    //   console.log ('EditorState:', html)
     
-
-
-
   const [editorState, setEditorState] = useState (EditorState.createWithContent(editorState_.getCurrentContent()));
-
 
   // console.log (editorState.getCurrentContent())
 
   function onEditorStateChange (editorState_) {
 
     const raw = convertToRaw (editorState_.getCurrentContent())
-    // const contents = convertFromRaw (raw)
     const html =  draftToHtml (raw)
 
     setEditorState (editorState_)
     props.setRichDoc(html)
 
-    if (LOG)
-    console.log ('EditorState:', draftToHtml (convertToRaw (editorState_.getCurrentContent())))
+    if (LOG && false)
+      console.log ('EditorState:', draftToHtml (convertToRaw (editorState_.getCurrentContent())))
   };
 
   return (
@@ -88,7 +73,7 @@ function DraftEditor (props) {
       <hr/>
       <div> 
         {editorState && <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>}
-        {/* {console.log (draftToHtml (convertToRaw (editorState.getCurrentContent())))} */}
+        {/* {console.log (draftToHtml (convertToRaw (editorState.getCurrentContent())))*/}
       </div>
 
       {/* <div>
