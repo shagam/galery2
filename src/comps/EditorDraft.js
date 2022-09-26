@@ -46,7 +46,7 @@ function DraftEditor (props) {
     if (LOG)
       console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
 
-  const [editorState, setEditorState] = useState (init1);
+  const [editorState, setEditorState] = useState (EditorState.createEmpty());
 
   // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
 
@@ -85,13 +85,18 @@ function DraftEditor (props) {
     //   console.log (draft)
     // }
 
-    setEditorState (editorState_)
     // props.setRichDoc (convertToRaw (editorState_.getCurrentContent()))
+
+    const raw = convertToRaw (editorState_.getCurrentContent())
+    const contents = convertFromRaw (raw)
+    const html =  draftToHtml (raw)
+    // props.setRichDoc(html)
+    // props.setEditorState(editorState)
+    setEditorState (editorState_)
     props.setRichDoc(editorState_)
 
-
-
-    // props.setEditorState(editorState)
+    if (LOG)
+    console.log ('EditorState:', draftToHtml (convertToRaw (editorState_.getCurrentContent())))
   };
 
   return (
