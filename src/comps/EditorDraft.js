@@ -38,6 +38,8 @@ function DraftEditor (props) {
     // console.log (initContents)
     const raw = convertToRaw (init.getCurrentContent());
     const contents = convertFromRaw (raw)
+    const html =  draftToHtml (contents)
+    const draft = htmlToDraft(html)
     const init1 = EditorState.createWithContent(contents)
     console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
   }
