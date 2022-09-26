@@ -9,7 +9,7 @@
 
 import React, {useState  } from 'react'
 // Component  Function
-import { convertToRaw, convertFromRaw, EditorState, convertFromHTML} from 'draft-js';
+import { convertToRaw, convertFromRaw, EditorState, convertFromHTML, ContentState, htmlToDraftBlocks} from 'draft-js';
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
 
@@ -33,18 +33,31 @@ function DraftEditor (props) {
 
   const init = props.richDoc;
 
- 
-    const initContents = (init.getCurrentContent());
-    // console.log (initContents)
-    const raw = convertToRaw (init.getCurrentContent());
-    const contents = convertFromRaw (raw)
-    const html =  draftToHtml (contents)
-    const draft = htmlToDraft(html)
+  
+    // const initContents = (init.getCurrentContent());
+    // // console.log (initContents)
+    // const raw = convertToRaw (init.getCurrentContent());
+    // const contents = convertFromRaw (raw)
+    // const html =  draftToHtml (contents)
+    // const draft = htmlToDraft(html)
 
 
-    const init1 = EditorState.createWithContent(contents)
-    if (LOG)
-      console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
+    // const init1 = EditorState.createWithContent(contents)
+    // if (LOG)
+    //   console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
+
+      const sampleMarkup =
+      '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
+      '<a href="http://www.facebook.com">Example link</a>';
+    
+    const blocksFromHTML = convertFromHTML(sampleMarkup);
+    const state = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap,
+    );
+    
+    // EditorState.createWithContent(state)
+
 
   const [editorState, setEditorState] = useState (EditorState.createEmpty());
 
@@ -93,7 +106,7 @@ function DraftEditor (props) {
     // props.setRichDoc(html)
     // props.setEditorState(editorState)
     setEditorState (editorState_)
-    props.setRichDoc(editorState_)
+    props.setRichDoc(html)
 
     if (LOG)
     console.log ('EditorState:', draftToHtml (convertToRaw (editorState_.getCurrentContent())))

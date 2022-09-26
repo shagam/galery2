@@ -61,6 +61,10 @@ export const IMAGE_COLUMNS = [
     Footer: 'user',    
     accessor: 'user',
   },
-  
+  {
+    Header: 'richDoc',
+    Footer: 'richDoc',    
+    accessor: 'richDoc',
+  },
  
 ]

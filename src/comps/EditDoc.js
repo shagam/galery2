@@ -94,9 +94,8 @@ const  EditDoc = (props) => {
         var richDoc_ = richDoc;
         if (richDoc_ === undefined && props.editDoc.richDoc !== undefined &&  props.editDoc.richDoc !== '')
         richDoc_ = props.editDoc.richDoc   // copy old value
-        else
-        richDoc_ = '';
-
+        // else
+        // richDoc_ = '';
 
         // delete doc
         var imageDoc = doc(db, props.gallery, props.editDoc.id);
