@@ -22,7 +22,7 @@ const  EditDoc = (props) => {
   const [technique, setTechnique] = useState(props.editDoc.technique);
   const [price, setPrice] = useState(props.editDoc.price);
   const [year, setYear] = useState(props.editDoc.price);
-  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc ? props.editDoc.richDoc : EditorState.createEmpty());
+  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc !== '' && props.editDoc.richDoc !== undefined ? props.editDoc.richDoc : EditorState.createEmpty());
 
 
   const [error, setError] = useState ();
@@ -92,7 +92,7 @@ const  EditDoc = (props) => {
           year_ = props.editDoc.year   // copy old value
 
         var richDoc_ = richDoc;
-        if (richDoc_ === undefined && props.editDoc.richDoc !== undefined)
+        if (richDoc_ === undefined && props.editDoc.richDoc !== undefined &&  props.editDoc.richDoc !== '')
         richDoc_ = props.editDoc.richDoc   // copy old value
         else
         richDoc_ = '';
