@@ -21,38 +21,35 @@ import { initializeAuth } from 'firebase/auth';
 
 function DraftEditor (props) {
 
-
-
+  const LOG = true;
   // const [editorState, setEditorState] = useState({
   //   editorState: EditorState.createWithContent(
   //     convertFromRaw(sampleMarkup),
   //   ),
   // });
 
-const emptyState = EditorState.createEmpty();
-// const content = EditorState.createWithContent("Hellow")
+  const emptyState = EditorState.createEmpty();
+  // const content = EditorState.createWithContent("Hellow")
 
-const init = props.richDoc !== '' || props.richDoc === undefined? props.richDoc : EditorState.createEmpty();
+  const init = props.richDoc !== '' || props.richDoc === undefined? props.richDoc : EditorState.createEmpty();
 
-if (init) {
-  console.log (draftToHtml (convertToRaw (init.getCurrentContent())))
-}
-const [editorState, setEditorState] = useState (init);
+  if (LOG && init) {
+    console.log ('EditorState:', draftToHtml (convertToRaw (init.getCurrentContent())))
+  }
+  const [editorState, setEditorState] = useState (init);
 
-// EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
+  // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
 
-try {  
+  try {  
 
-  // const stat = EditorState.getCurrentContent()
+    // const contentState = draftToHtml (editorState)
+    // const cotentState = convertToRaw (editorState)
+    const sampleMarkup =
+    '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
+    '<a href="http://www.facebook.com">Example link</a>';
+    const blocksFromHTML = convertFromHTML(sampleMarkup);
 
-  // const contentState = draftToHtml (editorState)
-  // const cotentState = convertToRaw (editorState)
-  const sampleMarkup =
-  '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
-  '<a href="http://www.facebook.com">Example link</a>';
-  const blocksFromHTML = convertFromHTML(sampleMarkup);
-
-} catch (e) {console.log (e)}
+  } catch (e) {console.log (e)}
   // const createFromBlockArray(
   //   blocks: Array<ContentBlock>,
   //   entityMap: ?OrderedMap
