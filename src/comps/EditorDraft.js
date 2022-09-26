@@ -31,18 +31,21 @@ function DraftEditor (props) {
   const emptyState = EditorState.createEmpty();
   // const content = EditorState.createWithContent("Hellow")
 
-  const init = props.richDoc !== '' || props.richDoc === undefined? props.richDoc : EditorState.createEmpty();
-  var init1;
-  if (LOG && init) { 
+  const init = props.richDoc;
+
+ 
     const initContents = (init.getCurrentContent());
     // console.log (initContents)
     const raw = convertToRaw (init.getCurrentContent());
     const contents = convertFromRaw (raw)
     const html =  draftToHtml (contents)
     const draft = htmlToDraft(html)
+
+
     const init1 = EditorState.createWithContent(contents)
-    console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
-  }
+    if (LOG)
+      console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
+
   const [editorState, setEditorState] = useState (init1);
 
   // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
@@ -83,6 +86,7 @@ function DraftEditor (props) {
     // }
 
     setEditorState (editorState_)
+    // props.setRichDoc (convertToRaw (editorState_.getCurrentContent()))
     props.setRichDoc(editorState_)
 
 

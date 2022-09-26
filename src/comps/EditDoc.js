@@ -9,7 +9,7 @@ import { useAuth } from '../contexts/AuthContext';
 import {getDate} from './Date' 
 import EditorDraft from "./EditorDraft";
 import { EditorState, } from 'draft-js';
-import htmlToDraft from 'html-to-draftjs'
+//import htmlToDraft from 'html-to-draftjs'
 
 const  EditDoc = (props) => {
   const { currentUser } = useAuth();
@@ -22,13 +22,13 @@ const  EditDoc = (props) => {
   const [technique, setTechnique] = useState(props.editDoc.technique);
   const [price, setPrice] = useState(props.editDoc.price);
   const [year, setYear] = useState(props.editDoc.price);
-  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc);
+  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc ? props.editDoc.richDoc : EditorState.createEmpty());
 
 
   const [error, setError] = useState ();
 
 
-  const [draftState, setDraftState] = useState (EditorState.createEmpty())
+  // const [draftState, setDraftState] = useState (EditorState.createEmpty())
 
   const { admin } = useAuth();
   // const [draftState, setDraftState] = useState (EditorState.createWithContent(htmlToDraft('<p>abcd</p>')))
