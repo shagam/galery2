@@ -22,7 +22,9 @@ const  EditDoc = (props) => {
   const [technique, setTechnique] = useState(props.editDoc.technique);
   const [price, setPrice] = useState(props.editDoc.price);
   const [year, setYear] = useState(props.editDoc.price);
-  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc !== '' && props.editDoc.richDoc !== undefined ? props.editDoc.richDoc : EditorState.createEmpty());
+  const [richDoc, setRichDoc] = useState(props.editDoc.richDoc !== '' && props.editDoc.richDoc !== undefined ?  props.editDoc.richDoc :
+   '<p></p>'); 
+  //  EditorState.createEmpty());
 
 
   const [error, setError] = useState ();
