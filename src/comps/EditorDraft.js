@@ -31,9 +31,15 @@ function DraftEditor (props) {
   const emptyState = EditorState.createEmpty();
   // const content = EditorState.createWithContent("Hellow")
 
-  const init = props.richDoc;
+  const html = props.richDoc;
 
-  
+    // build editorState from html
+    console.log (html)
+    const blocksFromHtml = htmlToDraft(html);
+    const { contentBlocks, entityMap } = blocksFromHtml;
+    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    const editorState_ = EditorState.createWithContent(contentState);
+
     // const initContents = (init.getCurrentContent());
     // // console.log (initContents)
     // const raw = convertToRaw (init.getCurrentContent());
@@ -45,66 +51,21 @@ function DraftEditor (props) {
     // const init1 = EditorState.createWithContent(contents)
     // if (LOG)
     //   console.log ('EditorState:', draftToHtml (convertToRaw (init1.getCurrentContent())))
-
-      const sampleMarkup =
-      '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
-      '<a href="http://www.facebook.com">Example link</a>';
     
-    const blocksFromHTML = convertFromHTML(sampleMarkup);
-    const state = ContentState.createFromBlockArray(
-      blocksFromHTML.contentBlocks,
-      blocksFromHTML.entityMap,
-    );
-    
-    // EditorState.createWithContent(state)
 
 
-  const [editorState, setEditorState] = useState (EditorState.createEmpty());
 
-  // EditorState.createWithContent(htmlToDraft('<p>abcd</p>'))
-
-  try {  
-
-    // const contentState = draftToHtml (editorState)
-    // const cotentState = convertToRaw (editorState)
-    const sampleMarkup =
-    '<b>Bold text</b>, <i>Italic text</i><br/ ><br />' +
-    '<a href="http://www.facebook.com">Example link</a>';
-    const blocksFromHTML = convertFromHTML(sampleMarkup);
-
-  } catch (e) {console.log (e)}
-  // const createFromBlockArray(
-  //   blocks: Array<ContentBlock>,
-  //   entityMap: ?OrderedMap
-  // ): 
-  // const state = ContentState.createFromBlockArray(
-  //   blocksFromHTML.contentBlocks,
-  //   blocksFromHTML.entityMap,
-  // );
+  const [editorState, setEditorState] = useState (EditorState.createWithContent(editorState_.getCurrentContent()));
 
 
-  const draft1 = htmlToDraft('<p>abcd</p>')
   // console.log (editorState.getCurrentContent())
 
   function onEditorStateChange (editorState_) {
-    // if (editorState_) {
-    //   const rawContentState = convertToRaw(editorState_);
-    //   const contentState = editorState.getCurrentContent();
-    //   console.log('content state', convertToRaw(contentState));
-      
-    //   const html = draftToHtml (convertToRaw (editorState_.getCurrentContent()));
-    //   console.log (html)
-    //   const draft = htmlToDraft(html)
-    //   console.log (draft)
-    // }
-
-    // props.setRichDoc (convertToRaw (editorState_.getCurrentContent()))
 
     const raw = convertToRaw (editorState_.getCurrentContent())
-    const contents = convertFromRaw (raw)
+    // const contents = convertFromRaw (raw)
     const html =  draftToHtml (raw)
-    // props.setRichDoc(html)
-    // props.setEditorState(editorState)
+
     setEditorState (editorState_)
     props.setRichDoc(html)
 
