@@ -3,7 +3,7 @@
 // https://draftjs.org/docs/api-reference-content-state
 // https://www.folkstalk.com/2022/09/how-to-convert-draftjs-content-to-html-with-code-examples.html
 //https://stackoverflow.com/questions/68519755/how-to-set-initial-editor-state-in-react-draft-wysiwyg
-
+//https://reactrocket.com/post/draft-js-persisting-content/
 
 
 
@@ -72,7 +72,7 @@ function DraftEditor (props) {
       </div>
       <hr/>
       <div> 
-        {editorState && <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>}
+        {/* {editorState && <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>} */}
         {/* {console.log (draftToHtml (convertToRaw (editorState.getCurrentContent())))*/}
       </div>
 
