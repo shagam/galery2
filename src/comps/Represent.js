@@ -59,7 +59,7 @@ export function Represent (props) {
 
   return (
     <div>
-      <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Image Category </div> 
+      <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Category </div> 
       <br></br>     
 
       <div style={img_grid}>
