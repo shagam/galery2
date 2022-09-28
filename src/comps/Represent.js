@@ -52,16 +52,15 @@ export function Represent (props) {
     /* margin: 20px auto; */
     display: 'grid',
     // 'grid-template-columns': '1fr 1fr 1fr',
-    'gridTemplateColumns':  '1fr 1fr ' ,
+    'gridTemplateColumns':  '1fr 1fr 1fr' ,
     'gridGap': '10px'
     /* justify-content: start; */
   }
 
   return (
     <div>
-      <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Category </div> 
-      <br></br>     
-
+      <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Category </div>    
+      {/* <hr/>        <hr/> */}
       <div style={img_grid}>
         {repDocs && repDocs.map(doc => {
 
@@ -72,8 +71,12 @@ export function Represent (props) {
       
             <div>
               <Link to={link}   >
-                <img src={fileUrl} alt="categoryImg" />
-                <div style= {{'fontSize':'3vw' }}> {category}</div>
+               <div  style={{ zoom: '70%', margin: '30px'}}>
+                  <div style= {{'fontSize':'3vw' }}> {category}</div>
+                  <br></br> 
+                  <img src={fileUrl} alt="categoryImg" />
+
+                </div>
               </Link>
 
             </div>
