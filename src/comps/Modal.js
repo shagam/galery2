@@ -58,18 +58,25 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
   }
 
   const fontSizeStyle = userAgentMobile ? '1.2em' : '1.7em'
+  const horizontal = userAgentMobile ? 'flex' : 'flex'
+
 
   return (
 
     <div className="backdrop" onClick={focusClick}>
       {error && <div className='error'>{error}</div>}
-      <div  style={{display:'flex'}}>
+      <div  style={{display:'flex', fontSize:`${fontSizeStyle}`, marginTop: '10vh'}}>
       
         <div>
           <img style={{zoom:'80%'}} src={selectedDoc.fileUrl} alt="enlarged pic" />
         </div>
 
-        <div style={{ fontSize:`${fontSizeStyle}`, marginTop: '10vh'}}>
+        <div style={{}}>
+  
+          <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+             <EditorReadOnly  richDoc={selectedDoc.richDoc} />  
+          </div>
+
         {/* <div style={{display:'flex', fontSize:'1.3em'  }}> */}
           <hr/> 
           <div  style= {{color:'magenta' }} >  {selectedDoc.title} &nbsp;  &nbsp;   </div>
@@ -86,21 +93,6 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
       
           <hr/>
 
-          <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
-             <EditorReadOnly  richDoc={selectedDoc.richDoc} />  
-          </div>
-
-
-          {/* <hr/>
-          <textarea rows="12" cols="35" name = "description" 
-           defaultValue={selectedDoc.description}  placeholder={selectedDoc.description}
-          >
-
-          </textarea> */}
-
-          <hr/>
-
-    
         </div>
         {/* <hr/>         <hr/>      <hr/> */}
         </div>
@@ -108,12 +100,6 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
         {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery} setSelectedDoc={setSelectedDoc}/>}
 
         {/* <Editor/> */}
-
-        {/* <textarea rows="5" cols="100" name = "description"  readOnly
-            //  defaultValue={selectedDoc.description}
-            placeholder={selectedDoc.description} 
-            >
-        </textarea>  */}
 
     </div>
   )
