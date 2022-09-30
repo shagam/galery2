@@ -10,7 +10,7 @@ import htmlToDraft from 'html-to-draftjs'
 
 function EditorReadOnly (props) {
 
-  const LOG = true;
+  const LOG = false;
 
   var html = props.richDoc;
   if (html === undefined || html === '')
