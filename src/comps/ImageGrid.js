@@ -114,6 +114,14 @@ const ImageGrid = (props) => {
 
   
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
+  
+  
+  function fontSize (s) {
+    if (userAgentMobile)
+      return s*7 + 'vw'
+    else
+      return s + 'vw';
+  }
 
   var img_grid  = {
     width: '95vw',
@@ -212,8 +220,8 @@ const ImageGrid = (props) => {
                     <iframe src={doc.fileUrl} title={fileName} />   }
                 </div>
                 <div  style_={{display:'flex'}}>
-                  <div style={{color:'magenta', 'fontSize':'1.8vw'}}> {title}  &nbsp;  </div>
-                  <div style= {{'fontSize':'1.6vw' }}> ({category}, {technique})</div>
+                  <div style={{color:'magenta', 'fontSize': fontSize(1.8)}}> {title}  &nbsp;  </div>
+                  <div style= {{'fontSize': fontSize(1.6) }}> ({category}, {technique})</div>
                 </div>
               </div> 
             })}
