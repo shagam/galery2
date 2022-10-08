@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
+import MobileContext from './MobileContext';
 
 export function Represent (props) {
   const [repDocs, setRepDocs] = useState()
   const [category, setCategory] = useState()
+  const { userAgentMobile } = MobileContext();
+
 
   const LOG = false;
   function collectReps () {
@@ -45,6 +48,14 @@ export function Represent (props) {
   }
   });
 
+
+  function fontSize (s) {
+    if (userAgentMobile)
+      return s*7 + 'vw'
+    else
+      return s + 'vw';
+  }
+
   var img_grid  = {
     width: '30vw',
     'backgroundSize': 'cover',
@@ -73,7 +84,7 @@ export function Represent (props) {
               <Link to={link}   >
                <div  style={{ zoom: '50%', margin: '30px'}}>
 
-                  <div style= {{'fontSize':'7vw' }}> {category}</div>
+                  <div style= {{'fontSize': fontSize(4) }}> {category}</div>
                   <br></br> 
                   <img src={fileUrl} alt="categoryImg" />
 
