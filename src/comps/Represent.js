@@ -71,8 +71,9 @@ export function Represent (props) {
       
             <div>
               <Link to={link}   >
-               <div  style={{ zoom: '70%', margin: '30px'}}>
-                  <div style= {{'fontSize':'3vw' }}> {category}</div>
+               <div  style={{ zoom: '50%', margin: '30px'}}>
+
+                  <div style= {{'fontSize':'7vw' }}> {category}</div>
                   <br></br> 
                   <img src={fileUrl} alt="categoryImg" />
 
