@@ -46,7 +46,7 @@ function App() {
   ]
 
   const adminId = 0;
-    const categoryList =['', 'Landscape', 'Building', 'Fabrique','stickers','fruits', 'Other']
+    const categoryList =['', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
 
   return (
     <div>
