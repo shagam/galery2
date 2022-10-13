@@ -42,7 +42,7 @@ export function MainRout () {
 
    const adminId = 0;
 
-  const picturesRef = collection(db, admins[0].gallery);
+  const picturesRef = collection(db, admins[adminId].gallery);
   const getPictures = async () => {
     try {
       let documents = [];
@@ -73,13 +73,14 @@ export function MainRout () {
 
 return (
   <div>
-  <h2 style={{color:'green'}}> &nbsp; Image Gallery  </h2>
-
-  {/* <div style={{display:'flex'}}> 
-    {currentUser && <div><strong>  {currentUser.email}</strong> </div> }
-    {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
-  </div> */}
-
+    <div style={{display:'flex'}}>
+      <h2 style={{color:'green'}}> &nbsp; Image Gallery &nbsp;&nbsp; </h2>
+      <h2><strong>{admins[adminId].name}</strong>  ({docs.length})  </h2>
+    </div>
+    <div style={{display:'flex'}}> 
+      {currentUser && <div><strong> &nbsp;&nbsp; {currentUser.email}</strong> </div> }
+      {admin && <div> &nbsp; <strong>(admin) </strong> </div>}
+  </div>
 
   <Container  className='d-flex align-items-left justify-content-left' style={{minHeight: "50vh", minWidth: "100%"}}  >
 
