@@ -1,12 +1,8 @@
 
 import React, { useState, useEffect } from "react";
 
-import { db } from '../firebaseConfig'
-// import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage"
-import {collection, getDocs} from "firebase/firestore";
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
-// import {Document, Page, pdgjs} from 'react-pdf';
 
 import UploadForm from './UploadForm'
 import Modal from "./Modal";
@@ -20,15 +16,12 @@ import { Represent } from "./Represent";
 import MobileContext from './MobileContext';
 // import MobileContext from './MobileContext';
 
-// import MobileContext from './MobileContext'
 
 const ImageGrid = (props) => {
-  const [docs, setDocs] = useState([]);
+
   const [docsFiltered, setDocsFiltered] = useState([]);
   // const [category, setCategory] = useState (props.category)
 
-
-  const picturesRef = collection(db, props.gallery);
   const [selectedDoc, setSelectedDoc] = useState (null)
   const { currentUser, admin } = useAuth();
   const [error, setError] = useState();
@@ -45,34 +38,7 @@ const ImageGrid = (props) => {
     setEditDoc(editDoc);
   }
 
-  const getPictures = async () => {
-    try {
-      let documents = [];
-      const unsub =  await getDocs (picturesRef);
-
-      for (let i = 0; i < unsub.docs.length; i++) {
-        const doc = unsub.docs[i].data();
-        if (doc.fileName === undefined)  // empty document?
-          continue;
-        const id = unsub.docs[i].id;
-        documents.push({...doc, id: id})
-      }
-      console.log ('getPictuires ', documents.length)
-      setDocs (documents);
-      // setAllDocs (documents);
-      console.log (documents);
-      return unsub;
-    } catch (e) {setError(e.message) && console.log (e)}
-
-  }
-
-  // eslint-disable-next-line
-  
-  useEffect (() => { // eslint-disable-line
-    getPictures ();  // eslint-disable-line
-  }, []);  // eslint-disable-line
-
-  useEffect (() => {
+   useEffect (() => {
   
     function filterCase (str) {
       if (str === undefined || str === null)
@@ -100,17 +66,17 @@ const ImageGrid = (props) => {
   
     // console.log (category)
     var list = [];
-    for (let i = 0; i < docs.length; i++) {
+    for (let i = 0; i < props.docs.length; i++) {
       // filter according to globalFilter && category
-      if (! filter(docs[i]))
+      if (! filter(props.docs[i]))
         continue;
       
-      if (props.category === undefined || props.category === 'all' || props.category === docs[i].category)
-        list.push(docs[i]);
+      if (props.category === undefined || props.category === 'all' || props.category === props.docs[i].category)
+        list.push(props.docs[i]);
     }
     setDocsFiltered(list);
 
-  }, [docs, globalFilter, props.category]);
+  }, [props.docs, globalFilter, props.category]);
 
   
   const tableFlagChange = () => {setTableFlag (! tableFlag)}
@@ -161,7 +127,7 @@ const ImageGrid = (props) => {
   return (
     <div>
       <div style={{display:'flex'}}>
-        <h2><strong>{props.name}</strong>  ({docs.length})  </h2>
+        <h2><strong>{props.name}</strong>  ({props.docs.length})  </h2>
         {/* <div style={{color:'blue', 'fontSize':{emailFontSize}, 'marginTop': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div>  */}
       </div>
 
@@ -184,11 +150,11 @@ const ImageGrid = (props) => {
 
         <hr/>
 
-        {admin && ! selectedDoc && <UploadForm getPictures = {getPictures} gallery = {props.gallery}/> }
+        {admin && ! selectedDoc && <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
 
         {error && <div className='error'>{error}</div>} 
 
-        {!editDoc && !selectedDoc && props.category=== ''  && <Represent docs={docs}/>}
+        {!editDoc && !selectedDoc && props.category=== ''  && <Represent docs={props.docs}/>}
 
         {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
 
@@ -228,13 +194,13 @@ const ImageGrid = (props) => {
           </div>
         </div>}
 
-        { tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} />}
+        { tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} />}
 
       </div>}
 
-      {selectedDoc && ! editDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
+      {selectedDoc && ! editDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
 
-      {editDoc && <EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
+      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
 
       <hr/>  
     </div>
