@@ -71,7 +71,15 @@ function App() {
                     <Route path="/forgotPassword" element={<ForgotPassword />}/>
                     <Route path="/update-profile" element={<UpdateProfile  />}/>
 
-                    <Route path="/" element={<ImageGrid gallery={admins[adminId].gallery} 
+                    {categoryList.map ((cat) => {
+                      const rt = "/" + cat;
+                      return (
+                        <Route key={cat} path={rt} element={<ImageGrid gallery={admins[adminId].gallery} 
+                        name={admins[adminId].name} adminEmail={admins[adminId].email} category={cat} />} />
+                      )
+                    })}
+
+                    {/* <Route path="/" element={<ImageGrid gallery={admins[adminId].gallery} 
                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[0]} />} />
 
                     <Route path="/Landscape" element={<ImageGrid  gallery={admins[adminId].gallery}
@@ -87,7 +95,7 @@ function App() {
                      name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[4]}/>}/> 
                     
                     <Route path="/Fruits" element={<ImageGrid  gallery={admins[adminId].gallery}
-                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[5]}/>}/> 
+                     name={admins[adminId].name} adminEmail={admins[adminId].email} category={categoryList[5]}/>}/>  */}
 
                     <Route path="/dina_cv" element={<DinaCV />}/>                    
                     <Route path="/exibitions" element={<Exibitions />}/>  
