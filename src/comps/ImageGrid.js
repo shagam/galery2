@@ -202,8 +202,8 @@ const ImageGrid = (props) => {
           <hr/>
 
           <div style={{display:'flex', 'marginTop': '0.9vh'}}> 
-            <div style= {{color: 'magenta', fontSize:'5vw',  }}><strong> {props.category}  &nbsp;</strong> </div> 
-            { docsFiltered && <div style= {{color: 'red', fontSize:'5vw',  }}> &nbsp;  Click image to focus </div>}
+            <div style= {{color: 'red', fontSize:'4vw',  }}><strong> {props.category}  &nbsp;</strong> </div> 
+            { docsFiltered && <div style= {{ fontSize:'4vw',  }}> &nbsp;  Click an image to focus </div>}
           </div>
 
           <div  style={img_grid}>
