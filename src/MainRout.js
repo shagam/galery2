@@ -9,6 +9,7 @@ import { useAuth } from './contexts/AuthContext';
 
 import { Represent } from "./comps/Represent";
 import ImageGrid from './comps/ImageGrid';
+import Modal from "./comps/Modal";
 
 import Signup from './auth/Signup';
 import Dashboard from './auth/Dashboard'
@@ -26,6 +27,8 @@ export function MainRout () {
   const [error, setError] = useState();
   const categoryList =['', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
   const { currentUser, admin } = useAuth();
+  const [selectedDoc, setSelectedDoc] = useState (null)
+  const [editDoc, setEditDoc] = useState();
 
   const adminsEmail = {
     dina: process.env.REACT_APP_FIREBASE_dina,
@@ -104,6 +107,14 @@ return (
             name={admins[adminId].name} adminEmail={admins[adminId].email} category={cat} docs={docs} getPictures = {getPictures} />} />
           )
         })}
+
+        { docs.map ((doc) => {
+          const rt = '/' + doc.fileName;
+            return (
+              <Route key={doc.fileName} path={rt} element={<Modal selectedDoc = {doc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDocGallery={setEditDoc} />} />
+            )
+          })
+        }
 
         <Route path="/dina_cv" element={<DinaCV />}/>                    
         <Route path="/exibitions" element={<Exibitions />}/>  
