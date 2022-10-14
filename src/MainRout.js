@@ -104,14 +104,15 @@ return (
           const rt = "/" + cat;
           return (
             <Route key={cat} path={rt} element={<ImageGrid gallery={admins[adminId].gallery} 
-            name={admins[adminId].name} adminEmail={admins[adminId].email} category={cat} docs={docs} getPictures = {getPictures} />} />
+            name={admins[adminId].name} adminEmail={admins[adminId].email} category={cat} docs={docs} getPictures = {getPictures} 
+            selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
           )
         })}
 
         { docs.map ((doc) => {
           const rt = '/' + doc.fileName;
             return (
-              <Route key={doc.fileName} path={rt} element={<Modal selectedDoc = {doc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDocGallery={setEditDoc} />} />
+              <Route key={doc.fileName} path={rt} element={<Modal selectedDoc = {doc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
             )
           })
         }

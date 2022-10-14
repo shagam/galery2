@@ -22,12 +22,12 @@ const ImageGrid = (props) => {
   const [docsFiltered, setDocsFiltered] = useState([]);
   // const [category, setCategory] = useState (props.category)
 
-  const [selectedDoc, setSelectedDoc] = useState (null)
+  // const [selectedDoc, setSelectedDoc] = useState (null)
   const { currentUser, admin } = useAuth();
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
   const [tableFlag, setTableFlag] = useState(false);
-  const [editDoc, setEditDoc] = useState();
+  // const [editDoc, setEditDoc] = useState();
 
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
   const { userAgentMobile } = MobileContext();
@@ -35,7 +35,7 @@ const ImageGrid = (props) => {
   // const { userAgentMobile} = MobileContext();
   console.log (props.category)
   function setEditDoc_ (editDoc) {
-    setEditDoc(editDoc);
+    props.setEditDoc(editDoc);
   }
 
    useEffect (() => {
@@ -131,7 +131,7 @@ const ImageGrid = (props) => {
         {/* <div style={{color:'blue', 'fontSize':{emailFontSize}, 'marginTop': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div>  */}
       </div>
 
-      {! selectedDoc && <div>
+      {! props.selectedDoc && <div>
 
 
          <Link to="/dashboard" > DashBoard (Login)</Link>
@@ -147,7 +147,7 @@ const ImageGrid = (props) => {
 
         <hr/>
 
-        {admin && ! selectedDoc && <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
+        {admin && ! props.selectedDoc && <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
 
         {error && <div className='error'>{error}</div>} 
 
@@ -171,31 +171,36 @@ const ImageGrid = (props) => {
 
             {docsFiltered && docsFiltered.map(doc => {
               const {fileName, fileType, fileUrl, category, technique, size, year, title} = doc;
+              const link = '/' + doc.fileName;
               (size === undefined || year === undefined) && console.log (size,year)
               return <div key={fileName}>        
+                
+                {/* <Link to={link} onClick={() => props.setSelectedDoc(doc)}> choose</Link> */}
                 <div className="img-wrap" 
-                  onClick={() => setSelectedDoc(doc)} >
+                  onClick={() => props.setSelectedDoc(doc)} >
+                  {/* <Link to={link} > choose </Link> */}
                   {(fileType === 'image/jpeg' || fileType === 'image/png') &&
-                    <img src={fileUrl} alt={fileName} />}
-                  {doc.fileType === 'application/pdf' &&
-                    <iframe src={doc.fileUrl} title={fileName} />   }
+                        <img src={fileUrl} alt={fileName} />}
+                  {doc.fileType === 'application/pdf' && <iframe src={doc.fileUrl} title={fileName} />}
                 </div>
+
                 <div  style_={{display:'flex'}}>
                   <div style={{color:'magenta', 'fontSize': fontSize(1.8)}}> {title}  &nbsp;  </div>
                   <div style= {{'fontSize': fontSize(1.6) }}> ({category}, {technique})</div>
+                  {/* <Link to={link} > choose </Link> */}
                 </div>
               </div> 
             })}
           </div>
         </div>}
 
-        { tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} />}
+        { tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} />}
 
       </div>}
 
-      {selectedDoc && ! editDoc && <Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
+      {props.selectedDoc && ! props.editDoc && <Modal selectedDoc = {props.selectedDoc}  setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
 
-      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} gallery = {props.gallery} setSelectedDoc={setSelectedDoc}/>}
+      {props.editDoc && <EditDoc editDoc={props.editDoc} getPictures = {props.getPictures} setEditDoc={props.setEditDoc} gallery = {props.gallery} setSelectedDoc={props.setSelectedDoc}/>}
 
       <hr/>  
     </div>
