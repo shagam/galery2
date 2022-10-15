@@ -176,8 +176,8 @@ const ImageGrid = (props) => {
               return <div key={fileName}>        
                 
                 {/* <Link to={link} onClick={() => props.setSelectedDoc(doc)}> choose</Link> */}
-                {/* <Link to={'/modal'}  onClick={() => props.setSelectedDoc(doc)}> */}
-                <div className="img-wrap" onClick={() => props.setSelectedDoc(doc)}>
+                <Link to={'/modal'}  onClick={() => props.setSelectedDoc(doc)}>
+                <div className="img-wrap">
                   {(fileType === 'image/jpeg' || fileType === 'image/png') &&
                         <img src={fileUrl} alt={fileName} />}
                   {doc.fileType === 'application/pdf' && <iframe src={doc.fileUrl} title={fileName} />}
@@ -187,7 +187,7 @@ const ImageGrid = (props) => {
                   <div style={{color:'magenta', 'fontSize': fontSize(1.8)}}> {title}  &nbsp;  </div>
                   <div style= {{'fontSize': fontSize(1.6) }}> ({category}, {technique})</div>
                 </div>
-                {/* </Link> */}
+                </Link>
               </div> 
             })}
           </div>
@@ -197,7 +197,7 @@ const ImageGrid = (props) => {
 
       </div>}
 
-      {props.selectedDoc && ! props.editDoc && <Modal selectedDoc = {props.selectedDoc}  setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> }
+      {/* {props.selectedDoc && ! props.editDoc && <Modal selectedDoc = {props.selectedDoc}  setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> } */}
 
       {props.editDoc && <EditDoc editDoc={props.editDoc} getPictures = {props.getPictures} setEditDoc={props.setEditDoc} gallery = {props.gallery} setSelectedDoc={props.setSelectedDoc}/>}
 
