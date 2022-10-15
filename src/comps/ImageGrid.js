@@ -176,9 +176,8 @@ const ImageGrid = (props) => {
               return <div key={fileName}>        
                 
                 {/* <Link to={link} onClick={() => props.setSelectedDoc(doc)}> choose</Link> */}
-                <div className="img-wrap" 
-                  onClick={() => props.setSelectedDoc(doc)} >
-                  {/* <Link to={link} > choose </Link> */}
+                {/* <Link to={'/modal'}  onClick={() => props.setSelectedDoc(doc)}> */}
+                <div className="img-wrap" onClick={() => props.setSelectedDoc(doc)}>
                   {(fileType === 'image/jpeg' || fileType === 'image/png') &&
                         <img src={fileUrl} alt={fileName} />}
                   {doc.fileType === 'application/pdf' && <iframe src={doc.fileUrl} title={fileName} />}
@@ -187,8 +186,8 @@ const ImageGrid = (props) => {
                 <div  style_={{display:'flex'}}>
                   <div style={{color:'magenta', 'fontSize': fontSize(1.8)}}> {title}  &nbsp;  </div>
                   <div style= {{'fontSize': fontSize(1.6) }}> ({category}, {technique})</div>
-                  {/* <Link to={link} > choose </Link> */}
                 </div>
+                {/* </Link> */}
               </div> 
             })}
           </div>
