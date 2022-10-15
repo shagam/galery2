@@ -117,6 +117,9 @@ return (
           })
         }
 
+        <Route path={'/modal'} element={<Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}
+          getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
+
         <Route path="/dina_cv" element={<DinaCV />}/>                    
         <Route path="/exibitions" element={<Exibitions />}/>  
 
