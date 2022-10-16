@@ -37,7 +37,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
   }
   const focusClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
-      setSelectedDoc (null);
+      // setSelectedDoc (null);
     }
   } 
   
@@ -59,7 +59,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
       await deleteObject(imageRef);
       console.log ('delete success ', delDoc)
         // File deleted successfully 
-        setSelectedDoc (null)  
+        // setSelectedDoc (null)  
       getPictures();
       setError();
     } catch(e) {setError(e.message) && console.log(e)
@@ -96,7 +96,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
           <hr/>
           
           <div>
-            <Link to={cat} onClick={() => setSelectedDoc (null)}  >close</Link>
+            <Link to={cat} onClick={() => {}}  >close</Link>
             &nbsp;&nbsp;
 
             <Link to={'/editDoc'}  onClick={() => {}} >Edit</Link>
