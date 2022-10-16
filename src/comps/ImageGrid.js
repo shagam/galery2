@@ -135,7 +135,7 @@ const ImageGrid = (props) => {
         {/* <div style={{color:'blue', 'fontSize':{emailFontSize}, 'marginTop': '0.9vh'}}>&nbsp;&nbsp; {props.adminEmail}</div>  */}
       </div>
 
-      {! props.selectedDoc && <div>
+      {<div>
 
 
          <Link to="/dashboard" > DashBoard (Login)</Link>
