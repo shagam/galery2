@@ -10,6 +10,7 @@ import { useAuth } from './contexts/AuthContext';
 import { Represent } from "./comps/Represent";
 import ImageGrid from './comps/ImageGrid';
 import Modal from "./comps/Modal";
+import EditDoc from "./comps/EditDoc";
 
 import Signup from './auth/Signup';
 import Dashboard from './auth/Dashboard'
@@ -119,6 +120,10 @@ return (
 
         <Route path={'/modal'} element={<Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}
           getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
+
+
+        <Route path={'/editDoc'} element={<EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc}
+          gallery = {admins[adminId].gallery} setSelectedDoc={setSelectedDoc}/> }  />
 
         <Route path="/dina_cv" element={<DinaCV />}/>                    
         <Route path="/exibitions" element={<Exibitions />}/>  
