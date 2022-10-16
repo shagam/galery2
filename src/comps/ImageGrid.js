@@ -32,8 +32,10 @@ const ImageGrid = (props) => {
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
   const { userAgentMobile } = MobileContext();
 
+  const LOG = true;
+
   // const { userAgentMobile} = MobileContext();
-  console.log (props.category)
+  console.log ('ImageGrid:', props.category)
   function setEditDoc_ (editDoc) {
     props.setEditDoc(editDoc);
   }
@@ -74,6 +76,8 @@ const ImageGrid = (props) => {
       if (props.category === undefined || props.category === 'all' || props.category === props.docs[i].category)
         list.push(props.docs[i]);
     }
+    if (LOG)
+      console.log ('fitered:', list)
     setDocsFiltered(list);
 
   }, [props.docs, globalFilter, props.category]);
