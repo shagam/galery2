@@ -106,7 +106,7 @@ const  EditDoc = (props) => {
   const techList = ['', 'gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
 
   const cat = '/' + category; 
-
+  console.log (cat)
 
 // width:'1.2em', height:'1.5em'
 return (
@@ -177,9 +177,9 @@ return (
      </div>
 
      {/* ; */}
-     <Link to={'/'} onClick={() => {formHandler()}} >submit</Link>
+     <Link to={'/modal'} onClick={() => {formHandler()}} >submit</Link>
      &nbsp;&nbsp;
-     <Link to={'/'} onClick={() => {}}> abort</Link>
+     <Link to={'/modal'} onClick={() => {}}> abort</Link>
      <hr/>
 
 
