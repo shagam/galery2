@@ -17,14 +17,14 @@ import "bootstrap/dist/css//bootstrap.min.css"
 // }
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div>
    {/* <ReCAPTCHA
      sitekey={process.env.REACT_APP_RECAPTCHA}
      onChange={onChange}
    />, */}
 
     <App />
-  </React.StrictMode>,
+  </div>,
   document.getElementById('root')
 );
 

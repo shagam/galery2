@@ -14,6 +14,7 @@ import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import EditorReadOnly from "./EditorReadOnly";
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
+import { FaCat } from "react-icons/fa";
 
 
 const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
@@ -68,6 +69,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
   const fontSizeStyle = userAgentMobile ? '1.2em' : '1.7em'
   const horizontal = userAgentMobile ? 'flex' : 'flex'
   const cat = '/' + selectedDoc.category;
+  console.log (cat)
 
   return (
 
@@ -94,7 +96,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
           <hr/>
           
           <div>
-            <Link to={cat}  >close</Link>
+            <Link to={cat} onClick={() => setSelectedDoc (null)}  >close</Link>
             &nbsp;&nbsp;
 
             <Link to={'/editDoc'}  onClick={() => {}} >Edit</Link>

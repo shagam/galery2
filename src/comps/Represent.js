@@ -9,6 +9,9 @@ export function Represent (props) {
 
 
   const LOG = false;
+  if (LOG)
+    console.log ("Represent:", props.docs.length)
+
   function collectReps () {
     // collect all checkedBox reps
     var repsArray = [];
@@ -46,7 +49,7 @@ export function Represent (props) {
       console.log (props.docs.length)
     collectReps()
   }
-  });
+  }, [props.docs, LOG, repDocs]);
 
 
   function fontSize (s) {
