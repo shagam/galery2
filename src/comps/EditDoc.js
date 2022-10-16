@@ -35,14 +35,6 @@ const  EditDoc = (props) => {
 
   const { admin } = useAuth();
   // const [draftState, setDraftState] = useState (EditorState.createWithContent(htmlToDraft('<p>abcd</p>')))
-
-
-  // const [newDoc, setNewDoc] = useState({});
-  // console.log (props.editDoc)
-
-  function abort () {
-    props.setEditDoc(undefined);
-  }
   const categoryList =['Other','Landscape', 'Building','Fabrique','Stickers','Fruits']
   if (category === '')
     setCategory (categoryList[0])
@@ -55,10 +47,6 @@ const  EditDoc = (props) => {
         setError ('Please choose category (' + category +')')
         return;
       }
-      // if (technique === '') {
-      //   setError ('Please choose technique (' + technique +')')
-      //   return
-      // }
 
       try {
         var category_ = category
@@ -186,25 +174,9 @@ return (
         <input style={{ 'width': '10vw'}} type="text" name = "price" onChange={(e) => {setPrice(e.target.value)}}
         defaultValue={props.editDoc.price}  placeholder={props.editDoc.price}></input>
         
-        <div>
-          {/* Description */}
-          {/* <div>
-            <input type="textarea" name = "description" onChange={(e) => {setDescription(e.target.value)}}
-            defaultValue={props.editDoc.description} placeholder={props.editDoc.description}></input>
-          </div> */}
-          <div>
-          {/* <textarea rows="5" cols="90" name = "description" 
-           defaultValue={props.editDoc.description}  placeholder={props.editDoc.year}
-           onChange={(e) => {setDescription(e.target.value)}}>
-
-          </textarea> */}
-          </div>
-        </div>
      </div>
 
      {/* ; */}
-     {/* <button type="submit"> submit </button> 
-     <button type="submit" onClick={abort} > abort </button>  */}
      <Link to={'/'} onClick={() => {formHandler()}} >submit</Link>
      &nbsp;&nbsp;
      <Link to={'/'} onClick={() => {}}> abort</Link>
