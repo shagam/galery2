@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+
+import { Link } from 'react-router-dom'
+
 import EditDoc from './EditDoc'
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebaseConfig'
@@ -13,8 +16,13 @@ import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
 
 
-const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGallery }) => {
-  const [editDoc, setEditDoc] = useState();
+const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
+
+  // <Route path={'/modal'} element={<Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}
+  // getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
+
+
+  // const [editDoc, setEditDoc] = useState();
   const [error, setError] = useState();
   const { admin } = useAuth();
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
@@ -59,7 +67,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
 
   const fontSizeStyle = userAgentMobile ? '1.2em' : '1.7em'
   const horizontal = userAgentMobile ? 'flex' : 'flex'
-
+  const cat = '/' + selectedDoc.category;
 
   return (
 
@@ -73,22 +81,27 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
 
         <div style={{}}>
   
-          <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
+          {selectedDoc.richDoc&& <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
              <EditorReadOnly  richDoc={selectedDoc.richDoc} />  
-          </div>
+          </div>}
 
         {/* <div style={{display:'flex', fontSize:'1.3em'  }}> */}
           <hr/> 
+          <div  style= {{color:'red' }} > <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
           <div  style= {{color:'magenta' }} >  {selectedDoc.title} &nbsp;  &nbsp;   </div>
-          <div  style= {{color:'magenta' }} > <strong>  {selectedDoc.fileName}</strong>  &nbsp;   </div>
-          <div  style={{display:'flex'}}> ({selectedDoc.category}, {selectedDoc.technique}, {selectedDoc.size}, {selectedDoc.year})</div>
+          <div  style={{display:'flex'}}> ({selectedDoc.fileName}, {selectedDoc.category},{selectedDoc.technique}, {selectedDoc.size}, {selectedDoc.year})</div>
 
           <hr/>
           
           <div>
-            <button type="button" onClick={()=>setSelectedDoc (null)}>close</button>
-            {true && <button type="button"  onClick={()=>setEditDocGallery (selectedDoc)}>edit</button>}
-            {admin && <button type="button"  onClick={()=>deleteClick(selectedDoc)}>del</button>}
+            <Link to={cat}  >close</Link>
+            &nbsp;&nbsp;
+
+            <Link to={'/editDoc'}  onClick={() => {}} >Edit</Link>
+
+            &nbsp;&nbsp;
+            <Link to={cat}  onClick={() => {deleteClick(selectedDoc)}} >del  </Link>
+
           </div>
       
           <hr/>
@@ -96,9 +109,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery, setEditDocGa
         </div>
         {/* <hr/>         <hr/>      <hr/> */}
         </div>
-        
-        {editDoc && <EditDoc editDoc={selectedDoc} getPictures = {getPictures} setEditDoc={setEditDoc} gallery = {gallery} setSelectedDoc={setSelectedDoc}/>}
-
+   
         {/* <Editor/> */}
 
     </div>

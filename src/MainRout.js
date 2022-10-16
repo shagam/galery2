@@ -29,7 +29,6 @@ export function MainRout () {
   const categoryList =['', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
   const { currentUser, admin } = useAuth();
   const [selectedDoc, setSelectedDoc] = useState (null)
-  const [editDoc, setEditDoc] = useState();
 
   const adminsEmail = {
     dina: process.env.REACT_APP_FIREBASE_dina,
@@ -106,24 +105,24 @@ return (
           return (
             <Route key={cat} path={rt} element={<ImageGrid gallery={admins[adminId].gallery} 
             name={admins[adminId].name} adminEmail={admins[adminId].email} category={cat} docs={docs} getPictures = {getPictures} 
-            selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
+            selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc} />} />
           )
         })}
 
         { docs.map ((doc) => {
           const rt = '/' + doc.fileName;
             return (
-              <Route key={doc.fileName} path={rt} element={<Modal selectedDoc = {doc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
+              <Route key={doc.fileName} path={rt} element={<Modal selectedDoc = {doc}  setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery}  />} />
             )
           })
         }
 
         <Route path={'/modal'} element={<Modal selectedDoc = {selectedDoc}  setSelectedDoc={setSelectedDoc}
-          getPictures = {getPictures} gallery = {admins[adminId].gallery} editDoc = {editDoc} setEditDoc={setEditDoc} />} />
+          getPictures = {getPictures} gallery = {admins[adminId].gallery}  />} />
 
 
-        <Route path={'/editDoc'} element={<EditDoc editDoc={editDoc} getPictures = {getPictures} setEditDoc={setEditDoc}
-          gallery = {admins[adminId].gallery} setSelectedDoc={setSelectedDoc}/> }  />
+        <Route path={'/editDoc'} element={<EditDoc  editDoc = {selectedDoc} setEditDoc={setSelectedDoc} 
+          getPictures = {getPictures} gallery = {admins[adminId].gallery} /> }  />
 
         <Route path="/dina_cv" element={<DinaCV />}/>                    
         <Route path="/exibitions" element={<Exibitions />}/>  

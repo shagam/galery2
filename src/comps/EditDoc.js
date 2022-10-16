@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { db } from '../firebaseConfig'
 import { collection, addDoc, doc, deleteDoc} from "firebase/firestore"
+import { Link } from 'react-router-dom'
 // import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage"
 // import { assertIsStringOrUndefined } from 'firebase-tools/lib/utils'
 import { Alert } from 'react-bootstrap'
@@ -47,7 +48,7 @@ const  EditDoc = (props) => {
     setCategory (categoryList[0])
 
   const formHandler = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
       setError('');
 
       if (category === 'all' || category === '') {
@@ -110,14 +111,13 @@ const  EditDoc = (props) => {
         await addDoc (picturesRef, {title: title_, fileName: props.editDoc.fileName, fileUrl: props.editDoc.fileUrl, file_kb: props.editDoc.file_kb, fileType: props.editDoc.fileType, fileScanned: props.editDoc.fileScanned, category: category_, size: size_, technique: technique_, price: price_, year: year_, richDoc: richDoc_, update: getDate(), user: currentUser.email})  // 
 
         props.getPictures(); 
-        props.setEditDoc(undefined);
-        props.setSelectedDoc(undefined);
+
       } catch (e) {setError(e.message) && console.log (e)}
   }
 
   const techList = ['', 'gouash', 'oil', 'water', 'etching', 'black&white', 'sketch'];
 
-
+  const cat = '/' + category; 
 
 
 // width:'1.2em', height:'1.5em'
@@ -147,7 +147,7 @@ return (
             defaultValue={props.editDoc.title} placeholder={props.editDoc.title}></input>
 
               &nbsp;&nbsp;fileName: 
-            <div  style={{color:'magenta', 'fontSize':'1.8vw'}}>
+            <div style={{color:'red', 'fontSize':'1.8vw'}}>
             <strong> &nbsp; {props.editDoc.fileName}</strong>
             </div>
           </div>
@@ -201,8 +201,13 @@ return (
           </div>
         </div>
      </div>
-     <button type="submit"> submit </button> 
-     <button type="submit" onClick={abort} > abort </button> 
+
+     {/* ; */}
+     {/* <button type="submit"> submit </button> 
+     <button type="submit" onClick={abort} > abort </button>  */}
+     <Link to={'/'} onClick={() => {formHandler()}} >submit</Link>
+     &nbsp;&nbsp;
+     <Link to={'/'} onClick={() => {}}> abort</Link>
      <hr/>
 
 
