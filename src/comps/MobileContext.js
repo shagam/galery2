@@ -8,6 +8,7 @@ export const MobileContext = () => {
   const [isAndroid, setIsAndroid] = useState("");
   const [isIPhone, setIsIphone] = useState("");
 
+    const LOG = false;
   
   useEffect (() => { 
     //getGain();
@@ -28,7 +29,8 @@ export const MobileContext = () => {
       setUserAgentMobile(true);
     } else {
       setUserAgentMobile(false);
-      console.log("not mobile device");
+      if (LOG)
+        console.log("not mobile device");
     }
     
     if (/Android/i.test(navigator.userAgent))
