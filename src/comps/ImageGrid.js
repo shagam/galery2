@@ -184,6 +184,7 @@ const ImageGrid = (props) => {
                 </div>
 
                 <div  style_={{display:'flex'}}>
+                  <div style= {{color:'red', 'fontSize': fontSize(1.6) }}> ({fileName}</div>
                   <div style={{color:'magenta', 'fontSize': fontSize(1.8)}}> {title}  &nbsp;  </div>
                   <div style= {{'fontSize': fontSize(1.6) }}> ({category}, {technique})</div>
                 </div>
@@ -199,10 +200,6 @@ const ImageGrid = (props) => {
 
 
       </div>}
-
-      {/* {props.selectedDoc && ! props.editDoc && <Modal selectedDoc = {props.selectedDoc}  setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} setEditDocGallery={setEditDoc_} /> } */}
-
-      {props.editDoc && <EditDoc editDoc={props.editDoc} getPictures = {props.getPictures} setEditDoc={props.setEditDoc} gallery = {props.gallery} setSelectedDoc={props.setSelectedDoc}/>}
 
       <hr/>  
     </div>
