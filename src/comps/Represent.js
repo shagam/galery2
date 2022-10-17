@@ -91,7 +91,7 @@ export function Represent (props) {
       {admin &&  <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
 
 
-      <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Category </div>    
+      <div style= {{ fontSize:'3vw', color: 'magenta' }}> Choose Category </div>    
       {/* <hr/>        <hr/> */}
       <div style={img_grid}>
         {repDocs && repDocs.map(doc => {
