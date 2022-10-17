@@ -66,7 +66,7 @@ const ImageGrid = (props) => {
       console.log ('fitered:', list)
     setDocsFiltered(list);
 
-  }, [props.docs, globalFilter, props.category]);
+  }, [props.docs, globalFilter, props.category, LOG]);
 
   function fontSize (s) {
     if (userAgentMobile)
