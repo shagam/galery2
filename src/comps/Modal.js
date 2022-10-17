@@ -11,7 +11,7 @@ import MobileContext from './MobileContext';
 // import Editor from "./Editor";
 
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
-import EditorReadOnly from "./EditorReadOnly";
+
 import EditorDraft from "./EditorDraft";
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
