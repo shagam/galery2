@@ -196,16 +196,22 @@ export const ImageTable = (props) => {
                       {row.cells.map((cell) => {
                         return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                       })}
-                        <div style={{display:'flex'}}>
-                        <button type="button" onClick={()=>chooseImage (row.values.fileName)}>choose </button>
-                        {admin && <button type="button" onClick={()=>editDocument (row.values.fileName)}>edit </button>}
+                      <div style={{display:'flex'}}>
+
+                        &nbsp; &nbsp;
+                        <Link to="/modal"  onClick={()=>{ props.setSelectedDoc(findDocFromImageName (row.values.fileName))}} >choose</Link>
+                        &nbsp; &nbsp;
+                        <Link to="/editDoc"  onClick={()=>{ props.setSelectedDoc(findDocFromImageName (row.values.fileName))}} >edit</Link>
+                        &nbsp; &nbsp;
                         {admin && <button type="button" onClick={()=>deleteClick(row.values.fileName)}>del</button>}
-                        <div  style={{ zoom: '10%'}}>
+                        &nbsp;
 
-                        <img src={findDocFromImageName (row.values.fileName).fileUrl} alt="enlarged pic" />
-
-                        </div>
-                        </div>
+                        <Link to="/modal"  onClick={()=>{ props.setSelectedDoc(findDocFromImageName (row.values.fileName))}} >                   
+                          <div  style={{ zoom: '10%'}}>
+                            <img src={findDocFromImageName (row.values.fileName).fileUrl} alt="enlarged pic" />
+                          </div>
+                        </ Link>    
+                      </div>
                     </tr>
                   )
                 })}
