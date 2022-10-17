@@ -51,7 +51,7 @@ export function Represent (props) {
       console.log (props.docs.length)
     collectReps()
   }
-  }, [props.docs, LOG, repDocs]);
+  });
 
 
   function fontSize (s) {
