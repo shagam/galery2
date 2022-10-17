@@ -90,7 +90,7 @@ return (
     <Router>
 
       <Routes>
-        <Route path='/' element ={ <Represent docs={docs}/> } />
+        <Route path='/' element ={ <Represent docs={docs} gallery={admins[adminId].gallery} getPictures = {getPictures}  /> } />
         <Route exact path ="/dashBoard"  element={<Dashboard admins= {admins}/>}/>
         {/* <Route path="/" element={<Dashboard/>}   /> */}
 

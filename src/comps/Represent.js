@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import MobileContext from './MobileContext';
+import { useAuth } from '../contexts/AuthContext';
+import UploadForm from './UploadForm'
 
 export function Represent (props) {
   const [repDocs, setRepDocs] = useState()
   const [category, setCategory] = useState()
   const { userAgentMobile } = MobileContext();
-
+  const { currentUser, admin } = useAuth();
 
   const LOG = false;
   if (LOG)
@@ -73,6 +75,21 @@ export function Represent (props) {
 
   return (
     <div>
+
+      <Link to="/dashboard" > DashBoard (Login)</Link>
+        {/* <div className='w-100 text-left mt-2'> */}
+      &nbsp; &nbsp; &nbsp; 
+      {props.gallery==='dina' && <Link to="/Dina_CV" >Dina Goldstein CV</Link>}
+      &nbsp; &nbsp; &nbsp; 
+      {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
+      &nbsp; &nbsp; &nbsp; 
+      {props.gallery==='dina' && <Link to="/contact" >Contact</Link>}
+
+      <hr/>
+
+      {admin &&  <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
+
+
       <div style= {{display: 'flex', fontSize:'3vw', color: 'magenta' }}> Choose Category </div>    
       {/* <hr/>        <hr/> */}
       <div style={img_grid}>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
 
-import UploadForm from './UploadForm'
+
 import Modal from "./Modal";
 import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
@@ -136,22 +136,6 @@ const ImageGrid = (props) => {
       </div>
 
       {<div>
-
-
-         <Link to="/dashboard" > DashBoard (Login)</Link>
-          {/* <div className='w-100 text-left mt-2'> */}
-            &nbsp; &nbsp; &nbsp; 
-            {props.gallery==='dina' && <Link to="/Dina_CV" >Dina Goldstein CV</Link>}
-            &nbsp; &nbsp; &nbsp; 
-            {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
-            &nbsp; &nbsp; &nbsp; 
-            {props.gallery==='dina' && <Link to="/contact" >Contact</Link>}
-
-
-
-        <hr/>
-
-        {admin && ! props.selectedDoc && <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
 
         {error && <div className='error'>{error}</div>} 
 
