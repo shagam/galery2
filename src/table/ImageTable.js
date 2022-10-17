@@ -59,11 +59,11 @@ export const ImageTable = (props) => {
     }
   }
 
-  function editDocument (fileName) {
-    const doc = findDocFromImageName(fileName)
-    setEditDoc (doc);
-    setError();
-  }
+  // function editDocument (fileName) {
+  //   const doc = findDocFromImageName(fileName)
+  //   setEditDoc (doc);
+  //   setError();
+  // }
 
 
   function chooseImage (fileName) {
