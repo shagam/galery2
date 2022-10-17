@@ -180,6 +180,9 @@ return (
      <Link to={'/modal'} onClick={() => {formHandler()}} >submit</Link>
      &nbsp;&nbsp;
      <Link to={'/modal'} onClick={() => {}}> abort</Link>
+     
+      &nbsp;&nbsp;
+      <Link to="/" >Home</Link>
      <hr/>
 
 

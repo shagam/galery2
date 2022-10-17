@@ -145,7 +145,7 @@ export const ImageTable = (props) => {
            
           <CheckBox {...getToggleHideAllColumnsProps()} />   Toggle All
 
-          &nbsp; <Link to="/" >back</Link>
+          &nbsp; <Link to="/" >Home</Link>
       
         <div>
           <input

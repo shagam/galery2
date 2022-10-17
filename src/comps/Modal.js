@@ -105,6 +105,8 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
             &nbsp;&nbsp;
             <Link to={cat}  onClick={() => {deleteClick(selectedDoc)}} >del  </Link>
 
+            &nbsp;&nbsp;
+            <Link to="/" >Home</Link>
           </div>
       
           <hr/>

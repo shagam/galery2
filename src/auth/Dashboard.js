@@ -105,6 +105,8 @@ export default function Dashboard (props) {
         
         <div className='w-100 text-center mt-2'> 
           <Button variant="link" onClick={handleLogout}>Log Out</Button>
+          &nbsp;&nbsp;
+          <Link to="/" >Home</Link> 
         </div>
         </Card.Body>
 

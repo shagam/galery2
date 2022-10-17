@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Container } from 'react-bootstrap'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {collection, getDocs} from "firebase/firestore";
 import { db } from './firebaseConfig'
 
@@ -89,18 +90,16 @@ return (
   <Container  className='d-flex align-items-left justify-content-left' style={{minHeight: "50vh", minWidth: "100%"}}  >
 
     <Router>
-
       <Routes>
         <Route path='/' element ={ <Represent docs={docs} gallery={admins[adminId].gallery} getPictures = {getPictures}  /> } />
         <Route exact path ="/dashBoard"  element={<Dashboard admins= {admins}/>}/>
-        {/* <Route path="/" element={<Dashboard/>}   /> */}
 
         <Route path="/contact" element={<Contact/> } />
         <Route path="/signup" element={<Signup/> } />
         <Route path="/login" element={<Login/> }/>
         <Route path="/forgotPassword" element={<ForgotPassword />}/>
         <Route path="/update-profile" element={<UpdateProfile  />}/>
-        
+
         <Route path={'/table'} element={<ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery} />} />
 
         {categoryList.map ((cat) => {

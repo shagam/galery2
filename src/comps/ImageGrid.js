@@ -124,11 +124,13 @@ const ImageGrid = (props) => {
         {props.category !== '' && <div style={{}}>
 
           <div style={{display:'flex'}}>
+
             <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
             &nbsp; ({docsFiltered.length}) &nbsp;&nbsp;
             <CustomSelect options={imagePerRowOptions} label='layout' onChange={layoutChange } defaultValue={imagePerRowOptions[2]} />
+            &nbsp;&nbsp;<Link to={'/'}  onClick={() => {}} >home</Link>
           </div>
-          <hr/>
+
 
           <div style={{display:'flex', 'marginTop': '0.9vh'}}> 
             <div style= {{color: 'red', fontSize:'4vw',  }}><strong> {props.category}  &nbsp;</strong> </div> 
