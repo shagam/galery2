@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 import './table.css'
 
 import CheckBox from './CheckBox'
-import EditDoc from '../comps/EditDoc'
 import { db } from '../firebaseConfig'
 import { doc, deleteDoc} from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
@@ -219,10 +218,6 @@ export const ImageTable = (props) => {
           </table>
 
         </div>
-
-
-      {editDoc && <EditDoc editDoc={editDoc} getPictures = {props.getPictures} setEditDoc={setEditDoc} gallery = {props.gallery}/>}
-
     </div>
   )
 }
