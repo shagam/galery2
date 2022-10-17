@@ -23,6 +23,7 @@ import DinaCV from './cv/DinaCV'
 import Exibitions from './cv/Exibitions'
 import Contact from './comps/Contact'
 import ImageTable from './table/ImageTable'
+import CustomSelect from './comps/CustomSelect'
 
 export function MainRout () {
 
@@ -31,6 +32,8 @@ export function MainRout () {
   const categoryList =['', 'Landscape', 'Building', 'Fabrique','Stickers','Fruits', 'Other']
   const { currentUser, admin } = useAuth();
   const [selectedDoc, setSelectedDoc] = useState (null)
+  const [adminId, setAdminId] = useState(0);
+
 
   const adminsEmail = {
     dina: process.env.REACT_APP_FIREBASE_dina,
@@ -44,9 +47,6 @@ export function MainRout () {
     {gallery: "test",  name: "test", email: adminsEmail.eli},
   ]
   
-
-   const adminId = 0;
-
   const picturesRef = collection(db, admins[adminId].gallery);
   const getPictures = async () => {
     try {
@@ -75,12 +75,23 @@ export function MainRout () {
     getPictures ();  // eslint-disable-line
   }, []);  // eslint-disable-line
 
+  const adminOptions = [
+    {label: admins[0].gallery, value: 0},
+    {label: admins[1].gallery, value: 1},
+  ]
+  function adminChange (value) {
+    localStorage.setItem('admin', value.value)
+    setAdminId (value.value);
+    console.log (value)
+  }
+
 
 return (
   <div>
     <div style={{display:'flex'}}>
       <h2 style={{color:'green'}}> &nbsp; Image Gallery &nbsp;&nbsp; </h2>
       <h2><strong>{admins[adminId].name}</strong>  ({docs.length})  </h2>
+      {/* <CustomSelect options={adminOptions} label='&nbsp;&nbsp;&nbsp;  gallery' onChange={adminChange } defaultValue={adminOptions[0]} /> */}
     </div>
     <div style={{display:'flex'}}> 
       {currentUser && <div><strong> &nbsp;&nbsp; {currentUser.email}</strong> </div> }
