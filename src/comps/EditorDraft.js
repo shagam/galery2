@@ -5,7 +5,7 @@
 //https://stackoverflow.com/questions/68519755/how-to-set-initial-editor-state-in-react-draft-wysiwyg
 //https://reactrocket.com/post/draft-js-persisting-content/
 
-
+// spaces   https://github.com/facebook/draft-js/issues/248#issuecomment-335010079
 
 import React, {useState  } from 'react'
 // Component  Function
@@ -61,24 +61,31 @@ function DraftEditor (props) {
   return (
     // {console.log (convertToRaw (editorState.getCurrentContent()))}
     <div>
-      <div>
+
+      {! props.readOnly &&
         <Editor
           editorState={editorState}
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           onEditorStateChange={onEditorStateChange}
-        />
+        />}
 
-      </div>
+      {props.readOnly &&
+        <Editor
+          readOnly
+          toolbarHidden
+          editorState={editorState}
+          wrapperClassName="demo-wrapper"
+          editorClassName="demo-editor"
+          // onEditorStateChange={onEditorStateChange}
+        />}
+
       <hr/>
       <div> 
         {/* {editorState && <textarea rows="5" cols="50" disabled value={draftToHtml (convertToRaw (editorState.getCurrentContent()))}></textarea>} */}
         {/* {console.log (draftToHtml (convertToRaw (editorState.getCurrentContent())))*/}
       </div>
 
-      {/* <div>
-        {draftToHtml (convertToRaw (editorState.getCurrentContent()))}
-      </div> */}
     </div> 
   )
 }

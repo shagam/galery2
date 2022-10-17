@@ -12,6 +12,7 @@ import MobileContext from './MobileContext';
 
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import EditorReadOnly from "./EditorReadOnly";
+import EditorDraft from "./EditorDraft";
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
 import { FaCat } from "react-icons/fa";
@@ -84,7 +85,7 @@ const Modal = ({ selectedDoc, setSelectedDoc, getPictures, gallery }) => {
         <div style={{}}>
   
           {selectedDoc.richDoc&& <div style={{ 'width': '30vw', 'height': '40vh', 'marginLeft': '20px', border: '2px solid blue'}}>
-             <EditorReadOnly  richDoc={selectedDoc.richDoc} />  
+             <EditorDraft  richDoc={selectedDoc.richDoc} readOnly={true} />  
           </div>}
 
         {/* <div style={{display:'flex', fontSize:'1.3em'  }}> */}
