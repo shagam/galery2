@@ -3,6 +3,7 @@ import React, {useState, useMemo} from 'react'
 import { useTable, useSortBy, useGlobalFilter, useRowSelect } from 'react-table'
 import GlobalFilter from '../comps/GlobalFilter'
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 // import{ Styles } from './TableStyles'
 import './table.css'
 
@@ -145,6 +146,8 @@ export const ImageTable = (props) => {
            
           <CheckBox {...getToggleHideAllColumnsProps()} />   Toggle All
 
+          &nbsp; <Link to="/" >back</Link>
+      
         <div>
           <input
             type="checkbox" checked={columnHideFlag}  

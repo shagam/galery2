@@ -21,6 +21,7 @@ import UpdateProfile from './auth/UpdateProfile';
 import DinaCV from './cv/DinaCV'
 import Exibitions from './cv/Exibitions'
 import Contact from './comps/Contact'
+import ImageTable from './table/ImageTable'
 
 export function MainRout () {
 
@@ -99,6 +100,8 @@ return (
         <Route path="/login" element={<Login/> }/>
         <Route path="/forgotPassword" element={<ForgotPassword />}/>
         <Route path="/update-profile" element={<UpdateProfile  />}/>
+        
+        <Route path={'/table'} element={<ImageTable docs={docs} setSelectedDoc={setSelectedDoc} getPictures = {getPictures} gallery = {admins[adminId].gallery} />} />
 
         {categoryList.map ((cat) => {
           const rt = "/" + cat;

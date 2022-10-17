@@ -61,7 +61,9 @@ export default function ContactUs (props)  {
           <label>Message</label>
           <textarea name="message" />
           <input type="submit" value="Send" />
+          &nbsp; <Link to="/" >back</Link>
         </form>
+
       </div>
     </section>
   );

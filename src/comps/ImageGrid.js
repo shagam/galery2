@@ -2,32 +2,18 @@
 import React, { useState, useEffect } from "react";
 
 import { Link } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext';
-
-
-import Modal from "./Modal";
-import ImageTable from '../table/ImageTable'
 import GlobalFilter from './GlobalFilter'
-// import Category from '../comps/Category';
-// import InputNumber from './InputNumber';
 import CustomSelect from './CustomSelect'
-import EditDoc from './EditDoc'
 
 import MobileContext from './MobileContext';
-// import MobileContext from './MobileContext';
+;
 
 
 const ImageGrid = (props) => {
 
   const [docsFiltered, setDocsFiltered] = useState([]);
-  // const [category, setCategory] = useState (props.category)
-
-  // const [selectedDoc, setSelectedDoc] = useState (null)
-  const { currentUser, admin } = useAuth();
   const [error, setError] = useState();
   const [globalFilter, setGlobalFilter] = useState();
-  const [tableFlag, setTableFlag] = useState(false);
-  // const [editDoc, setEditDoc] = useState();
 
   const [gridTemplateColumns, setGridTemplate]  = useState('1fr 1fr 1fr')
   const { userAgentMobile } = MobileContext();
@@ -82,10 +68,6 @@ const ImageGrid = (props) => {
 
   }, [props.docs, globalFilter, props.category]);
 
-  
-  const tableFlagChange = () => {setTableFlag (! tableFlag)}
-  
-  
   function fontSize (s) {
     if (userAgentMobile)
       return s*7 + 'vw'
@@ -139,9 +121,7 @@ const ImageGrid = (props) => {
 
         {error && <div className='error'>{error}</div>} 
 
-        {admin && <div> <input type="checkbox" checked={tableFlag} onChange={tableFlagChange}/> table </div>}
-
-        {! tableFlag && props.category !== '' && <div style={{}}>
+        {props.category !== '' && <div style={{}}>
 
           <div style={{display:'flex'}}>
             <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter}  />
@@ -181,12 +161,7 @@ const ImageGrid = (props) => {
             })}
           </div>
         </div>}
-
-        
-        {/* { tableFlag && <ImageTable docs={docsFiltered} setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} />} */}
-        { tableFlag && <ImageTable docs={props.docs} setSelectedDoc={props.setSelectedDoc} getPictures = {props.getPictures} gallery = {props.gallery} />}
-
-
+  
       </div>}
 
       <hr/>  

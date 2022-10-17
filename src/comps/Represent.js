@@ -84,7 +84,8 @@ export function Represent (props) {
       {props.gallery==='dina' && <Link to="/exibitions" >Exibitions</Link>}
       &nbsp; &nbsp; &nbsp; 
       {props.gallery==='dina' && <Link to="/contact" >Contact</Link>}
-
+      &nbsp; &nbsp; &nbsp; 
+      <Link to="/table" >tableView</Link>
       <hr/>
 
       {admin &&  <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
