@@ -57,14 +57,15 @@
                Login </Link> 
             </div>
           </Card.Body>
+
+          <div className='w-100 text-center mt-2'>
+            Need an account? <Link to="/signup" > Sign Up </Link> </div>
+          <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
+          <div className='w-100 text-center mt-2'>  <Link to="/" > Home </Link> </div>
+
         </Card>
         </Container>
-        <div className='w-100 text-center mt-2'>
-          Need an account? <Link to="/signup" > Sign Up </Link>
-  
-        </div>
-        <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
-      </>
+           </>
     )
   }
   
