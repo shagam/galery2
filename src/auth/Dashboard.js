@@ -70,7 +70,7 @@ export default function Dashboard (props) {
   return (
     <>
 
-    <Container  className='d-flex align-items-center justify-content-center' style={{minHeight: "50vh", width: "100%"}} >    
+    <Container  className='d-flex align-items-center justify-content-left' style={{minHeight: "50vh", width: "100%"}} >    
       <Card>
         <Card.Body>
           <h2 className='text-left mb-4'> Dashboard </h2>
