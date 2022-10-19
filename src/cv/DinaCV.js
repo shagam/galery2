@@ -28,7 +28,7 @@ try {
 
         <div className='text'> 
           <div className='w-100 text-left mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
-          <div className='w-100 text-left mt-2'>  <Link to="/" > Back to Gallery </Link> </div>
+          <div className='w-100 text-left mt-2'>  <Link to="/" >Home</Link> </div>
           <hr/>
           <div id = "pdf_id" style={style}>       
               <object data={pdfCache} type="application/pdf"

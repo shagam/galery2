@@ -94,11 +94,12 @@ export default function UpdateProfile ()  {
             <Button disabled={loading} className="w-100" type="submit"> Update </Button>
           </Form>
         </Card.Body>
-      </Card>
-      <div className='w-100 text-center mt-2'>
-        Already have an account?  <Link to="/dashboard" > Cancel </Link>
-
+        <div className='w-100 text-center mt-2'>
+          Already have an account?  <Link to="/dashboard" > Cancel </Link>
+          <div className='w-100 text-center mt-2'>  <Link to="/" > Home </Link> </div>
       </div>
+      </Card>
+
     </>
   )
 }

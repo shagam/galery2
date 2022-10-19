@@ -72,17 +72,21 @@ export default function Login (props)  {
             <Button disabled={loading} className="w-100" type="submit"> Log in </Button>
           </Form>
         </Card.Body>
+
+        <div className='w-100 text-center mt-2'>
+        Need an account? <Link to="/signup" > Sign Up </Link>
+        </div>
+
+        <div className='w-100 text-center mt-2'>
+          Forgot Password? <Link to="/ForgotPassword" > Reset Password </Link>
+        </div>
+        
+        <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>  
+        <div className='w-100 text-center mt-2'>  <Link to="/" > Home </Link> </div>        
       </Card>
 
-      <div className='w-100 text-center mt-2'>
-        Need an account? <Link to="/signup" > Sign Up </Link>
-      </div>
 
-      <div className='w-100 text-center mt-2'>
-        Forgot Password? <Link to="/ForgotPassword" > Reset Password </Link>
-      </div>
-      
-      <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
+      {/* <div className='w-100 text-center mt-2'>  <Link to="/" > Home </Link> </div> */}
 
     </>
   )
