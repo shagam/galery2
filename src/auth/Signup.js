@@ -44,7 +44,7 @@ export default function Signup ()  {
   return (
 
     <>
-      <Container  className='d-flex align-items-center justify-content-center' style={{minHeight: "50vh", width: "100%"}} > 
+      <Container  className='d-flex align-items-center justify-content-left' style={{minHeight: "50vh", width: "100%"}} > 
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'> Sign up</h2>
@@ -82,13 +82,15 @@ export default function Signup ()  {
             <Button disabled={loading} className="w-100" type="submit"> Sign Up </Button>
           </Form>
         </Card.Body>
+
+        <div className='w-100 text-center mt-2'>
+           Already have an account?  <Link to="/login" > Log In </Link> </div>
+        <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
+        <div className='w-100 text-center mt-2'>  <Link to="/" >Home </Link> </div>
+        
       </Card>
       </Container>
-      <div className='w-100 text-center mt-2'>
-        Already have an account?  <Link to="/login" > Log In </Link>
 
-      </div>
-      <div className='w-100 text-center mt-2'>  <Link to="/dashboard" > Dashboard </Link> </div>
     </>
   )
 }
