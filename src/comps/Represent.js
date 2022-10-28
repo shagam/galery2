@@ -56,20 +56,20 @@ export function Represent (props) {
 
   function fontSize (s) {
     if (userAgentMobile)
-      return s*7 + 'vw'
+      return s*3 + 'vw'
     else
       return s + 'vw';
   }
 
   var img_grid  = {
-    width: '30vw',
+    width: '80vw',
     'backgroundSize': 'cover',
     /* width: 130%!important; */
     /* margin: 20px auto; */
     display: 'grid',
     // 'grid-template-columns': '1fr 1fr 1fr',
     'gridTemplateColumns':  '1fr 1fr 1fr' ,
-    'gridGap': '10px'
+    'gridGap': '0px'
     /* justify-content: start; */
   }
 
@@ -91,7 +91,7 @@ export function Represent (props) {
       {admin &&  <UploadForm getPictures = {props.getPictures} gallery = {props.gallery}/> }
 
 
-      <div style= {{ fontSize:'3vw', color: 'magenta' }}> Choose Category </div>    
+      <div style= {{ fontSize:'3vw' }}> Choose Category: </div>    
       {/* <hr/>        <hr/> */}
       <div style={img_grid}>
         {repDocs && repDocs.map(doc => {
@@ -103,9 +103,9 @@ export function Represent (props) {
       
             <div>
               <Link to={link}   >
-               <div  style={{ zoom: '50%', margin: '30px'}}>
+               <div  style={{ zoom: '80%', margin: '20px'}}>
 
-                  <div style= {{'fontSize': fontSize(4) }}> {category}</div>
+                  <div style= {{color: 'magenta', 'fontSize': fontSize(4) }}> {category}</div>
                   <br></br> 
                   <img src={fileUrl} alt="categoryImg" />
 
